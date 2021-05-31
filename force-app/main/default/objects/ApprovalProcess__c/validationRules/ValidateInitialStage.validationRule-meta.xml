@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ValidateInitialStage</fullName>
+    <active>true</active>
+    <description>Valida la etapa inicial para el proceso de aprobación.</description>
+    <errorConditionFormula>AND(ISNEW(),TEXT(Stage__c)!=&apos;Iniciado&apos;)</errorConditionFormula>
+    <errorDisplayField>Stage__c</errorDisplayField>
+    <errorMessage>La etapa inicial del proceso de aprobación debe ser igual a Iniciado.</errorMessage>
+</ValidationRule>
