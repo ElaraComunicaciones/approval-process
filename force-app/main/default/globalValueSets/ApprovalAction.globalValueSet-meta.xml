@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Incremento</fullName>
+        <default>false</default>
+        <label>Incremento</label>
+    </customValue>
+    <customValue>
+        <fullName>Decremento</fullName>
+        <default>false</default>
+        <label>Decremento</label>
+    </customValue>
+    <customValue>
+        <fullName>Migración</fullName>
+        <default>false</default>
+        <label>Migración</label>
+    </customValue>
+    <customValue>
+        <fullName>Reubicación</fullName>
+        <default>false</default>
+        <label>Reubicación</label>
+    </customValue>
+    <customValue>
+        <fullName>Migración de plataforma satelital</fullName>
+        <default>false</default>
+        <label>Migración de plataforma satelital</label>
+    </customValue>
+    <customValue>
+        <fullName>Soporte Remoto</fullName>
+        <default>false</default>
+        <label>Soporte Remoto</label>
+    </customValue>
+    <customValue>
+        <fullName>Ingenieria de campo</fullName>
+        <default>false</default>
+        <label>Ingenieria de campo</label>
+    </customValue>
+    <customValue>
+        <fullName>Adecuaciones especiales</fullName>
+        <default>false</default>
+        <label>Adecuaciones especiales</label>
+    </customValue>
+    <customValue>
+        <fullName>Finalización de ingreso</fullName>
+        <default>false</default>
+        <label>Finalización de ingreso</label>
+    </customValue>
+    <customValue>
+        <fullName>Finalización del ingreso</fullName>
+        <default>false</default>
+        <label>Finalización del ingreso</label>
+    </customValue>
+    <customValue>
+        <fullName>Suspensión del ingreso</fullName>
+        <default>false</default>
+        <label>Suspensión del ingreso</label>
+    </customValue>
+    <masterLabel>Apobración Acción</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -6,7 +6,8 @@
     <inlineHelpText>Etapas del proceso de aprobación para cambios.</inlineHelpText>
     <label>Etapa</label>
     <required>false</required>
-    <trackHistory>false</trackHistory>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
@@ -32,6 +33,16 @@
                 <fullName>Aprobado</fullName>
                 <default>false</default>
                 <label>Aprobado</label>
+            </value>
+            <value>
+                <fullName>Rechazado</fullName>
+                <default>false</default>
+                <label>Rechazado</label>
+            </value>
+            <value>
+                <fullName>Cancelado</fullName>
+                <default>false</default>
+                <label>Cancelado</label>
             </value>
         </valueSetDefinition>
     </valueSet>

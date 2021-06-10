@@ -141,8 +141,9 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>true</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>CustomFormat</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <description>Junction object que unifica los objetos de aprobación y el registro de oprotunidad.</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -153,15 +154,14 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <gender>Masculine</gender>
-    <label>Control de aprobación</label>
+    <label>Control de aprobación proyecto</label>
     <nameField>
-        <displayFormat>APC-{0000000}</displayFormat>
-        <label>Serial</label>
+        <displayFormat>OP-APC{00000000}</displayFormat>
+        <label>Control de aprobación proyecto</label>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Controles de aprobación</pluralLabel>
-    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <pluralLabel>Controles de aprobación proyecto</pluralLabel>
     <searchLayouts></searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>

@@ -8,7 +8,19 @@
     <picklistValues>
         <picklist>Action__c</picklist>
         <values>
+            <fullName>Adecuaciones especiales</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Decremento</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Finalización de ingreso</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Finalización del ingreso</fullName>
             <default>false</default>
         </values>
         <values>
@@ -16,11 +28,27 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Ingenieria de campo</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Migración</fullName>
             <default>false</default>
         </values>
         <values>
+            <fullName>Migración de plataforma satelital</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Reubicación</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Soporte Remoto</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Suspensión del ingreso</fullName>
             <default>false</default>
         </values>
     </picklistValues>
@@ -31,11 +59,19 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Cancelado</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Documentación</fullName>
             <default>false</default>
         </values>
         <values>
             <fullName>Iniciado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rechazado</fullName>
             <default>false</default>
         </values>
         <values>

@@ -7,6 +7,5 @@ trigger ApprovalProcessTrigger on ApprovalProcess__c(
 	before delete,
 	after undelete
 ) {
-	// TriggerFactory.createTriggerDispatcher(ApprovalProcess__c.sObjectType);
-	
+	TriggerFactory.createTriggerDispatcher(ApprovalProcess__c.sObjectType);
 }
