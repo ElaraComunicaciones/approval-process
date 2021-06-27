@@ -70,8 +70,8 @@ public with sharing class ApprovalProcessAPI {
 			}
 		}
 
-		update originalRgus;
-		update newRGUs;
+		RGUTriggerSettings.updateWithoutTriggers(originalRgus);
+		RGUTriggerSettings.updateWithoutTriggers(newRGUs);
 	}
 
 	public static void sendNotifications(
