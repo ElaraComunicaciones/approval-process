@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validacion_de_no_Adeudo__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Requisito para validar: &quot;Validación de no Adeudo&quot;</description>
+    <externalId>false</externalId>
+    <label>Validación de no Adeudo</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Compromiso_de_pago_de_penalizacion_o_fin__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Compromiso de pago de penalización o finiquito</description>
+    <externalId>false</externalId>
+    <label>Compromiso de pago de penalización o fin</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

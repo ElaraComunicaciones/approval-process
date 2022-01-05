@@ -8,47 +8,50 @@
     <picklistValues>
         <picklist>Action__c</picklist>
         <values>
-            <fullName>Adecuaciones especiales</fullName>
+            <fullName>Baja definitiva</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Decremento</fullName>
+            <fullName>Cambio - Actualización</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Finalización de ingreso</fullName>
+            <fullName>Cambio - Altas crecimiento orgánico</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Finalización del ingreso</fullName>
+            <fullName>Cambio - Reactivación del servicio</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Incremento</fullName>
+            <fullName>Cambio - Reemplazo RE</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Ingenieria de campo</fullName>
+            <fullName>Cambio - Suspensión del servicio</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Migración</fullName>
+            <fullName>Cambio - Transferencia RE</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>ChangeApprovalStages__c</picklist>
+        <values>
+            <fullName>Aprobado</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Migración de plataforma satelital</fullName>
+            <fullName>Documentación</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Reubicación</fullName>
+            <fullName>Iniciado</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>Soporte Remoto</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Suspensión del ingreso</fullName>
+            <fullName>Solicitado</fullName>
             <default>false</default>
         </values>
     </picklistValues>
