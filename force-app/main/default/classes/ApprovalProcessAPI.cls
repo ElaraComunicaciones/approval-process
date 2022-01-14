@@ -1,4 +1,5 @@
 public with sharing class ApprovalProcessAPI {
+
 	public static void executeAfterUpdateProcesses(
 		TriggerParameters triggerParams
 	) {
@@ -46,21 +47,21 @@ public with sharing class ApprovalProcessAPI {
 
 
 		for (ApprovalProcessControlRGU__c control : referenceControls) {
-			if (control.oldRGU__c == null) {
+			if (control.Original__c == null) {
 				RGU__c newRecord = new RGU__c(
-					Id = control.newRGU__c,
-					BWBajadaKbps__c = control.newRGU__r.BWBajadaKbps__c,
+					Id = control.Pending__c,
+					BWBajadaKbps__c = control.Pending__r.BWBajadaKbps__c,
 					ApprovalStatus__c = 'Aprobado'
 				);
-				newRGUs.add(newRecord);
+				control.Original__c = newRecord.Id;
 			} else {
 				RGU__c original = new RGU__c(
-					Id = control.oldRGU__c,
-					BWBajadaKbps__c = control.oldRGU__r.BWBajadaKbps__c
+					Id = control.Original__c,
+					BWBajadaKbps__c = control.Original__r.BWBajadaKbps__c
 				);
 				RGU__c newRecord = new RGU__c(
-					Id = control.newRGU__c,
-					BWBajadaKbps__c = control.newRGU__r.BWBajadaKbps__c,
+					Id = control.Pending__c,
+					BWBajadaKbps__c = control.Pending__r.BWBajadaKbps__c,
 					ApprovalStatus__c = 'Aprobado'
 				);
 
@@ -70,8 +71,9 @@ public with sharing class ApprovalProcessAPI {
 			}
 		}
 
+		update referenceControls;
 		RGUTriggerSettings.updateWithoutTriggers(originalRgus);
-		RGUTriggerSettings.updateWithoutTriggers(newRGUs);
+		RGUTriggerSettings.deleteWithoutTriggers(newRGUs);
 	}
 
 	public static void sendNotifications(
@@ -95,10 +97,10 @@ public with sharing class ApprovalProcessAPI {
 				'Solicitud de aprobación para el proceso ' +
 				controlList[0].ApprovalProcess__r.Name;
 			message.plainTextBody = 'Cambios en las siguientes referencias \n';
-			for (ApprovalProcessControlRGU__c control : controlList) {
-				message.plainTextBody +=
-					control.NewRGU__r.Referencia_Elara__c + '\n';
-			}
+			// for (ApprovalProcessControlRGU__c control : controlList) {
+			// 	message.plainTextBody +=
+			// 		control.Pending__r.Referencia_Elara__c + '\n';
+			// }
 			messages.add(message);
 		}
 
@@ -141,13 +143,13 @@ public with sharing class ApprovalProcessAPI {
 				Id,
 				ApprovalProcess__c,
 				ApprovalProcess__r.Name,
-				NewRGU__r.Referencia_Elara__c,
+				Pending__r.Referencia_Elara__c,
 				ApprovalProcess__r.Action__c,
-				ApprovalProcess__r.Stage__c, 
-				oldRGU__c,
-				oldRGU__r.BWBajadaKbps__c,
-				newRGU__c,
-				newRGU__r.BWBajadaKbps__c
+				ApprovalProcess__r.Stage__c,
+				Original__c,
+				Original__r.BWBajadaKbps__c,
+				Pending__c,
+				Pending__r.BWBajadaKbps__c
 			FROM ApprovalProcessControlRGU__c
 			WHERE ApprovalProcess__c IN :newRequestedRecords
 		];
@@ -239,3 +241,10 @@ public with sharing class ApprovalProcessAPI {
 		return startedProcesses;
 	}
 }
+
+
+// Opportunity
+// 	ApprovalProcess
+// 		ApprovalProcessControlRGU__c
+// 			NewRGU - Por aprobar
+// 			OldRGU - Original

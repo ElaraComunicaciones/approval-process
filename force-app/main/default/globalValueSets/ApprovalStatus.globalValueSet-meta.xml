@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Cotizado</fullName>
+        <default>true</default>
+        <label>Cotizado</label>
+    </customValue>
+    <customValue>
+        <fullName>Por Aprobar</fullName>
+        <default>false</default>
+        <label>Por Aprobar</label>
+    </customValue>
+    <customValue>
+        <fullName>Aprobado</fullName>
+        <default>false</default>
+        <label>Aprobado</label>
+    </customValue>
+    <description>Determina si el registro está aprobado para el proyecto o no.</description>
+    <masterLabel>Estados de aprobación de registro</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>OldRGU__c</fullName>
+    <fullName>Original__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
     <label>Original</label>
-    <referenceTo>RGU__c</referenceTo>
-    <relationshipLabel>Controles de aprobación (Original)</relationshipLabel>
-    <relationshipName>ApprovalProcessControlOldReference</relationshipName>
+    <referenceTo>OpportunityLineItem</referenceTo>
+    <relationshipLabel>Controles de aprobación lineItem (Producto de oportunidad)</relationshipLabel>
+    <relationshipName>ApprovalProcessControlLineItem</relationshipName>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
