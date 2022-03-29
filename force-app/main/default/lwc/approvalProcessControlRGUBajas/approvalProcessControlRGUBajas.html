@@ -1,5 +1,60 @@
+<!-- sldsValidatorIgnore -->
 <template>
-	<template for:each={relatedReferences} for:item="reference">
-		<li key={reference.Id}>{reference.Name}</li>
+	<template if:true={showSpinner}>
+		<lightning-spinner
+			alternative-text="Cargando..."
+			size="medium"
+		></lightning-spinner>
+	</template>
+	<template if:false={showSpinner}>
+		<div class="slds-page-header" style="text-align: center">
+			<div class="slds-page-header__row">
+				<div class="slds-page-header__col-title">
+					<div class="slds-media">
+						<div class="slds-media__body">
+							<div class="slds-page-header__name">
+								<div class="slds-page-header__name-title">
+									<h1>
+										<span
+											class="slds-page-header__title slds-truncate"
+											title="Referencias Elara a dar de baja"
+											>Referencias Elara a dar de
+											baja</span
+										>
+									</h1>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<lightning-datatable
+			key-field="Id"
+			data={rgus}
+			columns={columns}
+			show-row-number-column
+			min-column-width="300"
+			default-sort-direction={defaultSortDirection}
+			sorted-direction={sortDirection}
+			sorted-by={sortedBy}
+			onsort={onHandleSort}
+		>
+		</lightning-datatable>
+
+		<div slot="footer" style="margin: 6px 14px 8px 0px; text-align: right">
+			<lightning-button
+				variant="neutral"
+				label="Cancelar"
+				onclick={handleCancel}
+				style="margin-right: 11px"
+			></lightning-button>
+			<lightning-button
+				variant="brand"
+				label="Guardar"
+				onclick={handleSave}
+			></lightning-button>
+		</div>
 	</template>
 </template>
