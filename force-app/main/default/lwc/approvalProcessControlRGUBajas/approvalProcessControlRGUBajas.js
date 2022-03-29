@@ -20,15 +20,17 @@ const columns = [
 		label: 'Número de sitio',
 		fieldName: 'Numero_Sitio__c',
 		sortable: true,
-		type: 'text'
+		type: 'text',
 	},
 	{
 		label: 'Estatus en CoS',
 		fieldName: 'Status_COS__c',
 		sortable: true,
-		type: 'text'
+		type: 'text',
 	}
+
 ];
+
 
 export default class ApprovalProcessControlRGUBajas extends LightningElement {
 	@api recordId;
@@ -45,13 +47,14 @@ export default class ApprovalProcessControlRGUBajas extends LightningElement {
 		isSaving: false,
 		error: null,
 		data: null
-	};
+	}
 
 	@track toastMessage = {
 		variant: null,
 		title: null,
 		meessage: null
-	};
+	}
+
 
 	//Obtiene las referencias elara del EP asociado al proceso de aprobación
 	@wire(getRelatedReferences, { recordId: '$recordId' })
@@ -59,7 +62,8 @@ export default class ApprovalProcessControlRGUBajas extends LightningElement {
 		if (data) {
 			this.rgus = data;
 			this.isLoading = false;
-		} else if (error) {
+		}
+		else if (error) {
 			console.log('Error' + JSON.stringify(error));
 		}
 	}
@@ -68,11 +72,11 @@ export default class ApprovalProcessControlRGUBajas extends LightningElement {
 	sortBy(field, reverse, primer) {
 		const key = primer
 			? function (x) {
-					return primer(x[field]);
-			  }
+				return primer(x[field]);
+			}
 			: function (x) {
-					return x[field];
-			  };
+				return x[field];
+			};
 
 		return function (a, b) {
 			a = key(a);
@@ -92,75 +96,66 @@ export default class ApprovalProcessControlRGUBajas extends LightningElement {
 	}
 
 	@api
+
 	get showSpinner() {
 		return this.isLoading ? true : this.dataSaving.isSaving ? true : false;
 	}
 
-	//Metodo que guarda las referencias para aprobación
+	//Metodo que guarda las referencias para aprobación	
 	handleSave() {
 		var datatable = this.template.querySelector('lightning-datatable');
 		this.selectedRows = datatable.getSelectedRows();
 
 		let ids = '';
 
-		this.selectedRows.forEach((element) => {
+		this.selectedRows.forEach(element => {
 			ids += "'" + element.Id + "',";
 		});
 
 		this.dataSaving = {
 			isSaving: true
-		};
+		}
 
-		saveRGUChangeToApprove({
-			recordId: this.recordId,
-			idsReferenciasElara: ids
+		saveRGUChangeToApprove({ recordId: this.recordId, idsReferenciasElara: ids }).then(() => {
+			this.dataSaving = {
+				isSaving: false				
+			}			
+
+			this.toastMessage = {
+				title: '¡Listo"!',
+				message: 'Se realizó el guardado de las referencias elara a dar de baja',
+				variant: 'success',
+			}
+
+			const toastMessage = new ShowToastEvent(this.toastMessage);
+			this.dispatchEvent(toastMessage);
+
+			const closeScreen = new CustomEvent("closescreen", { detail: null });
+			this.dispatchEvent(closeScreen);
+
 		})
-			.then(() => {
-				this.dataSaving = {
-					isSaving: false
-				};
-
-				this.toastMessage = {
-					title: '¡Listo"!',
-					message:
-						'Se realizó el guardado de las referencias elara a dar de baja',
-					variant: 'success'
-				};
-
-				const toastMessage = new ShowToastEvent(this.toastMessage);
-				this.dispatchEvent(toastMessage);
-
-				const closeScreen = new CustomEvent('closescreen', {
-					detail: null
-				});
-				this.dispatchEvent(closeScreen);
-			})
-			.catch((error) => {
+			.catch(error => {
 				this.dataSaving = {
 					isSaving: false,
 					error: error
-				};
+				}
 
 				this.toastMessage = {
 					title: 'Error"!',
-					message:
-						'Ocurrio el siguiente error al tratar de guardar los cambios de las referencias elara: ' +
-						error,
-					variant: 'error'
-				};
-
+					message: 'Ocurrio el siguiente error al tratar de guardar los cambios de las referencias elara: ' + error,
+					variant: 'error',
+				}
+	
 				const toastMessage = new ShowToastEvent(this.toastMessage);
 				this.dispatchEvent(toastMessage);
-
-				const closeScreen = new CustomEvent('closescreen', {
-					detail: null
-				});
+	
+				const closeScreen = new CustomEvent("closescreen", { detail: null });
 				this.dispatchEvent(closeScreen);
 			});
 	}
 
 	handleCancel() {
-		const closeScreen = new CustomEvent('closescreen', { detail: null });
+		const closeScreen = new CustomEvent("closescreen", { detail: null });
 		this.dispatchEvent(closeScreen);
 	}
 }
