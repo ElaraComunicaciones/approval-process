@@ -7,6 +7,5 @@ export default class ApprovalProcessControlRGUManager extends LightningElement {
 
 	closeScreen(event) {
 		this.dispatchEvent(new CloseActionScreenEvent());
-		location.reload();
 	}
 }

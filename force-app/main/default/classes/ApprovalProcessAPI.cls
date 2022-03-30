@@ -1,4 +1,10 @@
 public with sharing class ApprovalProcessAPI {
+	public static void executeBeforeInsertProcess(
+		TriggerParameters triggerParams
+	) {
+		//Convertimos los nuevos registros al tipo de Proceso de aprobacion
+		List<ApprovalProcess__c> lApproval = (List<ApprovalProcess__c>) triggerParams.newList;
+	}
 
 	public static void executeAfterUpdateProcesses(
 		TriggerParameters triggerParams
@@ -45,7 +51,6 @@ public with sharing class ApprovalProcessAPI {
 		List<RGU__c> originalRgus = new List<RGU__c>();
 		List<RGU__c> newRGUs = new List<RGU__c>();
 
-
 		for (ApprovalProcessControlRGU__c control : referenceControls) {
 			if (control.Original__c == null) {
 				RGU__c newRecord = new RGU__c(
@@ -65,7 +70,7 @@ public with sharing class ApprovalProcessAPI {
 					ApprovalStatus__c = 'Aprobado'
 				);
 
-				original.BWBajadaKbps__c = newRecord.BWBajadaKbps__c;  
+				original.BWBajadaKbps__c = newRecord.BWBajadaKbps__c;
 				originalRgus.add(original);
 				newRGUs.add(newRecord);
 			}
@@ -91,7 +96,10 @@ public with sharing class ApprovalProcessAPI {
 			// Set recipients to two contact IDs.
 			// Replace IDs with valid record IDs in your org.
 			message.toAddresses = new List<String>{ '0050W000007E7SbQAK' };
-			message.ccAddresses = new List<String>{ '005d0000004T3pwAAC', '005d00000025U5kAAE' };
+			message.ccAddresses = new List<String>{
+				'005d0000004T3pwAAC',
+				'005d00000025U5kAAE'
+			};
 			message.optOutPolicy = 'SEND';
 			message.subject =
 				'Solicitud de aprobación para el proceso ' +
@@ -240,11 +248,18 @@ public with sharing class ApprovalProcessAPI {
 
 		return startedProcesses;
 	}
+
+	public static void name(List<ApprovalProcess__c> lApprovalProcess) {
+		List<Id> oppIds = new List<Id>();
+
+		for (ApprovalProcess__c approvalProcess : lApprovalProcess) {
+			oppIds.add(approvalProcess.Opportunity__c);
+		}
+
+		List<Opportunity> lOpportunities = [
+			SELECT id, name, Contrato_Relacionado__c, Total_Proyecto__c
+			FROM opportunity
+			WHERE id IN :oppIds
+		];
+	}
 }
-
-
-// Opportunity
-// 	ApprovalProcess
-// 		ApprovalProcessControlRGU__c
-// 			NewRGU - Por aprobar
-// 			OldRGU - Original
