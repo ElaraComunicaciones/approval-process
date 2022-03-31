@@ -3,7 +3,23 @@ public with sharing class ApprovalProcessAPI {
 		TriggerParameters triggerParams
 	) {
 		//Convertimos los nuevos registros al tipo de Proceso de aprobacion
-		List<ApprovalProcess__c> lApproval = (List<ApprovalProcess__c>) triggerParams.newList;
+		List<ApprovalProcess__c> lApprovalProcess = (List<ApprovalProcess__c>) triggerParams.newList;
+
+		List<ApprovalProcess__c> lApprovalWithContract = new List<ApprovalProcess__c>();
+		List<ApprovalProcess__c> lApprovalWithoutContract = new List<ApprovalProcess__c>();
+
+		//Separamos los procesos de aprobación que tienen contrato y los que no tienen contraro
+		//Los que tienen contrato, obtendremos todos los EPs y sus VTC para tener el valor total del contrato
+
+		for (ApprovalProcess__c approvalProcess : lApprovalProcess) {
+			if (
+				approvalProcess.Opportunity__r.Contrato_Relacionado__c == null
+			) {
+				lApprovalWithoutContract.add(approvalProcess);
+			} else {
+				lApprovalWithContract.add(approvalProcess);
+			}
+		}
 	}
 
 	public static void executeAfterUpdateProcesses(
@@ -249,17 +265,8 @@ public with sharing class ApprovalProcessAPI {
 		return startedProcesses;
 	}
 
-	public static void name(List<ApprovalProcess__c> lApprovalProcess) {
-		List<Id> oppIds = new List<Id>();
-
-		for (ApprovalProcess__c approvalProcess : lApprovalProcess) {
-			oppIds.add(approvalProcess.Opportunity__c);
-		}
-
-		List<Opportunity> lOpportunities = [
-			SELECT id, name, Contrato_Relacionado__c, Total_Proyecto__c
-			FROM opportunity
-			WHERE id IN :oppIds
-		];
+	public static void getVTCWithContracts(
+		List<ApprovalProcess__c> lApprovalProcessWithContracts
+	) {
 	}
 }
