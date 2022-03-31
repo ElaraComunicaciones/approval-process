@@ -30,9 +30,10 @@ public with sharing class ApprovalProcessControlRGUController {
 	@AuraEnabled
 	public static void saveRGUChangeToApprove(
 		Id recordId,
-		String idsReferenciasElara
+		List<RGU__c> referenciasSeleccionadas
 	) {
 		try {
+			System.debug(referenciasSeleccionadas);
 			//Eliminamos los
 
 			List<RGU_Change_to_approve__c> RGUsToApprove = [
@@ -43,7 +44,7 @@ public with sharing class ApprovalProcessControlRGUController {
 
 			delete RGUsToApprove;
 
-			if (!String.isEmpty(idsReferenciasElara)) {
+			if (referenciasSeleccionadas.size() > 0) {
 				//Obtenemos todos los campos de Referencia Elara
 				SObjectType accountType = Schema.getGlobalDescribe()
 					.get('RGU__C');
@@ -56,15 +57,18 @@ public with sharing class ApprovalProcessControlRGUController {
 					selectSentence += fieldName + ',';
 				}
 
+				String whereSentence = '';
+
+				for (RGU__c references : referenciasSeleccionadas) {
+					whereSentence += '\'' + references.id + '\',';
+				}
+
 				//Hacemos select all de rgu, de los que se seleccionó para dar de baja el servicio
 				List<RGU__c> lRGUs = Database.query(
 					'select ' +
 					selectSentence.Substring(0, selectSentence.length() - 1) +
 					' from RGU__c where id in (' +
-					idsReferenciasElara.Substring(
-						0,
-						idsReferenciasElara.length() - 1
-					) +
+					whereSentence.Substring(0, whereSentence.length() - 1) +
 					')'
 				);
 

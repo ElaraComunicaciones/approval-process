@@ -136,19 +136,13 @@ export default class ApprovalProcessControlRGUBajas extends LightningElement {
 		var datatable = this.template.querySelector('lightning-datatable');
 		this.selectedRows = datatable.getSelectedRows();
 
-		let ids = '';
-
-		this.selectedRows.forEach((element) => {
-			ids += "'" + element.Id + "',";
-		});
-
 		this.dataSaving = {
 			isSaving: true
 		};
 
 		saveRGUChangeToApprove({
 			recordId: this.recordId,
-			idsReferenciasElara: ids
+			referenciasSeleccionadas: this.selectedRows
 		})
 			.then(() => {
 				this.dataSaving = {

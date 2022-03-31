@@ -150,9 +150,7 @@ public with sharing class RGU_Change_to_approveAPITest {
 
 		ApprovalProcessControlRGUController.saveRGUChangeToApprove(
 			approval.id,
-			'\'' +
-			referencia[0].id +
-			'\','
+			referencia
 		);
 
 		ApprovalProcessControlRGUController.getRGUToApprove(approval.id);
