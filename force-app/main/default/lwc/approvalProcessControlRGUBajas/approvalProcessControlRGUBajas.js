@@ -163,8 +163,6 @@ export default class ApprovalProcessControlRGUBajas extends LightningElement {
 					detail: null
 				});
 				this.dispatchEvent(closeScreen);
-				//location.reload();
-				document.dispatchEvent(new CustomEvent('aura://refreshView'));
 			})
 			.catch((error) => {
 				this.dataSaving = {
