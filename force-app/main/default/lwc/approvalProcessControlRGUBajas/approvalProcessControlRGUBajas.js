@@ -3,6 +3,8 @@ import getRelatedReferences from '@salesforce/apex/ApprovalProcessControlRGUCont
 import saveRGUChangeToApprove from '@salesforce/apex/ApprovalProcessControlRGUController.saveRGUChangeToApprove';
 import getRGUToApprove from '@salesforce/apex/ApprovalProcessControlRGUController.getRGUToApprove';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
+import STAGE from '@salesforce/schema/ApprovalProcess__c.Stage__c';
 
 const columns = [
 	{
@@ -66,6 +68,13 @@ export default class ApprovalProcessControlRGUBajas extends LightningElement {
 		}
 	}
 
+	@wire(getRecord, { recordId: '$recordId', fields: [STAGE] })
+	approvalProcess;
+
+	get stage() {
+		return getFieldValue(this.approvalProcess.data, STAGE);
+	}
+
 	//Metodos del datatable para realizar el ordenamiento de las columnas
 	sortBy(field, reverse, primer) {
 		const key = primer
@@ -105,14 +114,14 @@ export default class ApprovalProcessControlRGUBajas extends LightningElement {
 			.catch((error) => {
 				this.dataSaving = {
 					isSaving: false,
-					error: error
+					error: error.body.message
 				};
 
 				this.toastMessage = {
 					title: 'Error"!',
 					message:
 						'Ocurrio el siguiente error al tratar de guardar los cambios de las referencias elara: ' +
-						error,
+						error.body.message,
 					variant: 'error'
 				};
 
@@ -142,6 +151,7 @@ export default class ApprovalProcessControlRGUBajas extends LightningElement {
 
 		saveRGUChangeToApprove({
 			recordId: this.recordId,
+			stage: this.stage,
 			referenciasSeleccionadas: this.selectedRows
 		})
 			.then(() => {
@@ -167,14 +177,14 @@ export default class ApprovalProcessControlRGUBajas extends LightningElement {
 			.catch((error) => {
 				this.dataSaving = {
 					isSaving: false,
-					error: error
+					error: error.body.message
 				};
 
 				this.toastMessage = {
 					title: 'Error"!',
 					message:
 						'Ocurrio el siguiente error al tratar de guardar los cambios de las referencias elara: ' +
-						error,
+						error.body.message,
 					variant: 'error'
 				};
 

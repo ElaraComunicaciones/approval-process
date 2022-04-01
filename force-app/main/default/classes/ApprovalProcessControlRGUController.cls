@@ -1,4 +1,9 @@
 public with sharing class ApprovalProcessControlRGUController {
+	public virtual class BaseException extends Exception {
+	}
+	public class CreateException extends BaseException {
+	}
+
 	@AuraEnabled(cacheable=true)
 	public static List<RGU__c> getRelatedReferences(Id recordId) {
 		try {
@@ -30,10 +35,18 @@ public with sharing class ApprovalProcessControlRGUController {
 	@AuraEnabled
 	public static void saveRGUChangeToApprove(
 		Id recordId,
+		string stage,
 		List<RGU__c> referenciasSeleccionadas
 	) {
 		try {
 			System.debug(referenciasSeleccionadas);
+
+			if (stage != 'Iniciado') {
+				throw new CreateException(
+					'No se puede realizar la modificacion de las referencias porque la etapa del proceso de aprobacion es direfente a iniciado'
+				);
+			}
+
 			//Eliminamos los
 
 			List<RGU_Change_to_approve__c> RGUsToApprove = [

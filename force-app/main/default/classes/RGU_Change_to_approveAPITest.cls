@@ -139,7 +139,7 @@ public with sharing class RGU_Change_to_approveAPITest {
 		makeData();
 		Test.setMock(HttpCalloutMock.class, new COSAPI_MockTesting());
 		ApprovalProcess__C approval = [
-			SELECT id
+			SELECT id, stage__c
 			FROM ApprovalProcess__C
 			LIMIT 1
 		];
@@ -150,6 +150,7 @@ public with sharing class RGU_Change_to_approveAPITest {
 
 		ApprovalProcessControlRGUController.saveRGUChangeToApprove(
 			approval.id,
+			approval.stage__c,
 			referencia
 		);
 
