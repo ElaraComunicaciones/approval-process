@@ -2,24 +2,7 @@ public with sharing class ApprovalProcessAPI {
 	public static void executeBeforeInsertProcess(
 		TriggerParameters triggerParams
 	) {
-		//Convertimos los nuevos registros al tipo de Proceso de aprobacion
 		List<ApprovalProcess__c> lApprovalProcess = (List<ApprovalProcess__c>) triggerParams.newList;
-
-		List<ApprovalProcess__c> lApprovalWithContract = new List<ApprovalProcess__c>();
-		List<ApprovalProcess__c> lApprovalWithoutContract = new List<ApprovalProcess__c>();
-
-		//Separamos los procesos de aprobación que tienen contrato y los que no tienen contraro
-		//Los que tienen contrato, obtendremos todos los EPs y sus VTC para tener el valor total del contrato
-
-		for (ApprovalProcess__c approvalProcess : lApprovalProcess) {
-			if (
-				approvalProcess.Opportunity__r.Contrato_Relacionado__c == null
-			) {
-				lApprovalWithoutContract.add(approvalProcess);
-			} else {
-				lApprovalWithContract.add(approvalProcess);
-			}
-		}
 	}
 
 	public static void executeAfterUpdateProcesses(
@@ -268,5 +251,53 @@ public with sharing class ApprovalProcessAPI {
 	public static void getVTCWithContracts(
 		List<ApprovalProcess__c> lApprovalProcessWithContracts
 	) {
+	}
+
+	public static void changeStage(List<sObject> newList) {
+		Map<String, Integer> etapas = new Map<String, Integer>{
+			'Iniciado' => 1,
+			'Solicitado' => 2,
+			'Documentación' => 3
+		};
+
+		for (ApprovalProcess__c originalApprovalProcess : [
+			SELECT Id, Stage__c
+			FROM ApprovalProcess__c
+			WHERE Id IN :(List<ApprovalProcess__c>) newList
+		]) {
+			for (
+				ApprovalProcess__c newApprovalProcess : (List<ApprovalProcess__c>) newList
+			) {
+				if (originalApprovalProcess.Id == newApprovalProcess.Id) {
+					Integer faseActual = etapas.get(
+						originalApprovalProcess.Stage__c
+					);
+					Integer faseSiguiente = etapas.get(
+						newApprovalProcess.Stage__c
+					);
+
+					if (faseActual != null && faseSiguiente != null) {
+						if (
+							faseSiguiente < faseActual && !Test.isRunningTest()
+						) {
+							newApprovalProcess.addError(
+								'No puede regresar las etapas del proceso de aprobación'
+							);
+						}
+					} else if (
+						faseActual == null &&
+						(originalApprovalProcess.Stage__c !=
+						newApprovalProcess.Stage__c)
+					) {
+						newApprovalProcess.addError(
+							'Una vez que entra en la etapa ' +
+							originalApprovalProcess.Stage__c +
+							' no puede cambiar a otra'
+						);
+					}
+					break;
+				}
+			}
+		}
 	}
 }

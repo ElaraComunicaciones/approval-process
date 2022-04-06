@@ -7,7 +7,7 @@ public with sharing class RGU_Change_to_approveTriggerDispatcher extends Trigger
 			execute(
 				new RGU_Change_to_approveBeforeInsertHandler(),
 				triggerParams,
-				TriggerParameters.TriggerEvent.AFTER_UPDATE
+				TriggerParameters.TriggerEvent.BEFORE_INSERT
 			);
 			isBeforeInsertProcessing = false;
 		}

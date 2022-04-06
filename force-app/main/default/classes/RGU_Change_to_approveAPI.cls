@@ -9,6 +9,7 @@ public with sharing class RGU_Change_to_approveAPI {
 	}
 
 	//Establece el vtc para cada Referencia elara, es importante para poder validar si la aprobación es por comité directivo o control comercial
+	@testVisible
 	private static void setVTCPerRGUOriginal(
 		List<RGU_Change_to_approve__c> lRGUsToChange
 	) {

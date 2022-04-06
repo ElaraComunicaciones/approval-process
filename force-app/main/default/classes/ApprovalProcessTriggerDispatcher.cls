@@ -1,6 +1,7 @@
 public with sharing class ApprovalProcessTriggerDispatcher extends TriggerDispatcherBase {
 	private static Boolean isAfterUpdateProcessing = false;
 	private static Boolean isBeforeInsertProcessing = false;
+	private static Boolean isBeforeUpdateProcessing = false;
 
 	public virtual override void beforeInsert(TriggerParameters triggerParams) {
 		if (!isBeforeInsertProcessing) {
@@ -8,9 +9,21 @@ public with sharing class ApprovalProcessTriggerDispatcher extends TriggerDispat
 			execute(
 				new ApprovalProcessBeforeInsertHandler(),
 				triggerParams,
-				TriggerParameters.TriggerEvent.AFTER_UPDATE
+				TriggerParameters.TriggerEvent.BEFORE_INSERT
 			);
 			isBeforeInsertProcessing = false;
+		}
+	}
+
+	public virtual override void beforeUpdate(TriggerParameters triggerParams) {
+		if (!isBeforeUpdateProcessing) {
+			isBeforeUpdateProcessing = true;
+			execute(
+				new ApprovalProcessBeforeUpdateHandler(),
+				triggerParams,
+				TriggerParameters.TriggerEvent.BEFORE_UPDATE
+			);
+			isBeforeUpdateProcessing = false;
 		}
 	}
 
