@@ -253,7 +253,7 @@ public with sharing class ApprovalProcessAPI {
 	) {
 	}
 
-	public static void changeStage(List<sObject> newList) {
+	public static void changeStage(List<ApprovalProcess__c> newList) {
 		Map<String, Integer> etapas = new Map<String, Integer>{
 			'Iniciado' => 1,
 			'Solicitado' => 2,
@@ -263,11 +263,9 @@ public with sharing class ApprovalProcessAPI {
 		for (ApprovalProcess__c originalApprovalProcess : [
 			SELECT Id, Stage__c
 			FROM ApprovalProcess__c
-			WHERE Id IN :(List<ApprovalProcess__c>) newList
+			WHERE Id IN :newList
 		]) {
-			for (
-				ApprovalProcess__c newApprovalProcess : (List<ApprovalProcess__c>) newList
-			) {
+			for (ApprovalProcess__c newApprovalProcess : newList) {
 				if (originalApprovalProcess.Id == newApprovalProcess.Id) {
 					Integer faseActual = etapas.get(
 						originalApprovalProcess.Stage__c
@@ -298,6 +296,145 @@ public with sharing class ApprovalProcessAPI {
 					break;
 				}
 			}
+		}
+	}
+
+	public static void actionOfTypeApprovalProcess(
+		List<ApprovalProcess__c> newList
+	) {
+		List<ApprovalProcess__c> approvalProcessToCalculateDecrement = new List<ApprovalProcess__c>();
+
+		for (ApprovalProcess__c approvalProcess : newList) {
+			switch on approvalProcess.Action__c {
+				when 'Baja definitiva' {
+					//Si el proceso de aprobación cambia a solicitado o aprobado, entonces calculamos el decremento que
+					//tendran las bajas en el VTC del EP
+					if (
+						approvalProcess.Stage__c == 'Solicitado' ||
+						approvalProcess.Stage__c == 'Aprobado'
+					)
+						approvalProcessToCalculateDecrement.add(
+							approvalProcess
+						);
+				}
+			}
+		}
+
+		CalculateDecrement(approvalProcessToCalculateDecrement);
+	}
+
+	@testVisible
+	private static void CalculateDecrement(
+		List<ApprovalProcess__c> approvalProcessToCalculateDecrement
+	) {
+		//Obtenemos los clones de RGU de los procesos de aprobación
+		List<RGU_Change_to_approve__c> lRGUsToChange = [
+			SELECT id, Approval_Process__c, Referencia_Elara_Original__c
+			FROM RGU_Change_to_approve__c
+			WHERE Approval_Process__c IN :approvalProcessToCalculateDecrement
+		];
+
+		//Se genera mapa de Procesos de aprobacion con sus RGUs Clones
+		Map<id, List<RGU_Change_to_approve__c>> rgusPerApprovalProcess = new Map<id, List<RGU_Change_to_approve__c>>();
+
+		for (RGU_Change_to_approve__c rgu : lRGUsToChange) {
+			List<RGU_Change_to_approve__c> lrgus;
+
+			if (
+				(lrgus = rgusPerApprovalProcess.get(rgu.Approval_Process__c)) ==
+				null
+			) {
+				lrgus = new List<RGU_Change_to_approve__c>();
+				rgusPerApprovalProcess.put(rgu.Approval_Process__c, lrgus);
+			}
+			lrgus.add(rgu);
+		}
+
+		Set<Id> idsRGUs = new Set<Id>();
+
+		//Obtenemos los OLIS de
+		for (RGU_Change_to_approve__c rguToChange : lRGUsToChange) {
+			idsRGUs.add(rguToChange.Referencia_Elara_Original__c);
+		}
+
+		Map<Id, List<OpportunityLineItem>> olisPerRGUs = new Map<Id, List<OpportunityLineItem>>();
+
+		//Obtenemos los productos de oportunidad por referencias elara original
+		List<OpportunityLineItem> oppLineItems = [
+			SELECT
+				Id,
+				Referencia_Elara__r.id,
+				Fecha_Fin_Ingreso__c,
+				Total_Renta_MXN__c
+			FROM OpportunityLineItem
+			WHERE
+				Forma_de_Cobro__c != 'Diaria'
+				AND Referencia_Elara__r.id IN :idsRGUs
+		];
+
+		for (OpportunityLineItem oppLineItem : oppLineItems) {
+			List<OpportunityLineItem> lOppLineItem;
+
+			if (
+				(lOppLineItem = olisPerRGUs.get(
+					oppLineItem.Referencia_Elara__r.id
+				)) == null
+			) {
+				lOppLineItem = new List<OpportunityLineItem>();
+				olisPerRGUs.put(
+					oppLineItem.Referencia_Elara__r.id,
+					lOppLineItem
+				);
+			}
+			lOppLineItem.add(oppLineItem);
+		}
+
+		System.debug(olisPerRGUs);
+
+		//Generamos los decrementos de VTC de las referencias ELARA
+		Map<id, Decimal> lDecrementPerRGU = new Map<Id, Decimal>();
+
+		for (RGU_Change_to_approve__c rguToChange : lRGUsToChange) {
+			List<OpportunityLineItem> actualOlis = olisPerRGUs.get(
+				rguToChange.Referencia_Elara_Original__c
+			);
+			Decimal decrementoVTC = 0;
+			for (OpportunityLineItem oli : actualOlis) {
+				//Se obtienen los meses que ya no se van a cobrar, con respecto al día de hoy
+				Integer lapseBetweenEndDateToday = oli.Fecha_Fin_Ingreso__c.monthsBetween(
+					System.today()
+				);
+				decrementoVTC +=
+					Math.abs(lapseBetweenEndDateToday) * oli.Total_Renta_MXN__c;
+			}
+			lDecrementPerRGU.put(rguToChange.id, decrementoVTC);
+		}
+
+		System.debug(lDecrementPerRGU);
+		System.debug(rgusPerApprovalProcess);
+
+		Map<id, Decimal> decrementsPerApprovalProcess = new Map<Id, Decimal>();
+
+		for (Id key : rgusPerApprovalProcess.keySet()) {
+			List<RGU_Change_to_approve__c> lRGUS = rgusPerApprovalProcess.get(
+				key
+			);
+			Decimal decrementVTC = 0;
+			for (RGU_Change_to_approve__c rgu : lRGUS) {
+				decrementVTC += lDecrementPerRGU.get(rgu.id);
+			}
+
+			decrementsPerApprovalProcess.put(key, decrementVTC);
+		}
+
+		System.debug(decrementsPerApprovalProcess);
+
+		for (
+			ApprovalProcess__c approvalProcess : approvalProcessToCalculateDecrement
+		) {
+			approvalProcess.Decremento_en_VTC__c = decrementsPerApprovalProcess.get(
+				approvalProcess.id
+			);
 		}
 	}
 }
