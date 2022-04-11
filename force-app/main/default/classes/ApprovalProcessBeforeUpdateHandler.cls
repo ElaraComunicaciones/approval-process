@@ -4,6 +4,12 @@ public with sharing class ApprovalProcessBeforeUpdateHandler extends TriggerHand
 		// ApprovalProcessAPI.changeStage(
 		// 	(List<ApprovalProcess__c>) triggerParams.newList
 		// );
+
+		ApprovalProcessAPI.setTypeOfApprovalProcess(
+			triggerParams.oldMap,
+			triggerParams.newList
+		);
+
 		ApprovalProcessAPI.actionOfTypeApprovalProcess(
 			(List<ApprovalProcess__c>) triggerParams.newList
 		);

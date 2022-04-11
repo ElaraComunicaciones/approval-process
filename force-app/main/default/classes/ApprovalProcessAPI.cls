@@ -16,7 +16,7 @@ public with sharing class ApprovalProcessAPI {
 
 		List<ApprovalProcess__c> newRequestedRecords = filterNewRequestedRecords(
 			triggerParams.oldMap,
-			newRecords
+			(List<ApprovalProcess__c>) triggerParams.newList
 		);
 
 		System.debug(newRequestedRecords);
@@ -34,13 +34,6 @@ public with sharing class ApprovalProcessAPI {
 		}
 
 		if (newRequestedRecords != null) {
-			List<ApprovalProcessControlRGU__c> referenceControls = getRelatedReferenceControls(
-				newRequestedRecords
-			);
-
-			System.debug(referenceControls);
-
-			sendNotifications(referenceControls);
 		}
 	}
 
@@ -319,7 +312,6 @@ public with sharing class ApprovalProcessAPI {
 				}
 			}
 		}
-
 		CalculateDecrement(approvalProcessToCalculateDecrement);
 	}
 
@@ -435,6 +427,42 @@ public with sharing class ApprovalProcessAPI {
 			approvalProcess.Decremento_en_VTC__c = decrementsPerApprovalProcess.get(
 				approvalProcess.id
 			);
+		}
+	}
+
+	public static void setTypeOfApprovalProcess(
+		Map<Id, SObject> oldMap,
+		List<SObject> newList
+	) {
+		for (
+			ApprovalProcess__c newApprovalProcess : (List<ApprovalProcess__c>) newList
+		) {
+			ApprovalProcess__c oldApprovalProcess = (ApprovalProcess__c) oldMap.get(
+				newApprovalProcess.id
+			);
+
+			if (
+				oldApprovalProcess.Stage__c != 'Solicitado' &&
+				newApprovalProcess.Stage__c == 'Solicitado'
+			) {
+				if (
+					newApprovalProcess.Es_Telmex__c &&
+					(newApprovalProcess.Decremento_VTC_Respecto_EP__c >= 15 ||
+					newApprovalProcess.Decremento_en_VTC__c >= 500000 ||
+					newApprovalProcess.Decremento_VTC_Respecto_Cuenta__c >= 5)
+				) {
+					newApprovalProcess.Aprobacion_por_comite_directivo__c = true;
+				} else if (
+					!newApprovalProcess.Es_Telmex__c &&
+					(newApprovalProcess.Decremento_VTC_Respecto_EP__c >= 10 ||
+					newApprovalProcess.Decremento_en_VTC__c >= 500000 ||
+					newApprovalProcess.Decremento_VTC_Respecto_Cuenta__c >= 5)
+				) {
+					newApprovalProcess.Aprobacion_por_comite_directivo__c = true;
+				} else {
+					newApprovalProcess.Aprobacion_por_comite_directivo__c = false;
+				}
+			}
 		}
 	}
 }
