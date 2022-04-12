@@ -13,12 +13,18 @@ public with sharing class ApprovalProcessAPI {
 			(List<ApprovalProcess__c>) triggerParams.newList
 		);
 
+		List<ApprovalProcess__c> sendNotificationProgress = filterRecordsToSendDocumentationProgress(
+			triggerParams.oldMap,
+			(List<ApprovalProcess__c>) triggerParams.newList
+		);
+
 		List<ApprovalProcess__c> newApprovedRecords = filterNewApprovedRecords(
 			triggerParams.oldMap,
 			(List<ApprovalProcess__c>) triggerParams.newList
 		);
 
 		sendApprovalRequestNotifications(newRequestedRecords);
+		sendApprovalProgressNotifications(sendNotificationProgress);
 	}
 
 	public static void copyApprovedRecords(
@@ -160,6 +166,35 @@ public with sharing class ApprovalProcessAPI {
 				if (
 					oldApproval.Stage__c == 'Iniciado' &&
 					newApproval.Stage__c == 'Solicitado'
+				) {
+					newRequestedRecords.add(newApproval);
+				}
+			}
+		}
+
+		return newRequestedRecords;
+	}
+
+	public static List<ApprovalProcess__c> filterRecordsToSendDocumentationProgress(
+		Map<Id, SObject> oldMap,
+		List<ApprovalProcess__c> newRecords
+	) {
+		List<ApprovalProcess__c> newRequestedRecords = new List<ApprovalProcess__c>();
+
+		System.debug(oldMap);
+
+		for (ApprovalProcess__c newApproval : newRecords) {
+			ApprovalProcess__c oldApproval = (ApprovalProcess__c) oldMap.get(
+				newApproval.Id
+			);
+
+			System.debug(oldApproval.Stage__c);
+
+			if (oldApproval != null) {
+				if (
+					oldApproval.Stage__c == 'Solicitado' &&
+					newApproval.Stage__c == 'Solicitado' &&
+					newApproval.Aprobacion_por_comite_directivo__c
 				) {
 					newRequestedRecords.add(newApproval);
 				}
@@ -503,6 +538,67 @@ public with sharing class ApprovalProcessAPI {
 		}
 	}
 
+	public static void sendApprovalProgressNotifications(
+		List<ApprovalProcess__c> sendNotificationProgressRecords
+	) {
+		List<EmailTemplate> emailTemplates = changesAndTurnoffTemplates();
+		EmailTemplate solicitudAvance;
+		EmailTemplate solicitudCompleta;
+
+		List<User> activeUsers = getActiveUsers();
+		List<id> sendTo;
+		List<id> sendCC;
+		List<id> sendCCO;
+
+		for (EmailTemplate template : emailTemplates) {
+			switch on template.name {
+				when 'NT_B1 Avance de Documentación' {
+					solicitudAvance = template;
+				}
+				when 'NT_B2 Documentación completa para baja' {
+					solicitudCompleta = template;
+				}
+			}
+		}
+
+		for (
+			ApprovalProcess__c approvalProcess : sendNotificationProgressRecords
+		) {
+			switch on approvalProcess.Action__c {
+				when 'Baja definitiva' {
+					sendTo = new List<id>();
+					sendCC = new List<id>();
+					sendCCO = new List<id>();
+					for (User activeUser : activeUsers) {
+						if (
+							activeUser.UserRole.Name ==
+							'Administrador del sistema'
+						)
+							sendTo.add(activeUser.id);
+					}
+
+					if (validateCompleteInformation(approvalProcess)) {
+						SendEmailNotifications(
+							solicitudCompleta,
+							sendTo,
+							sendCC,
+							sendCCO,
+							approvalProcess
+						);
+					} else {
+						SendEmailNotifications(
+							solicitudAvance,
+							sendTo,
+							sendCC,
+							sendCCO,
+							approvalProcess
+						);
+					}
+				}
+			}
+		}
+	}
+
 	@testVisible
 	private static List<EmailTemplate> changesAndTurnoffTemplates() {
 		return [
@@ -549,5 +645,58 @@ public with sharing class ApprovalProcessAPI {
 			FROM User
 			WHERE isActive = TRUE
 		];
+	}
+
+	@testVisible
+	private static Boolean validateCompleteInformation(
+		ApprovalProcess__c approvalProcess
+	) {
+		Boolean isComplete = true;
+
+		if (approvalProcess.Saldo_cubierto_a_la_fecha__c == null) {
+			isComplete = false;
+		}
+
+		if (approvalProcess.Saldo_pendiente_de_pago__c == null) {
+			isComplete = false;
+		}
+
+		if (approvalProcess.Cantidad_de_facturas_pendientes__c == null) {
+			isComplete = false;
+		}
+
+		if (approvalProcess.Ingresos_por_cubrir__c == null) {
+			isComplete = false;
+		}
+
+		if (approvalProcess.Costos_por_cubrir__c == null) {
+			isComplete = false;
+		}
+
+		if (String.isBlank(approvalProcess.Penalizacion_por_cancelacion__c)) {
+			isComplete = false;
+		}
+
+		if (String.isBlank(approvalProcess.Penalizacion_por_cancelacion__c)) {
+			isComplete = false;
+		}
+
+		if (String.isBlank(approvalProcess.Clausula_rescision_cancelacion__c)) {
+			isComplete = false;
+		}
+
+		if (approvalProcess.Vigencia_contrato_proveedor_satelital__c == null) {
+			isComplete = false;
+		}
+
+		if (approvalProcess.Proxima_fecha_de_cancelacion_segmento__c == null) {
+			isComplete = false;
+		}
+
+		if (approvalProcess.Implicaciones_cancelacion_de_segmento__c == null) {
+			isComplete = false;
+		}
+
+		return isComplete;
 	}
 }
