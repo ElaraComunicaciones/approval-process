@@ -7,7 +7,8 @@ trigger RGU_Change_to_approve on RGU_Change_to_approve__c(
 	before delete,
 	after undelete
 ) {
-	TriggerFactory.createTriggerDispatcher(
-		RGU_Change_to_approve__c.sObjectType
-	);
+	if (RGU_Change_to_approveTriggerSettings.getCurrentActiveValue())
+		TriggerFactory.createTriggerDispatcher(
+			RGU_Change_to_approve__c.sObjectType
+		);
 }

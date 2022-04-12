@@ -8,33 +8,17 @@ public with sharing class ApprovalProcessAPI {
 	public static void executeAfterUpdateProcesses(
 		TriggerParameters triggerParams
 	) {
-		List<ApprovalProcess__c> newRecords = getNewRecords(
-			triggerParams.newList
-		);
-
-		System.debug(newRecords);
-
 		List<ApprovalProcess__c> newRequestedRecords = filterNewRequestedRecords(
 			triggerParams.oldMap,
 			(List<ApprovalProcess__c>) triggerParams.newList
 		);
 
-		System.debug(newRequestedRecords);
-
 		List<ApprovalProcess__c> newApprovedRecords = filterNewApprovedRecords(
 			triggerParams.oldMap,
-			newRecords
+			(List<ApprovalProcess__c>) triggerParams.newList
 		);
 
-		if (newApprovedRecords != null) {
-			List<ApprovalProcessControlRGU__c> approvedReferenceControls = getRelatedReferenceControls(
-				newApprovedRecords
-			);
-			copyApprovedRecords(approvedReferenceControls);
-		}
-
-		if (newRequestedRecords != null) {
-		}
+		sendApprovalRequestNotifications(newRequestedRecords);
 	}
 
 	public static void copyApprovedRecords(
@@ -293,18 +277,24 @@ public with sharing class ApprovalProcessAPI {
 	}
 
 	public static void actionOfTypeApprovalProcess(
+		Map<id, SObject> oldMap,
 		List<ApprovalProcess__c> newList
 	) {
 		List<ApprovalProcess__c> approvalProcessToCalculateDecrement = new List<ApprovalProcess__c>();
 
 		for (ApprovalProcess__c approvalProcess : newList) {
+			ApprovalProcess__c oldValue = (ApprovalProcess__c) oldMap.get(
+				approvalProcess.id
+			);
 			switch on approvalProcess.Action__c {
 				when 'Baja definitiva' {
 					//Si el proceso de aprobación cambia a solicitado o aprobado, entonces calculamos el decremento que
 					//tendran las bajas en el VTC del EP
 					if (
-						approvalProcess.Stage__c == 'Solicitado' ||
-						approvalProcess.Stage__c == 'Aprobado'
+						(oldValue.Stage__c != 'Solicitado' &&
+						approvalProcess.Stage__c == 'Solicitado') ||
+						(oldValue.Stage__c != 'Aprobado' &&
+						approvalProcess.Stage__c == 'Aprobado')
 					)
 						approvalProcessToCalculateDecrement.add(
 							approvalProcess
@@ -312,11 +302,13 @@ public with sharing class ApprovalProcessAPI {
 				}
 			}
 		}
-		CalculateDecrement(approvalProcessToCalculateDecrement);
+		CalculateDecrementByDifinitiveDeactivation(
+			approvalProcessToCalculateDecrement
+		);
 	}
 
 	@testVisible
-	private static void CalculateDecrement(
+	private static void CalculateDecrementByDifinitiveDeactivation(
 		List<ApprovalProcess__c> approvalProcessToCalculateDecrement
 	) {
 		//Obtenemos los clones de RGU de los procesos de aprobación
@@ -430,39 +422,132 @@ public with sharing class ApprovalProcessAPI {
 		}
 	}
 
-	public static void setTypeOfApprovalProcess(
-		Map<Id, SObject> oldMap,
-		List<SObject> newList
+	public static void sendApprovalRequestNotifications(
+		List<ApprovalProcess__c> newRequestedRecords
 	) {
-		for (
-			ApprovalProcess__c newApprovalProcess : (List<ApprovalProcess__c>) newList
-		) {
-			ApprovalProcess__c oldApprovalProcess = (ApprovalProcess__c) oldMap.get(
-				newApprovalProcess.id
-			);
+		List<EmailTemplate> emailTemplates = changesAndTurnoffTemplates();
+		EmailTemplate solicitudComiteDirectivoBajas;
+		EmailTemplate solicitudControlComercialBajas;
+		EmailTemplate solicitudInformacionBajas;
 
-			if (
-				oldApprovalProcess.Stage__c != 'Solicitado' &&
-				newApprovalProcess.Stage__c == 'Solicitado'
-			) {
-				if (
-					newApprovalProcess.Es_Telmex__c &&
-					(newApprovalProcess.Decremento_VTC_Respecto_EP__c >= 15 ||
-					newApprovalProcess.Decremento_en_VTC__c >= 500000 ||
-					newApprovalProcess.Decremento_VTC_Respecto_Cuenta__c >= 5)
-				) {
-					newApprovalProcess.Aprobacion_por_comite_directivo__c = true;
-				} else if (
-					!newApprovalProcess.Es_Telmex__c &&
-					(newApprovalProcess.Decremento_VTC_Respecto_EP__c >= 10 ||
-					newApprovalProcess.Decremento_en_VTC__c >= 500000 ||
-					newApprovalProcess.Decremento_VTC_Respecto_Cuenta__c >= 5)
-				) {
-					newApprovalProcess.Aprobacion_por_comite_directivo__c = true;
-				} else {
-					newApprovalProcess.Aprobacion_por_comite_directivo__c = false;
+		List<User> activeUsers = getActiveUsers();
+		List<id> sendTo;
+		List<id> sendCC;
+		List<id> sendCCO;
+
+		for (EmailTemplate template : emailTemplates) {
+			switch on template.name {
+				when 'SL_B1 Aprobación de baja Comité Directivo' {
+					solicitudComiteDirectivoBajas = template;
+				}
+				when 'SL_B3 Información para aprobación de baja' {
+					solicitudInformacionBajas = template;
+				}
+				when 'SL_B2 Aprobación de baja Control Comercial' {
+					solicitudControlComercialBajas = template;
 				}
 			}
 		}
+
+		for (ApprovalProcess__c approvalProcess : newRequestedRecords) {
+			switch on approvalProcess.Action__c {
+				when 'Baja definitiva' {
+					if (approvalProcess.Aprobacion_por_comite_directivo__c) {
+						sendTo = new List<id>();
+						sendCC = new List<id>();
+						sendCCO = new List<id>();
+						for (User activeUser : activeUsers) {
+							if (
+								activeUser.UserRole.Name ==
+								'Administrador del sistema'
+							)
+								sendTo.add(activeUser.id);
+						}
+
+						SendEmailNotifications(
+							solicitudComiteDirectivoBajas,
+							sendTo,
+							sendCC,
+							sendCCO,
+							approvalProcess
+						);
+						SendEmailNotifications(
+							solicitudInformacionBajas,
+							sendTo,
+							sendCC,
+							sendCCO,
+							approvalProcess
+						);
+					} else {
+						sendTo = new List<id>();
+						sendCC = new List<id>();
+						sendCCO = new List<id>();
+						for (User activeUser : activeUsers) {
+							if (
+								activeUser.UserRole.Name ==
+								'Administrador del sistema'
+							)
+								sendTo.add(activeUser.id);
+						}
+
+						SendEmailNotifications(
+							solicitudControlComercialBajas,
+							sendTo,
+							sendCC,
+							sendCCO,
+							approvalProcess
+						);
+					}
+				}
+			}
+		}
+	}
+
+	@testVisible
+	private static List<EmailTemplate> changesAndTurnoffTemplates() {
+		return [
+			SELECT ID, Name, Subject, Body, FolderId, FolderName, HtmlValue
+			FROM EmailTemplate
+			WHERE FolderId IN ('00l6T000002S0m4QAC', '00l6T000002S0mxQAC')
+		];
+	}
+
+	public static void SendEmailNotifications(
+		EmailTemplate templateMail,
+		List<Id> sendTo,
+		List<Id> sendCC,
+		List<Id> sendCCO,
+		ApprovalProcess__c approvalProcess
+	) {
+		Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+		List<Messaging.SingleEmailMessage> mailsToSend = new List<Messaging.SingleEmailMessage>();
+
+		mail.setToAddresses(sendTo);
+
+		if (sendCC.size() > 0)
+			mail.setCcAddresses(sendCC);
+
+		if (sendCCO.size() > 0)
+			mail.setBccAddresses(sendCCO);
+
+		mail.setWhatId(approvalProcess.Id);
+		mail.setTemplateId(templateMail.Id);
+		mail.setTreatBodiesAsTemplate(true);
+		mail.setSubject(templateMail.Subject);
+		mail.setHtmlBody(templateMail.HTMLValue);
+		String texto = templateMail.Body;
+		mail.setPlainTextBody(texto);
+		mail.setSenderDisplayName(approvalProcess.Owner.Name);
+		mailsToSend.add(mail);
+		Messaging.sendEmail(mailsToSend);
+	}
+
+	@testVisible
+	private static List<User> getActiveUsers() {
+		return [
+			SELECT Email, Name, Id, UserRole.Name
+			FROM User
+			WHERE isActive = TRUE
+		];
 	}
 }
