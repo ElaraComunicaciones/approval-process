@@ -25,6 +25,8 @@ public with sharing class ApprovalProcessAPI {
 
 		sendApprovalRequestNotifications(newRequestedRecords);
 		sendApprovalProgressNotifications(sendNotificationProgress);
+
+		operationsWithApprovedRecords(newApprovedRecords);
 	}
 
 	public static List<ApprovalProcess__c> filterNewRequestedRecords(
@@ -543,5 +545,56 @@ public with sharing class ApprovalProcessAPI {
 		}
 
 		return isComplete;
+	}
+
+	public static void operationsWithApprovedRecords(
+		List<ApprovalProcess__c> approvedRecords
+	) {
+		createHistoryValue(approvedRecords);
+
+		//Actualizar la referencia Elara
+
+		//Se actualiza los productos de oportunidad
+	}
+
+	private static void createHistoryValue(
+		List<ApprovalProcess__c> approvedRecords
+	) {
+		List<TotalProjectValueHistory__c> lHistoryValue = new List<TotalProjectValueHistory__c>();
+		Map<Id, Opportunity> opportunities = getOpportunitiesByApprovalProcess(
+			approvedRecords
+		);
+
+		for (ApprovalProcess__c approvalProcess : approvedRecords) {
+			TotalProjectValueHistory__c historyValue = new TotalProjectValueHistory__c();
+			Opportunity currentOpp = opportunities.get(
+				approvalProcess.Opportunity__c
+			);
+			historyValue.Opportunity__c = approvalProcess.Opportunity__c;
+			historyValue.Total_Proyecto_OldValue__c = currentOpp.Total_Proyecto__c;
+			historyValue.Total_Proyecto_NewValue__c =
+				currentOpp.Total_Proyecto__c -
+				approvalProcess.Decremento_en_VTC__c;
+
+			lHistoryValue.add(historyValue);
+		}
+
+		insert lHistoryValue;
+	}
+
+	private static Map<Id, Opportunity> getOpportunitiesByApprovalProcess(
+		List<ApprovalProcess__c> approvedRecords
+	) {
+		List<Id> oppIds = new List<Id>();
+
+		for (ApprovalProcess__c approvalProcess : approvedRecords) {
+			oppIds.add(approvalProcess.Opportunity__c);
+		}
+
+		Map<Id, Opportunity> mOpprotunities = new Map<id, Opportunity>(
+			[SELECT id, name, Total_Proyecto__c FROM Opportunity]
+		);
+
+		return mOpprotunities;
 	}
 }
