@@ -172,5 +172,8 @@ public with sharing class ApprovalProcessAPITest {
 
 		//Con este update sin cambio, validamos el progreso de los campos a llenar cuando es por comité directivo
 		update newList;
+
+		newList[0].stage__c = 'Aprobado';
+		update newList;
 	}
 }
