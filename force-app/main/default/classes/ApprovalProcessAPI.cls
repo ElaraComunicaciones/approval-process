@@ -550,14 +550,16 @@ public with sharing class ApprovalProcessAPI {
 	public static void operationsWithApprovedRecords(
 		List<ApprovalProcess__c> approvedRecords
 	) {
-		createHistoryValue(approvedRecords);
+		createProjectHistoryValue(approvedRecords);
 
-		//Actualizar la referencia Elara
+		//Actualizar las referencias Elara dadas de baja
 
 		//Se actualiza los productos de oportunidad
+
+		//Crear Historial de la cuenta
 	}
 
-	private static void createHistoryValue(
+	private static void createProjectHistoryValue(
 		List<ApprovalProcess__c> approvedRecords
 	) {
 		List<TotalProjectValueHistory__c> lHistoryValue = new List<TotalProjectValueHistory__c>();
@@ -596,5 +598,19 @@ public with sharing class ApprovalProcessAPI {
 		);
 
 		return mOpprotunities;
+	}
+
+	private static Map<Id, List<RGU__C>> getRGUPerApprovalProcess(
+		List<ApprovalProcess__c> approvedRecords
+	) {
+		Map<Id, List<RGU__C>> mapRGUSPerApprovalProcess = new Map<Id, List<RGU__C>>();
+
+		List<RGU_Change_to_approve__c> lRGUClones = [
+			SELECT Referencia_Elara_Original__c
+			FROM RGU_Change_to_approve__c
+			WHERE Approval_Process__c IN :approvedRecords
+		];
+
+		return mapRGUSPerApprovalProcess;
 	}
 }
