@@ -611,6 +611,12 @@ public with sharing class ApprovalProcessAPI {
 			WHERE Approval_Process__c IN :approvedRecords
 		];
 
+		List<Id> lIDRGUs = new List<Id>();
+
+		for (RGU_Change_to_approve__c rguClon : lRGUClones) {
+			lIDRGUs.add(rguClon.Referencia_Elara_Original__c);
+		}
+
 		return mapRGUSPerApprovalProcess;
 	}
 }
