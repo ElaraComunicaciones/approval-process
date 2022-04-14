@@ -553,6 +553,7 @@ public with sharing class ApprovalProcessAPI {
 		createProjectHistoryValue(approvedRecords);
 
 		//Actualizar las referencias Elara dadas de baja
+		getRGUPerApprovalProcess(approvedRecords);
 
 		//Se actualiza los productos de oportunidad
 
@@ -606,7 +607,7 @@ public with sharing class ApprovalProcessAPI {
 		Map<Id, List<RGU__C>> mapRGUSPerApprovalProcess = new Map<Id, List<RGU__C>>();
 
 		List<RGU_Change_to_approve__c> lRGUClones = [
-			SELECT Referencia_Elara_Original__c
+			SELECT Referencia_Elara_Original__c, Approval_Process__c
 			FROM RGU_Change_to_approve__c
 			WHERE Approval_Process__c IN :approvedRecords
 		];
@@ -616,6 +617,33 @@ public with sharing class ApprovalProcessAPI {
 		for (RGU_Change_to_approve__c rguClon : lRGUClones) {
 			lIDRGUs.add(rguClon.Referencia_Elara_Original__c);
 		}
+
+		Map<Id, RGU__c> lRGUS = new Map<Id, RGU__c>(
+			[
+				SELECT id, name, Fecha_Solicitud_de_Cancelacion_Cliente__c
+				FROM RGU__c
+				WHERE id IN :lIDRGUs
+			]
+		);
+
+		for (RGU_Change_to_approve__c rguClon : lRGUClones) {
+			if (
+				mapRGUSPerApprovalProcess.get(rguClon.Approval_Process__c) ==
+				null
+			) {
+				List<RGU__C> listRGUs = new List<RGU__C>();
+				listRGUs.add(lRGUS.get(rguClon.Referencia_Elara_Original__c));
+				mapRGUSPerApprovalProcess.put(
+					rguClon.Approval_Process__c,
+					listRGUs
+				);
+			} else {
+				mapRGUSPerApprovalProcess.get(rguClon.Approval_Process__c)
+					.add(lRGUS.get(rguClon.Referencia_Elara_Original__c));
+			}
+		}
+
+		System.debug(mapRGUSPerApprovalProcess);
 
 		return mapRGUSPerApprovalProcess;
 	}
