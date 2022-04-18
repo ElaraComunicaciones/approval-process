@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Es_Telmex__c</fullName>
+    <externalId>false</externalId>
+    <formula>OR(Opportunity__r.Account.Id == &apos;001d000001NERv3AAH&apos;,
+    Opportunity__r.Account.Id == &apos;0010W00002Zft1oQAB&apos;, 
+    Opportunity__r.Account.Id == &apos;0010W00002PVYCfQAP&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>¿Es de Telmex?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

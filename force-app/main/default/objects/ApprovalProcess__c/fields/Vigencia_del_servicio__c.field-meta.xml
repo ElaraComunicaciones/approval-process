@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Ingresos_por_cubrir__c</fullName>
+    <fullName>Vigencia_del_servicio__c</fullName>
     <description
-	>- Ingresos por cubrir para llegar a la rentabilidad indicada del proyecto</description>
+	>Es el valor del campo &quot;Plazo a contratar (meses)&quot; que esta en el Expediente Proyecto</description>
     <externalId>false</externalId>
-    <label>Ingresos por cubrir</label>
+    <formula>Opportunity__r.PlazoAContratarMeses__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Vigencia del servicio (Meses)</label>
     <precision>18</precision>
     <required>false</required>
-    <scale>2</scale>
-    <trackFeedHistory>false</trackFeedHistory>
+    <scale>0</scale>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Number</type>

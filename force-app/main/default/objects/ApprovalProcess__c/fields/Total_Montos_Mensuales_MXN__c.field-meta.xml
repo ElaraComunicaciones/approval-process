@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Montos_Mensuales_MXN__c</fullName>
+    <description
+	>Total montos mensuales del expediente proyecto, se usa para plantillas de correos</description>
+    <externalId>false</externalId>
+    <formula>Opportunity__r.Total_Montos_Mensuales_MXN__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+	>Total montos mensuales del expediente proyecto, se usa para plantillas de correos</inlineHelpText>
+    <label>Total Montos Mensuales MXN</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

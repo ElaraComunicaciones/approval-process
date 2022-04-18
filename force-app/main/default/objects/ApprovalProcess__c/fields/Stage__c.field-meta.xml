@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Stage__c</fullName>
     <description>Etapas del proceso de aprobación para cambios.</description>
     <externalId>false</externalId>
-    <inlineHelpText>Etapas del proceso de aprobación para cambios.</inlineHelpText>
+    <inlineHelpText
+	>Etapas del proceso de aprobación para cambios.</inlineHelpText>
     <label>Etapa</label>
     <required>false</required>
     <trackFeedHistory>true</trackFeedHistory>
@@ -25,11 +26,6 @@
                 <label>Solicitado</label>
             </value>
             <value>
-                <fullName>Documentación</fullName>
-                <default>false</default>
-                <label>Documentación</label>
-            </value>
-            <value>
                 <fullName>Aprobado</fullName>
                 <default>false</default>
                 <label>Aprobado</label>
@@ -43,6 +39,12 @@
                 <fullName>Cancelado</fullName>
                 <default>false</default>
                 <label>Cancelado</label>
+            </value>
+            <value>
+                <fullName>Documentación</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Documentación</label>
             </value>
         </valueSetDefinition>
     </valueSet>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Texto_Carta_finiquito__c</fullName>
+    <description
+	>Si se chequea el checkbox de carta finiquito, existe de lo contrario no existe</description>
+    <externalId>false</externalId>
+    <formula>IF( Carta_finiquito__c , &apos;Si&apos;, &apos;No&apos;)</formula>
+    <inlineHelpText
+	>Si se chequea el checkbox de carta finiquito, existe de lo contrario no existe</inlineHelpText>
+    <label>Texto Carta finiquito</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
