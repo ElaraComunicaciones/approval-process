@@ -100,6 +100,7 @@ public with sharing class ApprovalProcessControlRGUController {
 						Status_Reconocido_Cliente__c = referenciaOriginal.Status_Reconocido_Cliente__c,
 						Id_Compra__c = referenciaOriginal.Id_Compra__c,
 						Fecha_Solicitud_de_Cancelacion_Cliente__c = referenciaOriginal.Fecha_Solicitud_de_Cancelacion_Cliente__c,
+						Date_deactive_by_Client__c = referenciaOriginal.Date_deactive_by_Client__c,
 						Tipo_de_Ingreso__c = referenciaOriginal.Tipo_de_Ingreso__c,
 						Categoria_Unidad_de_Negocio__c = referenciaOriginal.Categoria_Unidad_Negocio__c,
 						Conceptos_por_categor_a__c = referenciaOriginal.Concepto_Categoria__c,

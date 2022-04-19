@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DIVISION_TMX_RURAL__c</fullName>
+    <externalId>false</externalId>
+    <label>DIVISION TMX RURAL</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>METRO</fullName>
+                <default>false</default>
+                <label>METRO</label>
+            </value>
+            <value>
+                <fullName>NORTE</fullName>
+                <default>false</default>
+                <label>NORTE</label>
+            </value>
+            <value>
+                <fullName>OCCIDENTE</fullName>
+                <default>false</default>
+                <label>OCCIDENTE</label>
+            </value>
+            <value>
+                <fullName>SUR</fullName>
+                <default>false</default>
+                <label>SUR</label>
+            </value>
+            <value>
+                <fullName>TELNOR</fullName>
+                <default>false</default>
+                <label>TELNOR</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

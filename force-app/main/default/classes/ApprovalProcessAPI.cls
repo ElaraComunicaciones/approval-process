@@ -26,7 +26,20 @@ public with sharing class ApprovalProcessAPI {
 		sendApprovalRequestNotifications(newRequestedRecords);
 		sendApprovalProgressNotifications(sendNotificationProgress);
 
-		operationsWithApprovedRecords(newApprovedRecords);
+		Map<Id, Opportunity> opportunities = getOpportunitiesByApprovalProcess(
+			newApprovedRecords
+		);
+
+		Map<Id, Account> accounts = getAccountsByApprovalProcess(
+			newApprovedRecords,
+			opportunities
+		);
+
+		operationsWithApprovedRecords(
+			newApprovedRecords,
+			opportunities,
+			accounts
+		);
 	}
 
 	public static List<ApprovalProcess__c> filterNewRequestedRecords(
@@ -548,25 +561,41 @@ public with sharing class ApprovalProcessAPI {
 	}
 
 	public static void operationsWithApprovedRecords(
-		List<ApprovalProcess__c> approvedRecords
+		List<ApprovalProcess__c> approvedRecords,
+		Map<Id, Opportunity> opportunities,
+		Map<Id, Account> accounts
 	) {
-		createProjectHistoryValue(approvedRecords);
+		createProjectHistoryValue(approvedRecords, opportunities);
+		createAccountHistoryValue(approvedRecords, opportunities, accounts);
 
-		//Actualizar las referencias Elara dadas de baja
-		getRGUPerApprovalProcess(approvedRecords);
-
-		//Se actualiza los productos de oportunidad
-
-		//Crear Historial de la cuenta
-	}
-
-	private static void createProjectHistoryValue(
-		List<ApprovalProcess__c> approvedRecords
-	) {
-		List<TotalProjectValueHistory__c> lHistoryValue = new List<TotalProjectValueHistory__c>();
-		Map<Id, Opportunity> opportunities = getOpportunitiesByApprovalProcess(
+		//Actualizar las referencias Elara
+		Map<Id, List<RGU__C>> mapRGUSPerApprovalProcess = getRGUPerApprovalProcess(
 			approvedRecords
 		);
+
+		List<RGU__c> rgusToDeactivate = new List<RGU__C>();
+
+		for (ApprovalProcess__c approvalProcess : approvedRecords) {
+			if (approvalProcess.Action__c == 'Baja definitiva') {
+				for (
+					RGU__C rgu : mapRGUSPerApprovalProcess.get(
+						approvalProcess.id
+					)
+				) {
+					rgusToDeactivate.add(rgu);
+				}
+			}
+		}
+
+		deactivateRGUs(rgusToDeactivate);
+	}
+
+	@testVisible
+	private static void createProjectHistoryValue(
+		List<ApprovalProcess__c> approvedRecords,
+		Map<Id, Opportunity> opportunities
+	) {
+		List<TotalProjectValueHistory__c> lHistoryValue = new List<TotalProjectValueHistory__c>();
 
 		for (ApprovalProcess__c approvalProcess : approvedRecords) {
 			TotalProjectValueHistory__c historyValue = new TotalProjectValueHistory__c();
@@ -585,6 +614,32 @@ public with sharing class ApprovalProcessAPI {
 		insert lHistoryValue;
 	}
 
+	@testVisible
+	private static void createAccountHistoryValue(
+		List<ApprovalProcess__c> approvedRecords,
+		Map<Id, Opportunity> opportunities,
+		Map<Id, Account> accounts
+	) {
+		List<TotalAccountValueHistory__c> lHistoryValue = new List<TotalAccountValueHistory__c>();
+
+		for (ApprovalProcess__c approvalProcess : approvedRecords) {
+			TotalAccountValueHistory__c historyValue = new TotalAccountValueHistory__c();
+			Account currentAccount = accounts.get(
+				opportunities.get(approvalProcess.Opportunity__c).AccountId
+			);
+			historyValue.Cuenta__c = currentAccount.Id;
+			historyValue.Total_Account_OldValue__c = currentAccount.Total_Proyecto__c;
+			historyValue.Total_Account_NewValue__c =
+				currentAccount.Total_Proyecto__c -
+				approvalProcess.Decremento_en_VTC__c;
+
+			lHistoryValue.add(historyValue);
+		}
+
+		insert lHistoryValue;
+	}
+
+	@testVisible
 	private static Map<Id, Opportunity> getOpportunitiesByApprovalProcess(
 		List<ApprovalProcess__c> approvedRecords
 	) {
@@ -595,12 +650,41 @@ public with sharing class ApprovalProcessAPI {
 		}
 
 		Map<Id, Opportunity> mOpprotunities = new Map<id, Opportunity>(
-			[SELECT id, name, Total_Proyecto__c FROM Opportunity]
+			[
+				SELECT id, name, Total_Proyecto__c, AccountId
+				FROM Opportunity
+				WHERE id IN :oppIds
+			]
 		);
 
 		return mOpprotunities;
 	}
 
+	@testVisible
+	private static Map<Id, Account> getAccountsByApprovalProcess(
+		List<ApprovalProcess__c> approvedRecords,
+		Map<Id, Opportunity> opportunities
+	) {
+		List<Id> AccountIds = new List<Id>();
+
+		for (ApprovalProcess__c approvalProcess : approvedRecords) {
+			AccountIds.add(
+				opportunities.get(approvalProcess.Opportunity__c).AccountId
+			);
+		}
+
+		Map<Id, Account> mAccounts = new Map<id, Account>(
+			[
+				SELECT id, name, Total_Proyecto__c
+				FROM Account
+				WHERE id IN :AccountIds
+			]
+		);
+
+		return mAccounts;
+	}
+
+	@testVisible
 	private static Map<Id, List<RGU__C>> getRGUPerApprovalProcess(
 		List<ApprovalProcess__c> approvedRecords
 	) {
@@ -620,7 +704,7 @@ public with sharing class ApprovalProcessAPI {
 
 		Map<Id, RGU__c> lRGUS = new Map<Id, RGU__c>(
 			[
-				SELECT id, name, Fecha_Solicitud_de_Cancelacion_Cliente__c
+				SELECT id, name, Date_deactive_by_Client__c
 				FROM RGU__c
 				WHERE id IN :lIDRGUs
 			]
@@ -646,5 +730,14 @@ public with sharing class ApprovalProcessAPI {
 		System.debug(mapRGUSPerApprovalProcess);
 
 		return mapRGUSPerApprovalProcess;
+	}
+
+	@testVisible
+	private static void deactivateRGUs(List<RGU__C> rgusToDeactivate) {
+		for (RGU__C currentRGU : rgusToDeactivate) {
+			currentRGU.Date_deactive_by_Client__c = date.today();
+		}
+
+		update rgusToDeactivate;
 	}
 }

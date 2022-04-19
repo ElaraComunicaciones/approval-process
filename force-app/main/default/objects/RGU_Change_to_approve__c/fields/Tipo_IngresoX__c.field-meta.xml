@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tipo_IngresoX__c</fullName>
+    <externalId>false</externalId>
+    <label>Tipo IngresoX</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Venta Nueva</fullName>
+                <default>false</default>
+                <label>Venta Nueva</label>
+            </value>
+            <value>
+                <fullName>Renovación</fullName>
+                <default>false</default>
+                <label>Renovación</label>
+            </value>
+            <value>
+                <fullName>Base de Retención</fullName>
+                <default>false</default>
+                <label>Base de Retención</label>
+            </value>
+            <value>
+                <fullName>Base de Retención - Requiere Renovación</fullName>
+                <default>false</default>
+                <label>Base de Retención - Requiere Renovación</label>
+            </value>
+            <value>
+                <fullName>Venta Nueva - Crecimiento Orgánico</fullName>
+                <default>false</default>
+                <label>Venta Nueva - Crecimiento Orgánico</label>
+            </value>
+            <value>
+                <fullName>Venta Nueva - Try &amp; Buy</fullName>
+                <default>false</default>
+                <label>Venta Nueva - Try &amp; Buy</label>
+            </value>
+            <value>
+                <fullName>Vencido - Requiere Renovación</fullName>
+                <default>false</default>
+                <label>Vencido - Requiere Renovación</label>
+            </value>
+            <value>
+                <fullName>Evaluación Interna</fullName>
+                <default>false</default>
+                <label>Evaluación Interna</label>
+            </value>
+            <value>
+                <fullName>Demo sin costo</fullName>
+                <default>false</default>
+                <label>Demo sin costo</label>
+            </value>
+            <value>
+                <fullName>No Aplica - EP No Activo</fullName>
+                <default>false</default>
+                <label>No Aplica - EP No Activo</label>
+            </value>
+            <value>
+                <fullName>Rate Card</fullName>
+                <default>false</default>
+                <label>Rate Card</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

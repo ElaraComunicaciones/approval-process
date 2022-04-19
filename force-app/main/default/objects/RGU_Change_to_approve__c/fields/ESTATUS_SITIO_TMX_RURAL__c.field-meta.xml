@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ESTATUS_SITIO_TMX_RURAL__c</fullName>
+    <externalId>false</externalId>
+    <label>ESTATUS SITIO TMX RURAL</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>MIGRADO</fullName>
+                <default>false</default>
+                <label>MIGRADO</label>
+            </value>
+            <value>
+                <fullName>ACTA CIRCUNSTANCIADA</fullName>
+                <default>false</default>
+                <label>ACTA CIRCUNSTANCIADA</label>
+            </value>
+            <value>
+                <fullName>ACTA EN PROCESO</fullName>
+                <default>false</default>
+                <label>ACTA EN PROCESO</label>
+            </value>
+            <value>
+                <fullName>BAJA TELMEX</fullName>
+                <default>false</default>
+                <label>BAJA TELMEX</label>
+            </value>
+            <value>
+                <fullName>POR MIGRAR</fullName>
+                <default>false</default>
+                <label>POR MIGRAR</label>
+            </value>
+            <value>
+                <fullName>PROGRAMAR MIGRACION</fullName>
+                <default>false</default>
+                <label>PROGRAMAR MIGRACION</label>
+            </value>
+            <value>
+                <fullName>CANCELADO TELMEX</fullName>
+                <default>false</default>
+                <label>CANCELADO TELMEX</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

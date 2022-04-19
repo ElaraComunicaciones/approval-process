@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Date_deactive_by_Client__c</fullName>
+    <description
+	>Fecha en la que se realizó la desactivación por medio de proceso de aprobación</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+	>Fecha en la que se realizó la desactivación por medio de proceso de aprobación</inlineHelpText>
+    <label>Fecha desactivación cliente</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Servicio__c</fullName>
+    <externalId>false</externalId>
+    <label>Servicio de conectividad</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Servicio_de_conectividad</valueSetName>
+    </valueSet>
+</CustomField>

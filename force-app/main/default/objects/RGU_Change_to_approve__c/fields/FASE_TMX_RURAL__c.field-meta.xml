@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FASE_TMX_RURAL__c</fullName>
+    <externalId>false</externalId>
+    <label>FASE TMX RURAL</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>108 ADICIONALES 1</fullName>
+                <default>false</default>
+                <label>108 ADICIONALES 1</label>
+            </value>
+            <value>
+                <fullName>109 EN FALLA</fullName>
+                <default>false</default>
+                <label>109 EN FALLA</label>
+            </value>
+            <value>
+                <fullName>88 ADICIONALES 2</fullName>
+                <default>false</default>
+                <label>88 ADICIONALES 2</label>
+            </value>
+            <value>
+                <fullName>FASE 1</fullName>
+                <default>false</default>
+                <label>FASE 1</label>
+            </value>
+            <value>
+                <fullName>FASE 2</fullName>
+                <default>false</default>
+                <label>FASE 2</label>
+            </value>
+            <value>
+                <fullName>FASE 2 CANCELADO</fullName>
+                <default>false</default>
+                <label>FASE 2 CANCELADO</label>
+            </value>
+            <value>
+                <fullName>FASE 2 INHABILITADO</fullName>
+                <default>false</default>
+                <label>FASE 2 INHABILITADO</label>
+            </value>
+            <value>
+                <fullName>FASE 2 OT</fullName>
+                <default>false</default>
+                <label>FASE 2 OT</label>
+            </value>
+            <value>
+                <fullName>FASE 2021</fullName>
+                <default>false</default>
+                <label>FASE 2021</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
