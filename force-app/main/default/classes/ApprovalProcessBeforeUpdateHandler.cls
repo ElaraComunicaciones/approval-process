@@ -5,6 +5,11 @@ public with sharing class ApprovalProcessBeforeUpdateHandler extends TriggerHand
 			(List<ApprovalProcess__c>) triggerParams.newList
 		);
 
+		ApprovalProcessAPI.setTotalProjectAndTotalAccount(
+			triggerParams.oldMap,
+			(List<ApprovalProcess__c>) triggerParams.newList
+		);
+
 		ApprovalProcessAPI.actionOfTypeApprovalProcess(
 			triggerParams.oldMap,
 			(List<ApprovalProcess__c>) triggerParams.newList

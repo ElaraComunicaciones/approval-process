@@ -171,6 +171,44 @@ public with sharing class ApprovalProcessAPI {
 		}
 	}
 
+	public static void setTotalProjectAndTotalAccount(
+		Map<id, SObject> oldMap,
+		List<ApprovalProcess__c> newList
+	) {
+		Map<Id, Opportunity> opportunities = getOpportunitiesByApprovalProcess(
+			newList
+		);
+
+		Map<Id, Account> accounts = getAccountsByApprovalProcess(
+			newList,
+			opportunities
+		);
+
+		for (ApprovalProcess__c approvalProcess : newList) {
+			ApprovalProcess__c oldValue = (ApprovalProcess__c) oldMap.get(
+				approvalProcess.id
+			);
+
+			if (
+				(oldValue.Stage__c != 'Solicitado' &&
+				approvalProcess.Stage__c == 'Solicitado') ||
+				(oldValue.Stage__c != 'Aprobado' &&
+				approvalProcess.Stage__c == 'Aprobado')
+			) {
+				approvalProcess.Total_del_proyecto__c = opportunities.get(
+						approvalProcess.Opportunity__c
+					)
+					.Total_Proyecto__c;
+
+				approvalProcess.total_de_la_cuenta__c = accounts.get(
+						opportunities.get(approvalProcess.Opportunity__c)
+							.AccountId
+					)
+					.Total_Proyecto__c;
+			}
+		}
+	}
+
 	public static void actionOfTypeApprovalProcess(
 		Map<id, SObject> oldMap,
 		List<ApprovalProcess__c> newList

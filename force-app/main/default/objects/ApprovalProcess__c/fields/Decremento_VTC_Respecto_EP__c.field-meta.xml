@@ -5,7 +5,7 @@
 	>Calcula el porcentaje del decremento respecto al VTC del proyecto</description>
     <externalId>false</externalId>
     <formula
-	>IF(ISBLANK(Decremento_en_VTC__c) , 0, Decremento_en_VTC__c/Opportunity__r.Total_Proyecto__c)</formula>
+	>IF(ISBLANK(Decremento_en_VTC__c) , 0, Decremento_en_VTC__c/ Total_del_proyecto__c )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <inlineHelpText
 	>Calcula el porcentaje del decremento respecto al VTC del proyecto</inlineHelpText>
