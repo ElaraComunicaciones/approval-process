@@ -1,4 +1,28 @@
 public with sharing class ApprovalProcessAPI {
+	@testVisible
+	private static List<ApprovalProcessMail__mdt> SetApprovalProcessMail() {
+		return [
+			SELECT
+				Id,
+				Activo__c,
+				Correo_Elara__c,
+				Label,
+				Nombre_Completo__c,
+				Rol__c
+			FROM ApprovalProcessMail__mdt
+			WHERE Activo__c = TRUE
+		];
+	}
+
+	@testVisible
+	private static List<EmailTemplate> changesAndTurnoffTemplates() {
+		return [
+			SELECT ID, Name, Subject, Body, FolderId, FolderName, HtmlValue
+			FROM EmailTemplate
+			WHERE FolderId IN ('00l6T000002S0m4QAC', '00l6T000002S0mxQAC')
+		];
+	}
+
 	public static void executeBeforeInsertProcess(
 		TriggerParameters triggerParams
 	) {
@@ -8,6 +32,9 @@ public with sharing class ApprovalProcessAPI {
 	public static void executeAfterUpdateProcesses(
 		TriggerParameters triggerParams
 	) {
+		List<ApprovalProcessMail__mdt> approvalProcessMail = SetApprovalProcessMail();
+		List<EmailTemplate> emailTemplates = changesAndTurnoffTemplates();
+
 		List<ApprovalProcess__c> newRequestedRecords = filterNewRequestedRecords(
 			triggerParams.oldMap,
 			(List<ApprovalProcess__c>) triggerParams.newList
@@ -23,8 +50,16 @@ public with sharing class ApprovalProcessAPI {
 			(List<ApprovalProcess__c>) triggerParams.newList
 		);
 
-		sendApprovalRequestNotifications(newRequestedRecords);
-		sendApprovalProgressNotifications(sendNotificationProgress);
+		sendApprovalRequestNotifications(
+			newRequestedRecords,
+			emailTemplates,
+			approvalProcessMail
+		);
+		sendApprovalProgressNotifications(
+			sendNotificationProgress,
+			emailTemplates,
+			approvalProcessMail
+		);
 
 		Map<Id, Opportunity> opportunities = getOpportunitiesByApprovalProcess(
 			newApprovedRecords
@@ -39,6 +74,12 @@ public with sharing class ApprovalProcessAPI {
 			newApprovedRecords,
 			opportunities,
 			accounts
+		);
+
+		sendApprovedNotifications(
+			newApprovedRecords,
+			emailTemplates,
+			approvalProcessMail
 		);
 	}
 
@@ -282,7 +323,7 @@ public with sharing class ApprovalProcessAPI {
 				Id,
 				Referencia_Elara__r.id,
 				Fecha_Fin_Ingreso__c,
-				Total_Renta_MXN__c
+				Total_Renta_Conv_MXN__c
 			FROM OpportunityLineItem
 			WHERE
 				Forma_de_Cobro__c != 'Diaria'
@@ -322,7 +363,8 @@ public with sharing class ApprovalProcessAPI {
 					System.today()
 				);
 				decrementoVTC +=
-					Math.abs(lapseBetweenEndDateToday) * oli.Total_Renta_MXN__c;
+					Math.abs(lapseBetweenEndDateToday) *
+					oli.Total_Renta_Conv_MXN__c;
 			}
 			lDecrementPerRGU.put(rguToChange.id, decrementoVTC);
 		}
@@ -356,17 +398,18 @@ public with sharing class ApprovalProcessAPI {
 	}
 
 	public static void sendApprovalRequestNotifications(
-		List<ApprovalProcess__c> newRequestedRecords
+		List<ApprovalProcess__c> newRequestedRecords,
+		List<EmailTemplate> emailTemplates,
+		List<ApprovalProcessMail__mdt> approvalProcessMail
 	) {
-		List<EmailTemplate> emailTemplates = changesAndTurnoffTemplates();
 		EmailTemplate solicitudComiteDirectivoBajas;
 		EmailTemplate solicitudControlComercialBajas;
 		EmailTemplate solicitudInformacionBajas;
 
 		List<User> activeUsers = getActiveUsers();
-		List<id> sendTo;
-		List<id> sendCC;
-		List<id> sendCCO;
+		List<String> sendTo;
+		List<String> sendCC;
+		List<String> sendCCO;
 
 		for (EmailTemplate template : emailTemplates) {
 			switch on template.name {
@@ -386,15 +429,17 @@ public with sharing class ApprovalProcessAPI {
 			switch on approvalProcess.Action__c {
 				when 'Baja definitiva' {
 					if (approvalProcess.Aprobacion_por_comite_directivo__c) {
-						sendTo = new List<id>();
-						sendCC = new List<id>();
-						sendCCO = new List<id>();
-						for (User activeUser : activeUsers) {
-							if (
-								activeUser.UserRole.Name ==
-								'Administrador del sistema'
-							)
-								sendTo.add(activeUser.id);
+						sendTo = new List<String>();
+						sendCC = new List<String>();
+						sendCCO = new List<String>();
+						for (
+							ApprovalProcessMail__mdt approvalMail : approvalProcessMail
+						) {
+							if (approvalMail.Rol__c == 'Comité Directivo')
+								sendTo.add(approvalMail.Correo_Elara__c);
+							else {
+								sendCC.add(approvalMail.Correo_Elara__c);
+							}
 						}
 
 						SendEmailNotifications(
@@ -412,15 +457,17 @@ public with sharing class ApprovalProcessAPI {
 							approvalProcess
 						);
 					} else {
-						sendTo = new List<id>();
-						sendCC = new List<id>();
-						sendCCO = new List<id>();
-						for (User activeUser : activeUsers) {
-							if (
-								activeUser.UserRole.Name ==
-								'Administrador del sistema'
-							)
-								sendTo.add(activeUser.id);
+						sendTo = new List<String>();
+						sendCC = new List<String>();
+						sendCCO = new List<String>();
+						for (
+							ApprovalProcessMail__mdt approvalMail : approvalProcessMail
+						) {
+							if (approvalMail.Rol__c == 'Comité Directivo')
+								sendTo.add(approvalMail.Correo_Elara__c);
+							else {
+								sendCC.add(approvalMail.Correo_Elara__c);
+							}
 						}
 
 						SendEmailNotifications(
@@ -436,17 +483,60 @@ public with sharing class ApprovalProcessAPI {
 		}
 	}
 
-	public static void sendApprovalProgressNotifications(
-		List<ApprovalProcess__c> sendNotificationProgressRecords
+	public static void sendApprovedNotifications(
+		List<ApprovalProcess__c> approvedNotification,
+		List<EmailTemplate> emailTemplates,
+		List<ApprovalProcessMail__mdt> approvalProcessMail
 	) {
-		List<EmailTemplate> emailTemplates = changesAndTurnoffTemplates();
+		EmailTemplate solicitudBaja;
+		List<String> sendTo;
+		List<String> sendCC;
+		List<String> sendCCO;
+
+		for (EmailTemplate template : emailTemplates) {
+			switch on template.name {
+				when 'SL_B4 Implementación de Baja' {
+					solicitudBaja = template;
+				}
+			}
+		}
+
+		for (ApprovalProcess__c approvalProcess : approvedNotification) {
+			switch on approvalProcess.Action__c {
+				when 'Baja definitiva' {
+					sendTo = new List<String>();
+					sendCC = new List<String>();
+					sendCCO = new List<String>();
+					for (
+						ApprovalProcessMail__mdt approvalMail : approvalProcessMail
+					) {
+						if (approvalMail.Rol__c == 'Comité Directivo')
+							sendTo.add(approvalMail.Correo_Elara__c);
+					}
+
+					SendEmailNotifications(
+						solicitudBaja,
+						sendTo,
+						sendCC,
+						sendCCO,
+						approvalProcess
+					);
+				}
+			}
+		}
+	}
+
+	public static void sendApprovalProgressNotifications(
+		List<ApprovalProcess__c> sendNotificationProgressRecords,
+		List<EmailTemplate> emailTemplates,
+		List<ApprovalProcessMail__mdt> approvalProcessMail
+	) {
 		EmailTemplate solicitudAvance;
 		EmailTemplate solicitudCompleta;
 
-		List<User> activeUsers = getActiveUsers();
-		List<id> sendTo;
-		List<id> sendCC;
-		List<id> sendCCO;
+		List<String> sendTo;
+		List<String> sendCC;
+		List<String> sendCCO;
 
 		for (EmailTemplate template : emailTemplates) {
 			switch on template.name {
@@ -464,15 +554,14 @@ public with sharing class ApprovalProcessAPI {
 		) {
 			switch on approvalProcess.Action__c {
 				when 'Baja definitiva' {
-					sendTo = new List<id>();
-					sendCC = new List<id>();
-					sendCCO = new List<id>();
-					for (User activeUser : activeUsers) {
-						if (
-							activeUser.UserRole.Name ==
-							'Administrador del sistema'
-						)
-							sendTo.add(activeUser.id);
+					sendTo = new List<String>();
+					sendCC = new List<String>();
+					sendCCO = new List<String>();
+					for (
+						ApprovalProcessMail__mdt approvalMail : approvalProcessMail
+					) {
+						if (approvalMail.Rol__c == 'Comité Directivo')
+							sendTo.add(approvalMail.Correo_Elara__c);
 					}
 
 					if (validateCompleteInformation(approvalProcess)) {
@@ -497,20 +586,11 @@ public with sharing class ApprovalProcessAPI {
 		}
 	}
 
-	@testVisible
-	private static List<EmailTemplate> changesAndTurnoffTemplates() {
-		return [
-			SELECT ID, Name, Subject, Body, FolderId, FolderName, HtmlValue
-			FROM EmailTemplate
-			WHERE FolderId IN ('00l6T000002S0m4QAC', '00l6T000002S0mxQAC')
-		];
-	}
-
 	public static void SendEmailNotifications(
 		EmailTemplate templateMail,
-		List<Id> sendTo,
-		List<Id> sendCC,
-		List<Id> sendCCO,
+		List<String> sendTo,
+		List<String> sendCC,
+		List<String> sendCCO,
 		ApprovalProcess__c approvalProcess
 	) {
 		Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
