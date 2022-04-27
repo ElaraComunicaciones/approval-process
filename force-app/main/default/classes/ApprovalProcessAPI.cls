@@ -643,6 +643,42 @@ public with sharing class ApprovalProcessAPI {
 			isComplete = false;
 		}
 
+		if (approvalProcess.Margen_Bruto__c == null) {
+			isComplete = false;
+		}
+
+		if (approvalProcess.CAPEX__c == null) {
+			isComplete = false;
+		}
+
+		if (approvalProcess.Divisa_CAPEX__c == null) {
+			isComplete = false;
+		}
+
+		if (approvalProcess.EBITDA__c == null) {
+			isComplete = false;
+		}
+
+		if (approvalProcess.EBIT__c == null) {
+			isComplete = false;
+		}
+
+		if (approvalProcess.Payback__c == null) {
+			isComplete = false;
+		}
+
+		if (approvalProcess.Par_metros_de_rentabilidad__c == null) {
+			isComplete = false;
+		}
+
+		if (approvalProcess.ROI__c == null) {
+			isComplete = false;
+		}
+
+		if (approvalProcess.TIR__c == null) {
+			isComplete = false;
+		}
+
 		if (approvalProcess.Ingresos_por_cubrir__c == null) {
 			isComplete = false;
 		}
