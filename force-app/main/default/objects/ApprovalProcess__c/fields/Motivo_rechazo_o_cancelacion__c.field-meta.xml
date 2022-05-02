@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Motivo_rechazo_o_cancelacion__c</fullName>
+    <description
+	>Si la etapa del proceso de aprobación es &quot;Rechazado&quot; o &quot;Cancelado&quot;, entonces éste campo es obligatorio</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+	>Si la etapa del proceso de aprobación es &quot;Rechazado&quot; o &quot;Cancelado&quot;, entonces éste campo es obligatorio</inlineHelpText>
+    <label>Motivo rechazo o cancelación</label>
+    <length>32768</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

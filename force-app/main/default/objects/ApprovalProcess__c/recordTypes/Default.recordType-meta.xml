@@ -57,6 +57,32 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Divisa_CAPEX__c</picklist>
+        <values>
+            <fullName>MXN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>USD</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Par_metros_de_rentabilidad__c</picklist>
+        <values>
+            <fullName>Cumple</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Aplica</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>No Cumple</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Stage__c</picklist>
         <values>
             <fullName>Aprobado</fullName>

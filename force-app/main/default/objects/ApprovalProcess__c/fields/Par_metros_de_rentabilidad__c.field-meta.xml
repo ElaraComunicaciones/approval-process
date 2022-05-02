@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Par_metros_de_rentabilidad__c</fullName>
+    <description
+	>Se elige de una lista el cumplimiento de la políticas de rentabilidad</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+	>Indicar si cumple con las políticas de rentabilidad.</inlineHelpText>
+    <label>Parámetros de rentabilidad</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>No Aplica</fullName>
+                <default>true</default>
+                <label>No Aplica</label>
+            </value>
+            <value>
+                <fullName>Cumple</fullName>
+                <default>false</default>
+                <label>Cumple</label>
+            </value>
+            <value>
+                <fullName>No Cumple</fullName>
+                <default>false</default>
+                <label>No Cumple</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
