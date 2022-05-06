@@ -135,7 +135,11 @@ public with sharing class ApprovalProcessControlRGUController {
 						LINEAS_MIGRADAS_ACTIVAS__c = referenciaOriginal.LINEAS_MIGRADAS_ACTIVAS__c,
 						OBSERVACIONES_TMX_RURAL__c = referenciaOriginal.OBSERVACIONES_TMX_RURAL__c,
 						Approval_Process__c = recordId,
-						Referencia_Elara_Original__c = referenciaOriginal.Id
+						Referencia_Elara_Original__c = referenciaOriginal.Id,
+						Fecha_Solicitud_de_Cambio_Cliente__c = referenciaOriginal.Fecha_Solicitud_de_Cambio_Cliente__c,
+						QO_IOM__c = referenciaOriginal.QO_IOM__c,
+						CO_IOM__c = referenciaOriginal.CO_IOM__c,
+						Tipo_de_movimiento_IOM__c = referenciaOriginal.Tipo_de_movimiento_IOM__c
 					);
 					lRGUToApprove.add(RGUToApprove);
 				}

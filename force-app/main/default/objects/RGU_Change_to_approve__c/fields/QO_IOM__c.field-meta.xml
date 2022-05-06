@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>QO_IOM__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>QO formato IOM de Telmex</inlineHelpText>
+    <label>QO IOM</label>
+    <length>12</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
