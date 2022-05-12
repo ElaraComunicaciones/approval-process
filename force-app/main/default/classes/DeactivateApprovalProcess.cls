@@ -565,7 +565,7 @@ public with sharing class DeactivateApprovalProcess {
 			Account currentAccount = accounts.get(
 				opportunities.get(approvalProcess.Opportunity__c).AccountId
 			);
-			historyValue.Cuenta__c = currentAccount.Id;
+			historyValue.Account__c = currentAccount.Id;
 			historyValue.Total_Account_OldValue__c = currentAccount.Total_Proyecto__c;
 			historyValue.Total_Account_NewValue__c =
 				currentAccount.Total_Proyecto__c -
