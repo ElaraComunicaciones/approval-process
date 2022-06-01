@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <customValue>
         <fullName>Baja definitiva</fullName>
@@ -36,54 +36,6 @@
         <label>Cambio - Reactivación del servicio</label>
     </customValue>
     <customValue>
-        <fullName>Finalización de ingreso</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Finalización de ingreso</label>
-    </customValue>
-    <customValue>
-        <fullName>Finalización del ingreso</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Finalización del ingreso</label>
-    </customValue>
-    <customValue>
-        <fullName>Suspensión del ingreso</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Suspensión del ingreso</label>
-    </customValue>
-    <customValue>
-        <fullName>Adecuaciones especiales</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Adecuaciones especiales</label>
-    </customValue>
-    <customValue>
-        <fullName>Ingenieria de campo</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Ingenieria de campo</label>
-    </customValue>
-    <customValue>
-        <fullName>Soporte Remoto</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Soporte Remoto</label>
-    </customValue>
-    <customValue>
-        <fullName>Migración de plataforma satelital</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Migración de plataforma satelital</label>
-    </customValue>
-    <customValue>
-        <fullName>Reubicación</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Reubicación</label>
-    </customValue>
-    <customValue>
         <fullName>Migración</fullName>
         <default>false</default>
         <isActive>false</isActive>
@@ -100,6 +52,54 @@
         <default>false</default>
         <isActive>false</isActive>
         <label>Decremento</label>
+    </customValue>
+    <customValue>
+        <fullName>Reubicación</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Reubicación</label>
+    </customValue>
+    <customValue>
+        <fullName>Migración de plataforma satelital</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Migración de plataforma satelital</label>
+    </customValue>
+    <customValue>
+        <fullName>Soporte Remoto</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Soporte Remoto</label>
+    </customValue>
+    <customValue>
+        <fullName>Ingenieria de campo</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Ingenieria de campo</label>
+    </customValue>
+    <customValue>
+        <fullName>Adecuaciones especiales</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Adecuaciones especiales</label>
+    </customValue>
+    <customValue>
+        <fullName>Suspensión del ingreso</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Suspensión del ingreso</label>
+    </customValue>
+    <customValue>
+        <fullName>Finalización de ingreso</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Finalización de ingreso</label>
+    </customValue>
+    <customValue>
+        <fullName>Finalización del ingreso</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Finalización del ingreso</label>
     </customValue>
     <masterLabel>Apobración Acción</masterLabel>
     <sorted>false</sorted>
