@@ -11,9 +11,49 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Value1</fullName>
+                <fullName>RPV RESPALDO SATELITAL</fullName>
                 <default>false</default>
-                <label>Value1</label>
+                <label>RPV RESPALDO SATELITAL</label>
+            </value>
+            <value>
+                <fullName>RPV RESPALDO SATELITAL NUBE</fullName>
+                <default>false</default>
+                <label>RPV RESPALDO SATELITAL NUBE</label>
+            </value>
+            <value>
+                <fullName>RPV SATELITAL</fullName>
+                <default>false</default>
+                <label>RPV SATELITAL</label>
+            </value>
+            <value>
+                <fullName>RPV SATELITAL NUBE</fullName>
+                <default>false</default>
+                <label>RPV SATELITAL NUBE</label>
+            </value>
+            <value>
+                <fullName>RPV TRANSACCIONAL SATELITAL</fullName>
+                <default>false</default>
+                <label>RPV TRANSACCIONAL SATELITAL</label>
+            </value>
+            <value>
+                <fullName>IDE PRINCIPAL</fullName>
+                <default>false</default>
+                <label>IDE PRINCIPAL</label>
+            </value>
+            <value>
+                <fullName>IDE RESPALDO</fullName>
+                <default>false</default>
+                <label>IDE RESPALDO</label>
+            </value>
+            <value>
+                <fullName>IDE PRINCIPAL CONTINGENCIAS</fullName>
+                <default>false</default>
+                <label>IDE PRINCIPAL CONTINGENCIAS</label>
+            </value>
+            <value>
+                <fullName>INTERNET SATELITAL</fullName>
+                <default>false</default>
+                <label>INTERNET SATELITAL</label>
             </value>
         </valueSetDefinition>
     </valueSet>
