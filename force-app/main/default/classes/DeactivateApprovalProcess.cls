@@ -288,7 +288,7 @@ public with sharing class DeactivateApprovalProcess {
 				) {
 					if (approvalMail.Rol__c == 'Comité Directivo')
 						sendTo.add(approvalMail.Correo_Elara__c);
-					else {
+					else if (approvalMail.Rol__c == 'Documentador') {
 						sendCC.add(approvalMail.Correo_Elara__c);
 					}
 				}
@@ -314,11 +314,8 @@ public with sharing class DeactivateApprovalProcess {
 				for (
 					ApprovalProcessMail__mdt approvalMail : approvalProcessMail
 				) {
-					if (approvalMail.Rol__c == 'Comité Directivo')
+					if (approvalMail.Rol__c == 'Control Comercial')
 						sendTo.add(approvalMail.Correo_Elara__c);
-					else {
-						sendCC.add(approvalMail.Correo_Elara__c);
-					}
 				}
 
 				SendEmailNotifications(
