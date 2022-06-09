@@ -20,6 +20,11 @@
                 <default>false</default>
                 <label>Documentador</label>
             </value>
+            <value>
+                <fullName>Control Comercial</fullName>
+                <default>false</default>
+                <label>Control Comercial</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
