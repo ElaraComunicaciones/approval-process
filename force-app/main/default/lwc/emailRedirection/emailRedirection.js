@@ -20,7 +20,7 @@ export default class MyCustomElement extends NavigationMixin(LightningElement) {
 						data.fields.AccountName__c +
 						'&rtype=003&p3_lkid=' +
 						data.id +
-						'&p24="alberto.hernandez@elara.com.mx"&template_id=00X3J000000NWDRUA4&retURL=' +
+						'&p24="alberto.hernandez@elara.com.mx"&template_id=00X8N000000HqvOUAS&retURL=' +
 						data.id
 				}
 			});
