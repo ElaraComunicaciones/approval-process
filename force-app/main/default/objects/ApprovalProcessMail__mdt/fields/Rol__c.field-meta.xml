@@ -25,6 +25,11 @@
                 <default>false</default>
                 <label>Control Comercial</label>
             </value>
+            <value>
+                <fullName>Notificacion aprobado</fullName>
+                <default>false</default>
+                <label>Notificacion aprobado</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
