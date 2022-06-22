@@ -35,7 +35,7 @@ export default class EmailRouting extends NavigationMixin(LightningElement) {
 					this.record.fields.AccountName__c +
 					'&rtype=003&p3_lkid=' +
 					this.record.id +
-					'&p24=alberto.hernandez@elara.com.mx&template_id=00X8N000000HqvOUAS&retURL=' +
+					'&template_id=00X8N000000HqvOUAS&retURL=' +
 					this.record.id
 			}
 		});
