@@ -90,6 +90,15 @@ public with sharing class ApprovalProcessAPI {
 			accounts,
 			RGUPerApprovalProcess
 		);
+
+		//En caso de que exista un rechzao de proceso de aprobación, se valida si pasó de solicitado a rechazado,
+		//Si esté es el caso, entonces se notifica al aprobador que el solicitante canceló
+		changeToCancelledStatus(
+			triggerParams.newList,
+			triggerParams.oldMap,
+			emailTemplates,
+			approvalProcessMail
+		);
 	}
 
 	public static void changeStage(List<ApprovalProcess__c> newList) {
@@ -134,6 +143,118 @@ public with sharing class ApprovalProcessAPI {
 				}
 			}
 		}
+	}
+
+	private static void changeToCancelledStatus(
+		List<ApprovalProcess__c> newList,
+		Map<id, SObject> oldMap,
+		List<EmailTemplate> emailTemplates,
+		List<ApprovalProcessMail__mdt> approvalProcessMail
+	) {
+		List<ApprovalProcess__c> approvalProcessToSendNotification = new List<ApprovalProcess__c>();
+
+		for (ApprovalProcess__c approvalProcess : newList) {
+			ApprovalProcess__c approvalProcessOld = (ApprovalProcess__c) oldMap.get(
+				approvalProcess.id
+			);
+
+			if (
+				approvalProcessOld.Stage__c == 'Solicitado' &&
+				approvalProcess.Stage__c == 'Cancelado'
+			) {
+				approvalProcessToSendNotification.add(approvalProcess);
+			}
+		}
+
+		sendApprovalCancelledNotifications(
+			approvalProcessToSendNotification,
+			emailTemplates,
+			approvalProcessMail
+		);
+	}
+
+	@testVisible
+	private static void sendApprovalCancelledNotifications(
+		List<ApprovalProcess__c> approvalProcessToSendNotification,
+		List<EmailTemplate> emailTemplates,
+		List<ApprovalProcessMail__mdt> approvalProcessMail
+	) {
+		List<String> sendToComiteDirectivo;
+		List<String> sendToControlComercial;
+		List<String> sendCC = new List<String>();
+		List<String> sendCCO = new List<String>();
+
+		EmailTemplate notificacionCancelacion;
+
+		for (EmailTemplate template : emailTemplates) {
+			if (
+				template.name ==
+				'Notificación cancelación de proceso de aprobación'
+			) {
+				notificacionCancelacion = template;
+			}
+		}
+
+		for (
+			ApprovalProcess__c approvalProcess : approvalProcessToSendNotification
+		) {
+			sendToComiteDirectivo = new List<String>();
+			sendToControlComercial = new List<String>();
+
+			for (ApprovalProcessMail__mdt approvalMail : approvalProcessMail) {
+				if (approvalMail.Rol__c == 'Comité Directivo')
+					sendToComiteDirectivo.add(approvalMail.Correo_Elara__c);
+				else if (approvalMail.Rol__c == 'Control Comercial')
+					sendToControlComercial.add(approvalMail.Correo_Elara__c);
+			}
+
+			if (approvalProcess.Aprobacion_por_comite_directivo__c)
+				SendEmailNotifications(
+					notificacionCancelacion,
+					sendToComiteDirectivo,
+					sendCC,
+					sendCCO,
+					approvalProcess
+				);
+			else
+				SendEmailNotifications(
+					notificacionCancelacion,
+					sendToControlComercial,
+					sendCC,
+					sendCCO,
+					approvalProcess
+				);
+		}
+	}
+
+	public static void SendEmailNotifications(
+		EmailTemplate templateMail,
+		List<String> sendTo,
+		List<String> sendCC,
+		List<String> sendCCO,
+		ApprovalProcess__c approvalProcess
+	) {
+		Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+		List<Messaging.SingleEmailMessage> mailsToSend = new List<Messaging.SingleEmailMessage>();
+
+		mail.setToAddresses(sendTo);
+
+		if (sendCC.size() > 0)
+			mail.setCcAddresses(sendCC);
+
+		if (sendCCO.size() > 0)
+			mail.setBccAddresses(sendCCO);
+
+		mail.setWhatId(approvalProcess.Id);
+		mail.setTemplateId(templateMail.Id);
+		mail.setTreatBodiesAsTemplate(true);
+		mail.setSubject(templateMail.Subject);
+		mail.setHtmlBody(templateMail.HTMLValue);
+		String texto = templateMail.Body;
+		mail.setPlainTextBody(texto);
+		mail.setSenderDisplayName(approvalProcess.Owner.Name);
+		mailsToSend.add(mail);
+		Messaging.sendEmail(mailsToSend);
 	}
 
 	public static void setTotalProjectAndTotalAccount(
