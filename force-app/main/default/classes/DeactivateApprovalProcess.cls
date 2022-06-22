@@ -306,7 +306,7 @@ public with sharing class DeactivateApprovalProcess {
 
 		for (EmailTemplate template : emailTemplates) {
 			switch on template.name {
-				when 'SL_B1 Aprobación de baja Comité Directivo' {
+				when 'RS_B2 Aprobación baja denegada por Comité Directivo' {
 					denegadoComiteDirectivoBajas = template;
 				}
 				when 'RS_B3 Aprobación baja denegada por Control Comercial' {
