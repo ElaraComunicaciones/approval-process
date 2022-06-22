@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Acuerdo_firmado_que_establezca_el_decrem__c</fullName>
     <defaultValue>false</defaultValue>
-    <description>En el caso de decrementos, un acuerdo firmado que establezca el acuerdo</description>
+    <description
+	>En el caso de decrementos, un acuerdo firmado que establezca el acuerdo</description>
     <externalId>false</externalId>
-    <label>Acuerdo firmado que establezca el decrem</label>
+    <label>Acuerdo de decremento</label>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>

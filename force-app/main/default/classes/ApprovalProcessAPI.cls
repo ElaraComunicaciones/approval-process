@@ -23,6 +23,11 @@ public with sharing class ApprovalProcessAPI {
 		];
 	}
 
+	@testVisible
+	public static List<User> getActiveUsers() {
+		return [SELECT id, name, email FROM User WHERE isactive = TRUE];
+	}
+
 	public static void executeBeforeInsertProcess(
 		TriggerParameters triggerParams
 	) {
@@ -62,6 +67,7 @@ public with sharing class ApprovalProcessAPI {
 	) {
 		List<ApprovalProcessMail__mdt> approvalProcessMail = SetApprovalProcessMail();
 		List<EmailTemplate> emailTemplates = changesAndTurnoffTemplates();
+		List<User> users = getActiveUsers();
 
 		//Obtenemos los procesos de aprobación que corresponden a bajas
 		List<ApprovalProcess__c> lDeactivateApprovalProcess = DeactivateApprovalProcess(
@@ -88,7 +94,8 @@ public with sharing class ApprovalProcessAPI {
 			lDeactivateApprovalProcess,
 			opportunities,
 			accounts,
-			RGUPerApprovalProcess
+			RGUPerApprovalProcess,
+			users
 		);
 
 		//En caso de que exista un rechzao de proceso de aprobación, se valida si pasó de solicitado a rechazado,
@@ -252,7 +259,7 @@ public with sharing class ApprovalProcessAPI {
 		mail.setHtmlBody(templateMail.HTMLValue);
 		String texto = templateMail.Body;
 		mail.setPlainTextBody(texto);
-		mail.setSenderDisplayName(approvalProcess.Owner.Name);
+		mail.setSenderDisplayName(UserInfo.getName());
 		mailsToSend.add(mail);
 		Messaging.sendEmail(mailsToSend);
 	}

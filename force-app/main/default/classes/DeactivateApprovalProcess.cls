@@ -32,7 +32,8 @@ public with sharing class DeactivateApprovalProcess {
 		List<ApprovalProcess__c> lApprovalProcessOfDeactivate,
 		Map<Id, Opportunity> opportunities,
 		Map<Id, Account> accounts,
-		Map<Id, List<RGU__C>> RGUPerApprovalProcess
+		Map<Id, List<RGU__C>> RGUPerApprovalProcess,
+		List<User> users
 	) {
 		List<ApprovalProcess__c> newRequestedRecords = filterNewRequestedRecords(
 			oldMap,
@@ -47,6 +48,18 @@ public with sharing class DeactivateApprovalProcess {
 		List<ApprovalProcess__c> newApprovedRecords = filterNewApprovedRecords(
 			oldMap,
 			lApprovalProcessOfDeactivate
+		);
+
+		List<ApprovalProcess__c> newRejectRecords = filterRejectedRecords(
+			oldMap,
+			lApprovalProcessOfDeactivate
+		);
+
+		sendRejectNotifications(
+			newRejectRecords,
+			emailTemplates,
+			approvalProcessMail,
+			users
 		);
 
 		sendApprovalRequestNotifications(
@@ -248,6 +261,99 @@ public with sharing class DeactivateApprovalProcess {
 		}
 
 		return newRequestedRecords;
+	}
+
+	@testVisible
+	private static List<ApprovalProcess__c> filterRejectedRecords(
+		Map<Id, SObject> oldMap,
+		List<ApprovalProcess__c> newRecords
+	) {
+		List<ApprovalProcess__c> newRejectedRecords = new List<ApprovalProcess__c>();
+
+		for (ApprovalProcess__c newApproval : newRecords) {
+			ApprovalProcess__c oldApproval = (ApprovalProcess__c) oldMap.get(
+				newApproval.Id
+			);
+
+			System.debug(oldApproval.Stage__c);
+
+			if (oldApproval != null) {
+				if (
+					oldApproval.Stage__c == 'Solicitado' &&
+					newApproval.Stage__c == 'Rechazado'
+				) {
+					newRejectedRecords.add(newApproval);
+				}
+			}
+		}
+
+		return newRejectedRecords;
+	}
+
+	@testVisible
+	private static void sendRejectNotifications(
+		List<ApprovalProcess__c> newRejectedRecords,
+		List<EmailTemplate> emailTemplates,
+		List<ApprovalProcessMail__mdt> approvalProcessMail,
+		List<User> users
+	) {
+		EmailTemplate denegadoComiteDirectivoBajas;
+		EmailTemplate denegadoControlComercialBajas;
+
+		List<String> sendTo;
+		List<String> sendCC;
+		List<String> sendCCO;
+
+		for (EmailTemplate template : emailTemplates) {
+			switch on template.name {
+				when 'SL_B1 Aprobación de baja Comité Directivo' {
+					denegadoComiteDirectivoBajas = template;
+				}
+				when 'RS_B3 Aprobación baja denegada por Control Comercial' {
+					denegadoControlComercialBajas = template;
+				}
+			}
+		}
+
+		for (ApprovalProcess__c approvalProcess : newRejectedRecords) {
+			if (approvalProcess.Aprobacion_por_comite_directivo__c) {
+				sendTo = new List<String>();
+				sendCC = new List<String>();
+				sendCCO = new List<String>();
+				for (User userMail : users) {
+					if (userMail.id == approvalProcess.OwnerId) {
+						sendTo.add(userMail.email);
+						break;
+					}
+				}
+
+				SendEmailNotifications(
+					denegadoComiteDirectivoBajas,
+					sendTo,
+					sendCC,
+					sendCCO,
+					approvalProcess
+				);
+			} else {
+				sendTo = new List<String>();
+				sendCC = new List<String>();
+				sendCCO = new List<String>();
+				for (User userMail : users) {
+					if (userMail.id == approvalProcess.OwnerId) {
+						sendTo.add(userMail.email);
+						break;
+					}
+				}
+
+				SendEmailNotifications(
+					denegadoControlComercialBajas,
+					sendTo,
+					sendCC,
+					sendCCO,
+					approvalProcess
+				);
+			}
+		}
 	}
 
 	@testVisible
@@ -636,7 +742,7 @@ public with sharing class DeactivateApprovalProcess {
 		mail.setHtmlBody(templateMail.HTMLValue);
 		String texto = templateMail.Body;
 		mail.setPlainTextBody(texto);
-		mail.setSenderDisplayName(approvalProcess.Owner.Name);
+		mail.setSenderDisplayName(UserInfo.getName());
 		mailsToSend.add(mail);
 		Messaging.sendEmail(mailsToSend);
 	}
