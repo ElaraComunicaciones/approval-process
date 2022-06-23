@@ -84,7 +84,8 @@ public with sharing class DeactivateApprovalProcess {
 		sendApprovedNotifications(
 			newApprovedRecords,
 			emailTemplates,
-			approvalProcessMail
+			approvalProcessMail,
+			users
 		);
 	}
 
@@ -683,7 +684,8 @@ public with sharing class DeactivateApprovalProcess {
 	public static void sendApprovedNotifications(
 		List<ApprovalProcess__c> approvedNotification,
 		List<EmailTemplate> emailTemplates,
-		List<ApprovalProcessMail__mdt> approvalProcessMail
+		List<ApprovalProcessMail__mdt> approvalProcessMail,
+		List<User> users
 	) {
 		EmailTemplate solicitudBaja;
 		List<String> sendTo;
@@ -703,8 +705,13 @@ public with sharing class DeactivateApprovalProcess {
 			sendCC = new List<String>();
 			sendCCO = new List<String>();
 			for (ApprovalProcessMail__mdt approvalMail : approvalProcessMail) {
-				if (approvalMail.Rol__c == 'Comité Directivo')
+				if (approvalMail.Rol__c == 'Notificacion aprobado')
 					sendTo.add(approvalMail.Correo_Elara__c);
+			}
+
+			for (User userMail : users) {
+				if (approvalProcess.OwnerId == userMail.Id)
+					sendCC.add(userMail.Email);
 			}
 
 			SendEmailNotifications(
