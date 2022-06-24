@@ -18,9 +18,7 @@ export default class EmailRouting extends NavigationMixin(LightningElement) {
 	@wire(getRecord, { recordId: '$recordId', fields: FIELDS })
 	approvalProcessWire({ error, data }) {
 		if (data) {
-			console.log('data');
 			this.record = data;
-			this.navigateToEmailComposer();
 		} else if (error) {
 			console.log('error', error);
 		}
