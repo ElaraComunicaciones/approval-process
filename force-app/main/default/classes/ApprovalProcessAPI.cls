@@ -194,10 +194,7 @@ public with sharing class ApprovalProcessAPI {
 		EmailTemplate notificacionCancelacion;
 
 		for (EmailTemplate template : emailTemplates) {
-			if (
-				template.name ==
-				'Notificación cancelación de proceso de aprobación'
-			) {
+			if (template.name == 'NT_B3 Cancelación de proceso de aprobación') {
 				notificacionCancelacion = template;
 			}
 		}
