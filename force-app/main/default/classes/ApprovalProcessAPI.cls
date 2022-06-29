@@ -186,8 +186,9 @@ public with sharing class ApprovalProcessAPI {
 		List<EmailTemplate> emailTemplates,
 		List<ApprovalProcessMail__mdt> approvalProcessMail
 	) {
-		List<String> sendToComiteDirectivo;
-		List<String> sendToControlComercial;
+		List<String> sendToComiteDirectivo = new List<String>();
+		List<String> sendToControlComercial = new List<String>();
+		List<String> documentadores = new List<String>();
 		List<String> sendCC = new List<String>();
 		List<String> sendCCO = new List<String>();
 
@@ -199,24 +200,26 @@ public with sharing class ApprovalProcessAPI {
 			}
 		}
 
+		for (ApprovalProcessMail__mdt approvalMail : approvalProcessMail) {
+			if (approvalMail.Rol__c == 'Comité Directivo')
+				sendToComiteDirectivo.add(approvalMail.Correo_Elara__c);
+			else if (approvalMail.Rol__c == 'Control Comercial')
+				sendToControlComercial.add(approvalMail.Correo_Elara__c);
+		}
+
+		for (ApprovalProcessMail__mdt approvalMail : approvalProcessMail) {
+			if (approvalMail.Rol__c == 'Documentador')
+				documentadores.add(approvalMail.Correo_Elara__c);
+		}
+
 		for (
 			ApprovalProcess__c approvalProcess : approvalProcessToSendNotification
 		) {
-			sendToComiteDirectivo = new List<String>();
-			sendToControlComercial = new List<String>();
-
-			for (ApprovalProcessMail__mdt approvalMail : approvalProcessMail) {
-				if (approvalMail.Rol__c == 'Comité Directivo')
-					sendToComiteDirectivo.add(approvalMail.Correo_Elara__c);
-				else if (approvalMail.Rol__c == 'Control Comercial')
-					sendToControlComercial.add(approvalMail.Correo_Elara__c);
-			}
-
 			if (approvalProcess.Aprobacion_por_comite_directivo__c)
 				SendEmailNotifications(
 					notificacionCancelacion,
 					sendToComiteDirectivo,
-					sendCC,
+					documentadores,
 					sendCCO,
 					approvalProcess
 				);
