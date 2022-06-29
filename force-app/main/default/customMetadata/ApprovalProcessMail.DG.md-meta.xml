@@ -4,7 +4,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 >
-    <label>GAI</label>
+    <label>DG</label>
     <protected>false</protected>
     <values>
         <field>Activo__c</field>
@@ -12,14 +12,14 @@
     </values>
     <values>
         <field>Correo_Elara__c</field>
-        <value xsi:type="xsd:string">victor.flores@gmail.com</value>
+        <value xsi:type="xsd:string">victor.flores@elara.com.mx</value>
     </values>
     <values>
         <field>Nombre_Completo__c</field>
-        <value xsi:type="xsd:string">Victor Flores</value>
+        <value xsi:type="xsd:string">Automatización de desarrollo</value>
     </values>
     <values>
         <field>Rol__c</field>
-        <value xsi:type="xsd:string">Documentador</value>
+        <value xsi:type="xsd:string">Comité Directivo</value>
     </values>
 </CustomMetadata>
