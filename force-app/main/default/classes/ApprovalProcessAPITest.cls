@@ -165,6 +165,8 @@ public with sharing class ApprovalProcessAPITest {
 			' from ApprovalProcess__c'
 		);
 
+		DeactivateApprovalProcess.validateCompleteInformation(newList[0]);
+
 		newList[0].stage__c = 'Solicitado';
 
 		//Validamos el cambio de etapa de iniciado a solicitado
