@@ -33,7 +33,7 @@ export default class EmailRouting extends NavigationMixin(LightningElement) {
 					this.record.fields.AccountName__c +
 					'&rtype=003&p3_lkid=' +
 					this.record.id +
-					'&template_id=00X8N000000HqvOUAS&retURL=' +
+					'&template_id=00X6T000002TUPYUA4&retURL=' +
 					this.record.id
 			}
 		});
