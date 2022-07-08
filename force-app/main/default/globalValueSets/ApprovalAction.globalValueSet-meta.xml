@@ -36,54 +36,6 @@
         <label>Cambio - Reactivación del servicio</label>
     </customValue>
     <customValue>
-        <fullName>Migración</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Migración</label>
-    </customValue>
-    <customValue>
-        <fullName>Incremento</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Incremento</label>
-    </customValue>
-    <customValue>
-        <fullName>Decremento</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Decremento</label>
-    </customValue>
-    <customValue>
-        <fullName>Reubicación</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Reubicación</label>
-    </customValue>
-    <customValue>
-        <fullName>Migración de plataforma satelital</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Migración de plataforma satelital</label>
-    </customValue>
-    <customValue>
-        <fullName>Soporte Remoto</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Soporte Remoto</label>
-    </customValue>
-    <customValue>
-        <fullName>Ingenieria de campo</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Ingenieria de campo</label>
-    </customValue>
-    <customValue>
-        <fullName>Adecuaciones especiales</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Adecuaciones especiales</label>
-    </customValue>
-    <customValue>
         <fullName>Suspensión del ingreso</fullName>
         <default>false</default>
         <isActive>false</isActive>
@@ -100,6 +52,54 @@
         <default>false</default>
         <isActive>false</isActive>
         <label>Finalización del ingreso</label>
+    </customValue>
+    <customValue>
+        <fullName>Adecuaciones especiales</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Adecuaciones especiales</label>
+    </customValue>
+    <customValue>
+        <fullName>Ingenieria de campo</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Ingenieria de campo</label>
+    </customValue>
+    <customValue>
+        <fullName>Soporte Remoto</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Soporte Remoto</label>
+    </customValue>
+    <customValue>
+        <fullName>Migración de plataforma satelital</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Migración de plataforma satelital</label>
+    </customValue>
+    <customValue>
+        <fullName>Reubicación</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Reubicación</label>
+    </customValue>
+    <customValue>
+        <fullName>Decremento</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Decremento</label>
+    </customValue>
+    <customValue>
+        <fullName>Migración</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Migración</label>
+    </customValue>
+    <customValue>
+        <fullName>Incremento</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Incremento</label>
     </customValue>
     <masterLabel>Apobración Acción</masterLabel>
     <sorted>false</sorted>
