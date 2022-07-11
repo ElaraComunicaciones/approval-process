@@ -142,6 +142,12 @@
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
+        <relatedList>RelatedEntityHistoryList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <relatedList>RelatedFileList</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>NAME</fields>
         <fields>Nombre_RGU_Original__c</fields>
         <relatedList>RGU_Change_to_approve__c.Approval_Process__c</relatedList>
