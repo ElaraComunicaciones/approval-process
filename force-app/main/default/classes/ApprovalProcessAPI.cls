@@ -25,7 +25,11 @@ public with sharing class ApprovalProcessAPI {
 
 	@testVisible
 	public static List<User> getActiveUsers() {
-		return [SELECT id, name, email FROM User WHERE isactive = TRUE];
+		return [
+			SELECT id, name, email, userrole.name
+			FROM User
+			WHERE isactive = TRUE
+		];
 	}
 
 	public static void executeBeforeInsertProcess(
@@ -104,7 +108,7 @@ public with sharing class ApprovalProcessAPI {
 			triggerParams.newList,
 			triggerParams.oldMap,
 			emailTemplates,
-			approvalProcessMail
+			users
 		);
 	}
 
@@ -156,7 +160,7 @@ public with sharing class ApprovalProcessAPI {
 		List<ApprovalProcess__c> newList,
 		Map<id, SObject> oldMap,
 		List<EmailTemplate> emailTemplates,
-		List<ApprovalProcessMail__mdt> approvalProcessMail
+		List<User> users
 	) {
 		List<ApprovalProcess__c> approvalProcessToSendNotification = new List<ApprovalProcess__c>();
 
@@ -176,7 +180,7 @@ public with sharing class ApprovalProcessAPI {
 		sendApprovalCancelledNotifications(
 			approvalProcessToSendNotification,
 			emailTemplates,
-			approvalProcessMail
+			users
 		);
 	}
 
@@ -184,7 +188,7 @@ public with sharing class ApprovalProcessAPI {
 	private static void sendApprovalCancelledNotifications(
 		List<ApprovalProcess__c> approvalProcessToSendNotification,
 		List<EmailTemplate> emailTemplates,
-		List<ApprovalProcessMail__mdt> approvalProcessMail
+		List<User> users
 	) {
 		List<String> sendToComiteDirectivo = new List<String>();
 		List<String> sendToControlComercial = new List<String>();
@@ -200,17 +204,9 @@ public with sharing class ApprovalProcessAPI {
 			}
 		}
 
-		for (ApprovalProcessMail__mdt approvalMail : approvalProcessMail) {
-			if (approvalMail.Rol__c == 'Comité Directivo')
-				sendToComiteDirectivo.add(approvalMail.Correo_Elara__c);
-			else if (approvalMail.Rol__c == 'Control Comercial')
-				sendToControlComercial.add(approvalMail.Correo_Elara__c);
-		}
-
-		for (ApprovalProcessMail__mdt approvalMail : approvalProcessMail) {
-			if (approvalMail.Rol__c == 'Documentador')
-				documentadores.add(approvalMail.Correo_Elara__c);
-		}
+		sendToComiteDirectivo = getDirectorsMail(users);
+		documentadores = getDocumentesMail(users);
+		sendToControlComercial = getCommercialControlMail(users);
 
 		for (
 			ApprovalProcess__c approvalProcess : approvalProcessToSendNotification
@@ -393,5 +389,50 @@ public with sharing class ApprovalProcessAPI {
 		System.debug(mapRGUSPerApprovalProcess);
 
 		return mapRGUSPerApprovalProcess;
+	}
+
+	public static List<String> getDirectorsMail(List<User> users) {
+		List<String> lDirectorsMail = new List<String>();
+
+		for (User user : users) {
+			if (user.userrole.name == 'Dirección General') {
+				lDirectorsMail.add(user.email);
+			}
+		}
+		return lDirectorsMail;
+	}
+
+	public static List<String> getDocumentesMail(List<User> users) {
+		List<String> lDocumentersMail = new List<String>();
+
+		for (User user : users) {
+			if (user.userrole.name == 'Gerencia Legal') {
+				lDocumentersMail.add(user.email);
+			}
+
+			if (user.userrole.name == 'Gerencia de infraestructura') {
+				lDocumentersMail.add(user.email);
+			}
+
+			if (user.userrole.name == 'Coordinación de pricing') {
+				lDocumentersMail.add(user.email);
+			}
+
+			if (user.userrole.name == 'Gerencia de Aseguramiento de Ingresos') {
+				lDocumentersMail.add(user.email);
+			}
+		}
+		return lDocumentersMail;
+	}
+
+	public static List<String> getCommercialControlMail(List<User> users) {
+		List<String> lCommercialControlMail = new List<String>();
+
+		for (User user : users) {
+			if (user.userrole.name == 'Ejecutivo de control comercial') {
+				lCommercialControlMail.add(user.email);
+			}
+		}
+		return lCommercialControlMail;
 	}
 }

@@ -65,13 +65,13 @@ public with sharing class DeactivateApprovalProcess {
 		sendApprovalRequestNotifications(
 			newRequestedRecords,
 			emailTemplates,
-			approvalProcessMail
+			users
 		);
 
 		sendApprovalProgressNotifications(
 			sendNotificationProgress,
 			emailTemplates,
-			approvalProcessMail
+			users
 		);
 
 		operationsWithApprovedRecords(
@@ -361,7 +361,7 @@ public with sharing class DeactivateApprovalProcess {
 	private static void sendApprovalRequestNotifications(
 		List<ApprovalProcess__c> newRequestedRecords,
 		List<EmailTemplate> emailTemplates,
-		List<ApprovalProcessMail__mdt> approvalProcessMail
+		List<User> users
 	) {
 		EmailTemplate solicitudComiteDirectivoBajas;
 		EmailTemplate solicitudControlComercialBajas;
@@ -390,15 +390,9 @@ public with sharing class DeactivateApprovalProcess {
 				sendTo = new List<String>();
 				sendCC = new List<String>();
 				sendCCO = new List<String>();
-				for (
-					ApprovalProcessMail__mdt approvalMail : approvalProcessMail
-				) {
-					if (approvalMail.Rol__c == 'Comité Directivo')
-						sendTo.add(approvalMail.Correo_Elara__c);
-					else if (approvalMail.Rol__c == 'Documentador') {
-						sendCC.add(approvalMail.Correo_Elara__c);
-					}
-				}
+
+				sendTo = ApprovalProcessAPI.getDirectorsMail(users);
+				sendCC = ApprovalProcessAPI.getDocumentesMail(users);
 
 				SendEmailNotifications(
 					solicitudComiteDirectivoBajas,
@@ -418,12 +412,8 @@ public with sharing class DeactivateApprovalProcess {
 				sendTo = new List<String>();
 				sendCC = new List<String>();
 				sendCCO = new List<String>();
-				for (
-					ApprovalProcessMail__mdt approvalMail : approvalProcessMail
-				) {
-					if (approvalMail.Rol__c == 'Control Comercial')
-						sendTo.add(approvalMail.Correo_Elara__c);
-				}
+
+				sendTo = ApprovalProcessAPI.getCommercialControlMail(users);
 
 				SendEmailNotifications(
 					solicitudControlComercialBajas,
@@ -440,14 +430,12 @@ public with sharing class DeactivateApprovalProcess {
 	private static void sendApprovalProgressNotifications(
 		List<ApprovalProcess__c> sendNotificationProgressRecords,
 		List<EmailTemplate> emailTemplates,
-		List<ApprovalProcessMail__mdt> approvalProcessMail
+		List<User> users
 	) {
 		EmailTemplate solicitudAvance;
 		EmailTemplate solicitudCompleta;
 
 		List<String> sendTo;
-		List<String> sendCC;
-		List<String> sendCCO;
 
 		for (EmailTemplate template : emailTemplates) {
 			switch on template.name {
@@ -460,31 +448,25 @@ public with sharing class DeactivateApprovalProcess {
 			}
 		}
 
+		sendTo = ApprovalProcessAPI.getDirectorsMail(users);
+
 		for (
 			ApprovalProcess__c approvalProcess : sendNotificationProgressRecords
 		) {
-			sendTo = new List<String>();
-			sendCC = new List<String>();
-			sendCCO = new List<String>();
-			for (ApprovalProcessMail__mdt approvalMail : approvalProcessMail) {
-				if (approvalMail.Rol__c == 'Comité Directivo')
-					sendTo.add(approvalMail.Correo_Elara__c);
-			}
-
 			if (validateCompleteInformation(approvalProcess)) {
 				SendEmailNotifications(
 					solicitudCompleta,
 					sendTo,
-					sendCC,
-					sendCCO,
+					new List<String>(),
+					new List<String>(),
 					approvalProcess
 				);
 			} else {
 				SendEmailNotifications(
 					solicitudAvance,
 					sendTo,
-					sendCC,
-					sendCCO,
+					new List<String>(),
+					new List<String>(),
 					approvalProcess
 				);
 			}
