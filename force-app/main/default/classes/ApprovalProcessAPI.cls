@@ -205,7 +205,7 @@ public with sharing class ApprovalProcessAPI {
 		}
 
 		sendToComiteDirectivo = getDirectorsMail(users);
-		documentadores = getDocumentesMail(users);
+		documentadores = getDocumentersMail(users);
 		sendToControlComercial = getCommercialControlMail(users);
 
 		for (
@@ -395,14 +395,17 @@ public with sharing class ApprovalProcessAPI {
 		List<String> lDirectorsMail = new List<String>();
 
 		for (User user : users) {
-			if (user.userrole.name == 'Dirección General') {
+			if (
+				user.userrole.name == 'Dirección General' ||
+				user.userrole.name == 'Dirección Administración y Finanzas'
+			) {
 				lDirectorsMail.add(user.email);
 			}
 		}
 		return lDirectorsMail;
 	}
 
-	public static List<String> getDocumentesMail(List<User> users) {
+	public static List<String> getDocumentersMail(List<User> users) {
 		List<String> lDocumentersMail = new List<String>();
 
 		for (User user : users) {
@@ -434,5 +437,16 @@ public with sharing class ApprovalProcessAPI {
 			}
 		}
 		return lCommercialControlMail;
+	}
+
+	public static List<String> getCEOMail(List<User> users) {
+		List<String> lDirectorsMail = new List<String>();
+
+		for (User user : users) {
+			if (user.userrole.name == 'Dirección General') {
+				lDirectorsMail.add(user.email);
+			}
+		}
+		return lDirectorsMail;
 	}
 }

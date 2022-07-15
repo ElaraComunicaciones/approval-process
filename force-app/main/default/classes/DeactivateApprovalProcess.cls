@@ -371,6 +371,12 @@ public with sharing class DeactivateApprovalProcess {
 		List<String> sendCC;
 		List<String> sendCCO;
 
+		List<String> directosMail = ApprovalProcessAPI.getDirectorsMail(users);
+		List<String> documenters = ApprovalProcessAPI.getDocumentersMail(users);
+		List<String> commericial = ApprovalProcessAPI.getCommercialControlMail(
+			users
+		);
+
 		for (EmailTemplate template : emailTemplates) {
 			switch on template.name {
 				when 'SL_B1 Aprobación de baja Comité Directivo' {
@@ -387,12 +393,10 @@ public with sharing class DeactivateApprovalProcess {
 
 		for (ApprovalProcess__c approvalProcess : newRequestedRecords) {
 			if (approvalProcess.Aprobacion_por_comite_directivo__c) {
-				sendTo = new List<String>();
-				sendCC = new List<String>();
 				sendCCO = new List<String>();
-
-				sendTo = ApprovalProcessAPI.getDirectorsMail(users);
-				sendCC = ApprovalProcessAPI.getDocumentesMail(users);
+				sendTo = directosMail;
+				sendCC = documenters;
+				sendCC.addAll(commericial);
 
 				SendEmailNotifications(
 					solicitudComiteDirectivoBajas,
@@ -409,11 +413,9 @@ public with sharing class DeactivateApprovalProcess {
 					approvalProcess
 				);
 			} else {
-				sendTo = new List<String>();
-				sendCC = new List<String>();
-				sendCCO = new List<String>();
-
 				sendTo = ApprovalProcessAPI.getCommercialControlMail(users);
+				sendCC = ApprovalProcessAPI.getCEOMail(users);
+				sendCCO = new List<String>();
 
 				SendEmailNotifications(
 					solicitudControlComercialBajas,
@@ -670,6 +672,7 @@ public with sharing class DeactivateApprovalProcess {
 		List<User> users
 	) {
 		EmailTemplate solicitudBaja;
+		EmailTemplate solicitudAceptada;
 		List<String> sendTo;
 		List<String> sendCC;
 		List<String> sendCCO;
@@ -678,6 +681,9 @@ public with sharing class DeactivateApprovalProcess {
 			switch on template.name {
 				when 'SL_B4 Implementación de Baja' {
 					solicitudBaja = template;
+				}
+				when 'RS_B1 Aprobación baja aceptada' {
+					solicitudAceptada = template;
 				}
 			}
 		}
@@ -696,10 +702,20 @@ public with sharing class DeactivateApprovalProcess {
 					sendCC.add(userMail.Email);
 			}
 
+			sendCC.addAll(ApprovalProcessAPI.getCommercialControlMail(users));
+
 			SendEmailNotifications(
 				solicitudBaja,
 				sendTo,
 				sendCC,
+				sendCCO,
+				approvalProcess
+			);
+
+			SendEmailNotifications(
+				solicitudAceptada,
+				sendCC,
+				new List<String>(),
 				sendCCO,
 				approvalProcess
 			);
