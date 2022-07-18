@@ -167,9 +167,13 @@ public with sharing class DeactivateApprovalProcess {
 			Decimal decrementoVTC = 0;
 			for (OpportunityLineItem oli : actualOlis) {
 				//Se obtienen los meses que ya no se van a cobrar, con respecto al día de hoy
-				Integer lapseBetweenEndDateToday = oli.Fecha_Fin_Ingreso__c.monthsBetween(
-					System.today()
-				);
+
+				Integer lapseBetweenEndDateToday = 0;
+				if (oli.Fecha_Fin_Ingreso__c > System.today())
+					lapseBetweenEndDateToday = oli.Fecha_Fin_Ingreso__c.monthsBetween(
+						System.today()
+					);
+
 				decrementoVTC +=
 					Math.abs(lapseBetweenEndDateToday) *
 					oli.Total_Renta_Conv_MXN__c;
