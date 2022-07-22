@@ -74,14 +74,14 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.Detail__c</fieldItem>
-                <identifier>RecordDetail_cField1</identifier>
+                <fieldItem>Record.Nombre__c</fieldItem>
+                <identifier>RecordNombre_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.Nombre__c</fieldItem>
-                <identifier>RecordNombre_cField1</identifier>
+                <fieldItem>Record.Detail__c</fieldItem>
+                <identifier>RecordDetail_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -96,6 +96,14 @@
                 <fieldItem>Record.Decremento_VTC_Respecto_Cuenta__c</fieldItem>
                 <identifier
 				>RecordDecremento_VTC_Respecto_Cuenta_cField1</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem
+				>Record.Observaciones_del_Ejecutivo_de_Ventas__c</fieldItem>
+                <identifier
+				>RecordObservaciones_del_Ejecutivo_de_Ventas_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-a3c7ec57-ff4a-4ec5-a251-7b5ba5fd04df</name>
@@ -340,6 +348,12 @@
                 <identifier>RecordSaldo_pendiente_de_pago_cField1</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Observaciones_AI__c</fieldItem>
+                <identifier>RecordObservaciones_AI_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-f993160e-dc50-484e-a128-de75589d85a8</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -445,6 +459,20 @@
                 <identifier>RecordCostos_por_cubrir_cField1</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem
+				>Record.Es_viable_hacer_evaluaci_n_financiera__c</fieldItem>
+                <identifier
+				>RecordEs_viable_hacer_evaluaci_n_financiera_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Observaciones_Pricing__c</fieldItem>
+                <identifier>RecordObservaciones_Pricing_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-fc8c578f-7569-42eb-af88-4057da2eacf2</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -485,6 +513,12 @@
                 <fieldItem>Record.Clausula_rescision_cancelacion__c</fieldItem>
                 <identifier
 				>RecordClausula_rescision_cancelacion_cField1</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Observaciones_Legal__c</fieldItem>
+                <identifier>RecordObservaciones_Legal_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-ce4d381d-d853-4091-8324-64123d1d0875</name>
@@ -533,6 +567,13 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldItem>Record.Proveedor_es_y_banda_del_SE__c</fieldItem>
+                <identifier
+				>RecordProveedor_es_y_banda_del_SE_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
                 <fieldItem
 				>Record.Vigencia_contrato_proveedor_satelital__c</fieldItem>
                 <identifier
@@ -557,6 +598,19 @@
 				>Record.Proxima_fecha_de_cancelacion_segmento__c</fieldItem>
                 <identifier
 				>RecordProxima_fecha_de_cancelacion_segmento_cField1</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Otros_servicios_a_cancelar__c</fieldItem>
+                <identifier>RecordOtros_servicios_a_cancelar_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Observaciones_Infraestructura__c</fieldItem>
+                <identifier
+				>RecordObservaciones_Infraestructura_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-9f6db087-8154-479c-b121-fea95ce77e91</name>

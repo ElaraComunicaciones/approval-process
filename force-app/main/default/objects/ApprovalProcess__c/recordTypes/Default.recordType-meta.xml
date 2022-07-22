@@ -12,26 +12,6 @@
             <fullName>Baja definitiva</fullName>
             <default>false</default>
         </values>
-        <values>
-            <fullName>Cambio - Altas crecimiento orgánico</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Cambio - Reactivación del servicio</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Cambio - Reemplazo RE</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Cambio - Suspensión del servicio</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Cambio - Transferencia RE</fullName>
-            <default>false</default>
-        </values>
     </picklistValues>
     <picklistValues>
         <picklist>ChangeApprovalStages__c</picklist>
@@ -60,6 +40,17 @@
         </values>
         <values>
             <fullName>USD</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Es_viable_hacer_evaluaci_n_financiera__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sí</fullName>
             <default>false</default>
         </values>
     </picklistValues>

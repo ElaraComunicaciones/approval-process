@@ -6,34 +6,76 @@
         <label>Baja definitiva</label>
     </customValue>
     <customValue>
-        <fullName>Cambio - Actualización</fullName>
-        <default>false</default>
-        <label>Cambio - Actualización</label>
-    </customValue>
-    <customValue>
-        <fullName>Cambio - Altas crecimiento orgánico</fullName>
-        <default>false</default>
-        <label>Cambio - Altas crecimiento orgánico</label>
-    </customValue>
-    <customValue>
         <fullName>Cambio - Reemplazo RE</fullName>
         <default>false</default>
+        <isActive>false</isActive>
         <label>Cambio - Reemplazo RE</label>
     </customValue>
     <customValue>
         <fullName>Cambio - Transferencia RE</fullName>
         <default>false</default>
+        <isActive>false</isActive>
         <label>Cambio - Transferencia RE</label>
     </customValue>
     <customValue>
         <fullName>Cambio - Suspensión del servicio</fullName>
         <default>false</default>
+        <isActive>false</isActive>
         <label>Cambio - Suspensión del servicio</label>
     </customValue>
     <customValue>
         <fullName>Cambio - Reactivación del servicio</fullName>
         <default>false</default>
+        <isActive>false</isActive>
         <label>Cambio - Reactivación del servicio</label>
+    </customValue>
+    <customValue>
+        <fullName>Migración</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Migración</label>
+    </customValue>
+    <customValue>
+        <fullName>Incremento</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Incremento</label>
+    </customValue>
+    <customValue>
+        <fullName>Decremento</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Decremento</label>
+    </customValue>
+    <customValue>
+        <fullName>Reubicación</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Reubicación</label>
+    </customValue>
+    <customValue>
+        <fullName>Migración de plataforma satelital</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Migración de plataforma satelital</label>
+    </customValue>
+    <customValue>
+        <fullName>Soporte Remoto</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Soporte Remoto</label>
+    </customValue>
+    <customValue>
+        <fullName>Ingenieria de campo</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Ingenieria de campo</label>
+    </customValue>
+    <customValue>
+        <fullName>Adecuaciones especiales</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Adecuaciones especiales</label>
     </customValue>
     <customValue>
         <fullName>Suspensión del ingreso</fullName>
@@ -54,52 +96,16 @@
         <label>Finalización del ingreso</label>
     </customValue>
     <customValue>
-        <fullName>Adecuaciones especiales</fullName>
+        <fullName>Cambio - Actualización</fullName>
         <default>false</default>
         <isActive>false</isActive>
-        <label>Adecuaciones especiales</label>
+        <label>Cambio - Actualización</label>
     </customValue>
     <customValue>
-        <fullName>Ingenieria de campo</fullName>
+        <fullName>Cambio - Altas crecimiento orgánico</fullName>
         <default>false</default>
         <isActive>false</isActive>
-        <label>Ingenieria de campo</label>
-    </customValue>
-    <customValue>
-        <fullName>Soporte Remoto</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Soporte Remoto</label>
-    </customValue>
-    <customValue>
-        <fullName>Migración de plataforma satelital</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Migración de plataforma satelital</label>
-    </customValue>
-    <customValue>
-        <fullName>Reubicación</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Reubicación</label>
-    </customValue>
-    <customValue>
-        <fullName>Decremento</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Decremento</label>
-    </customValue>
-    <customValue>
-        <fullName>Migración</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Migración</label>
-    </customValue>
-    <customValue>
-        <fullName>Incremento</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Incremento</label>
+        <label>Cambio - Altas crecimiento orgánico</label>
     </customValue>
     <masterLabel>Apobración Acción</masterLabel>
     <sorted>false</sorted>
