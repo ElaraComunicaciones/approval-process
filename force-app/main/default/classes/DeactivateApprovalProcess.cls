@@ -704,6 +704,7 @@ public with sharing class DeactivateApprovalProcess {
 
 		for (ApprovalProcess__c approvalProcess : approvedNotification) {
 			sendTo = new List<String>();
+			sendCC = new List<String>();
 			sendCCO = new List<String>();
 			for (ApprovalProcessMail__mdt approvalMail : approvalProcessMail) {
 				if (approvalMail.Rol__c == 'Notificacion aprobado')

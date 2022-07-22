@@ -206,6 +206,7 @@ public with sharing class ApprovalProcessAPI {
 
 		sendToComiteDirectivo = getDirectorsMail(users);
 		documentadores = getDocumentersMail(users);
+		documentadores.addAll(sendCC);
 		sendToControlComercial = getCommercialControlMail(users);
 
 		for (
