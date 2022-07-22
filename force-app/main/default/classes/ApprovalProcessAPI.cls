@@ -193,7 +193,7 @@ public with sharing class ApprovalProcessAPI {
 		List<String> sendToComiteDirectivo = new List<String>();
 		List<String> sendToControlComercial = new List<String>();
 		List<String> documentadores = new List<String>();
-		List<String> sendCC = new List<String>();
+		List<String> sendCC = getProcessMail(users);
 		List<String> sendCCO = new List<String>();
 
 		EmailTemplate notificacionCancelacion;
@@ -448,5 +448,16 @@ public with sharing class ApprovalProcessAPI {
 			}
 		}
 		return lDirectorsMail;
+	}
+
+	public static List<String> getProcessMail(List<User> users) {
+		List<String> lProcessMail = new List<String>();
+
+		for (User user : users) {
+			if (user.userrole.name == 'Gerencia de Gestión Negocios') {
+				lProcessMail.add(user.email);
+			}
+		}
+		return lProcessMail;
 	}
 }

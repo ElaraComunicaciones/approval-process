@@ -306,7 +306,7 @@ public with sharing class DeactivateApprovalProcess {
 		EmailTemplate denegadoControlComercialBajas;
 
 		List<String> sendTo;
-		List<String> sendCC;
+		List<String> sendCC = ApprovalProcessAPI.getProcessMail(users);
 		List<String> sendCCO;
 
 		for (EmailTemplate template : emailTemplates) {
@@ -323,7 +323,6 @@ public with sharing class DeactivateApprovalProcess {
 		for (ApprovalProcess__c approvalProcess : newRejectedRecords) {
 			if (approvalProcess.Aprobacion_por_comite_directivo__c) {
 				sendTo = new List<String>();
-				sendCC = new List<String>();
 				sendCCO = new List<String>();
 				for (User userMail : users) {
 					if (userMail.id == approvalProcess.OwnerId) {
@@ -341,7 +340,6 @@ public with sharing class DeactivateApprovalProcess {
 				);
 			} else {
 				sendTo = new List<String>();
-				sendCC = new List<String>();
 				sendCCO = new List<String>();
 				for (User userMail : users) {
 					if (userMail.id == approvalProcess.OwnerId) {
@@ -380,6 +378,7 @@ public with sharing class DeactivateApprovalProcess {
 		List<String> commericial = ApprovalProcessAPI.getCommercialControlMail(
 			users
 		);
+		List<String> proccesMail = ApprovalProcessAPI.getProcessMail(users);
 
 		for (EmailTemplate template : emailTemplates) {
 			switch on template.name {
@@ -401,6 +400,7 @@ public with sharing class DeactivateApprovalProcess {
 				sendTo = directosMail;
 				sendCC = documenters;
 				sendCC.addAll(commericial);
+				sendCC.addAll(proccesMail);
 
 				SendEmailNotifications(
 					solicitudComiteDirectivoBajas,
@@ -419,6 +419,7 @@ public with sharing class DeactivateApprovalProcess {
 			} else {
 				sendTo = ApprovalProcessAPI.getCommercialControlMail(users);
 				sendCC = ApprovalProcessAPI.getCEOMail(users);
+				sendCC.addAll(proccesMail);
 				sendCCO = new List<String>();
 
 				SendEmailNotifications(
@@ -442,6 +443,7 @@ public with sharing class DeactivateApprovalProcess {
 		EmailTemplate solicitudCompleta;
 
 		List<String> sendTo;
+		List<String> sendCC = ApprovalProcessAPI.getProcessMail(users);
 
 		for (EmailTemplate template : emailTemplates) {
 			switch on template.name {
@@ -463,7 +465,7 @@ public with sharing class DeactivateApprovalProcess {
 				SendEmailNotifications(
 					solicitudCompleta,
 					sendTo,
-					new List<String>(),
+					sendCC,
 					new List<String>(),
 					approvalProcess
 				);
@@ -471,7 +473,7 @@ public with sharing class DeactivateApprovalProcess {
 				SendEmailNotifications(
 					solicitudAvance,
 					sendTo,
-					new List<String>(),
+					sendCC,
 					new List<String>(),
 					approvalProcess
 				);
@@ -550,6 +552,10 @@ public with sharing class DeactivateApprovalProcess {
 		}
 
 		if (String.isBlank(approvalProcess.Clausula_rescision_cancelacion__c)) {
+			isComplete = false;
+		}
+
+		if (String.isBlank(approvalProcess.Proveedor_es_y_banda_del_SE__c)) {
 			isComplete = false;
 		}
 
@@ -680,6 +686,10 @@ public with sharing class DeactivateApprovalProcess {
 		List<String> sendTo;
 		List<String> sendCC;
 		List<String> sendCCO;
+		List<String> commercialMail = ApprovalProcessAPI.getCommercialControlMail(
+			users
+		);
+		List<String> processMail = ApprovalProcessAPI.getProcessMail(users);
 
 		for (EmailTemplate template : emailTemplates) {
 			switch on template.name {
@@ -694,7 +704,6 @@ public with sharing class DeactivateApprovalProcess {
 
 		for (ApprovalProcess__c approvalProcess : approvedNotification) {
 			sendTo = new List<String>();
-			sendCC = new List<String>();
 			sendCCO = new List<String>();
 			for (ApprovalProcessMail__mdt approvalMail : approvalProcessMail) {
 				if (approvalMail.Rol__c == 'Notificacion aprobado')
@@ -706,7 +715,8 @@ public with sharing class DeactivateApprovalProcess {
 					sendCC.add(userMail.Email);
 			}
 
-			sendCC.addAll(ApprovalProcessAPI.getCommercialControlMail(users));
+			sendCC.addAll(commercialMail);
+			sendCC.addAll(processMail);
 
 			SendEmailNotifications(
 				solicitudBaja,
