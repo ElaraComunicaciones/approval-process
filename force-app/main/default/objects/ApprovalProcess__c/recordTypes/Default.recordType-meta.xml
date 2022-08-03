@@ -12,6 +12,10 @@
             <fullName>Baja definitiva</fullName>
             <default>false</default>
         </values>
+        <values>
+            <fullName>Cambio - Altas crecimiento orgánico</fullName>
+            <default>false</default>
+        </values>
     </picklistValues>
     <picklistValues>
         <picklist>ChangeApprovalStages__c</picklist>

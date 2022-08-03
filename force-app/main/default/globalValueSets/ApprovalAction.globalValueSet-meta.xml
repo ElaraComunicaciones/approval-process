@@ -6,16 +6,9 @@
         <label>Baja definitiva</label>
     </customValue>
     <customValue>
-        <fullName>Cambio - Reemplazo RE</fullName>
+        <fullName>Cambio - Altas crecimiento orgánico</fullName>
         <default>false</default>
-        <isActive>false</isActive>
-        <label>Cambio - Reemplazo RE</label>
-    </customValue>
-    <customValue>
-        <fullName>Cambio - Transferencia RE</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Cambio - Transferencia RE</label>
+        <label>Cambio - Altas crecimiento orgánico</label>
     </customValue>
     <customValue>
         <fullName>Cambio - Suspensión del servicio</fullName>
@@ -96,16 +89,22 @@
         <label>Finalización del ingreso</label>
     </customValue>
     <customValue>
+        <fullName>Cambio - Transferencia RE</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Cambio - Transferencia RE</label>
+    </customValue>
+    <customValue>
         <fullName>Cambio - Actualización</fullName>
         <default>false</default>
         <isActive>false</isActive>
         <label>Cambio - Actualización</label>
     </customValue>
     <customValue>
-        <fullName>Cambio - Altas crecimiento orgánico</fullName>
+        <fullName>Cambio - Reemplazo RE</fullName>
         <default>false</default>
         <isActive>false</isActive>
-        <label>Cambio - Altas crecimiento orgánico</label>
+        <label>Cambio - Reemplazo RE</label>
     </customValue>
     <masterLabel>Apobración Acción</masterLabel>
     <sorted>false</sorted>

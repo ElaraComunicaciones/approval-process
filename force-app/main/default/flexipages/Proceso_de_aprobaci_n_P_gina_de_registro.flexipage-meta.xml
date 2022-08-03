@@ -74,14 +74,14 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.Nombre__c</fieldItem>
-                <identifier>RecordNombre_cField1</identifier>
+                <fieldItem>Record.Detail__c</fieldItem>
+                <identifier>RecordDetail_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.Detail__c</fieldItem>
-                <identifier>RecordDetail_cField1</identifier>
+                <fieldItem>Record.Nombre__c</fieldItem>
+                <identifier>RecordNombre_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1270,6 +1270,39 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>relatedListApiName</name>
+                    <value>Tipos_de_sitio_por_aprobar__r</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListComponentOverride</name>
+                    <value>NONE</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>rowsToDisplay</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentName>force:relatedListSingleContainer</componentName>
+                <identifier>force_relatedListSingleContainer3</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Action__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Baja definitiva</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>ApprovalProcess__c.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
                     <value>RGU_Changes_to_approve__r</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
@@ -1286,6 +1319,39 @@
                 </componentInstanceProperties>
                 <componentName>force:relatedListSingleContainer</componentName>
                 <identifier>force_relatedListSingleContainer1</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>ApprovalProcess__c.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>Productos_de_oportunidad_por_aprobar__r</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListComponentOverride</name>
+                    <value>NONE</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>rowsToDisplay</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentName>force:relatedListSingleContainer</componentName>
+                <identifier>force_relatedListSingleContainer4</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Action__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Baja definitiva</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>

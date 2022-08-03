@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tipo_de_sitio_por_aprobar__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Tipo de sitio por aprobar</label>
+    <referenceTo>TipoDeSitioPorAprobar__c</referenceTo>
+    <relationshipLabel>Referencias Elara por aprobar</relationshipLabel>
+    <relationshipName>Referencias_Elara_por_aprobar</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>
