@@ -58,4 +58,39 @@ public with sharing class RGU_Change_to_approveAPI {
 			rguToChange.VTC_Referencia_Original__c = vtcRGU;
 		}
 	}
+
+	public static void executeAfterUpdateProcess(
+		TriggerParameters triggerParams
+	) {
+		List<RGU_Change_to_approve__c> rgus = (List<RGU_Change_to_approve__c>) triggerParams.newList;
+
+		List<Id> idTipoDeSitio = new List<Id>();
+
+		for (RGU_Change_to_approve__c rgu : rgus) {
+			if (rgu.Tipo_de_sitio_por_aprobar__c != null) {
+				idTipoDeSitio.add(rgu.Tipo_de_sitio_por_aprobar__c);
+			}
+		}
+
+		List<TipoDeSitioPorAprobar__c> newList = [
+			SELECT id
+			FROM TipoDeSitioPorAprobar__c
+			WHERE id IN :idTipoDeSitio
+		];
+
+		if (newList.size() > 0) {
+			String QueryRGUS =
+				'SELECT id,Tipo_de_sitio_por_aprobar__r.Categoria_Unidad_Negocio__c, Nombre_de_sitio__c,' +
+				' Referencia_Elara__c, Numero_de_sitio_por_aprobar__c, Banda__c, ' +
+				' Tipo_de_sitio_por_aprobar__r.Proceso_de_aprobacion__r.Opportunity__r.Account.Cliente_Carrier_Nomenclatura__c, ' +
+				' Tipo_de_sitio_por_aprobar__r.Proceso_de_aprobacion__r.Opportunity__r.NombreDelProyecto__r.Cliente_Final__c, ' +
+				' Tipo_de_sitio_por_aprobar__r.Proceso_de_aprobacion__r.Opportunity__r.NombreDelProyecto__r.Carrier__r.Name ' +
+				' FROM RGU_Change_to_approve__c WHERE Tipo_de_sitio_por_aprobar__c in: newList';
+
+			ID batchprocessid = Database.executeBatch(
+				new BatchUpdateRGUSToApproveName(QueryRGUS, newList),
+				400
+			);
+		}
+	}
 }
