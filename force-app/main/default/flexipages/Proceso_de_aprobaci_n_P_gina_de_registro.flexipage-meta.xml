@@ -987,6 +987,12 @@
 				>RecordDecremento_VTC_Respecto_Cuenta_cField2</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Incremento_en_VTC__c</fieldItem>
+                <identifier>RecordIncremento_en_VTC_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-3eb46b29-45ef-4b54-ba4c-f38d363afe69</name>
         <type>Facet</type>
     </flexiPageRegions>
