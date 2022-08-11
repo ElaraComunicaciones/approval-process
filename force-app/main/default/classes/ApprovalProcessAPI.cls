@@ -66,6 +66,23 @@ public with sharing class ApprovalProcessAPI {
 		return approvalDeactivate;
 	}
 
+	public static List<ApprovalProcess__c> organicGrowthApprovalProcess(
+		List<ApprovalProcess__c> approvalProcess
+	) {
+		List<ApprovalProcess__c> organicGrowthApprovalProcess = new List<ApprovalProcess__c>();
+
+		for (ApprovalProcess__c currentApprovalProcess : approvalProcess) {
+			if (
+				currentApprovalProcess.Action__c ==
+				'Cambio - Altas crecimiento orgánico'
+			) {
+				organicGrowthApprovalProcess.add(currentApprovalProcess);
+			}
+		}
+
+		return organicGrowthApprovalProcess;
+	}
+
 	public static void executeAfterUpdateProcesses(
 		TriggerParameters triggerParams
 	) {
@@ -75,6 +92,11 @@ public with sharing class ApprovalProcessAPI {
 
 		//Obtenemos los procesos de aprobación que corresponden a bajas
 		List<ApprovalProcess__c> lDeactivateApprovalProcess = DeactivateApprovalProcess(
+			(List<ApprovalProcess__c>) triggerParams.newList
+		);
+
+		//Obtenemos los procesos de aprobación que correspone a crecimiento organico
+		List<ApprovalProcess__c> lOrganicGrowthApprovalProcess = organicGrowthApprovalProcess(
 			(List<ApprovalProcess__c>) triggerParams.newList
 		);
 
@@ -99,6 +121,16 @@ public with sharing class ApprovalProcessAPI {
 			opportunities,
 			accounts,
 			RGUPerApprovalProcess,
+			users
+		);
+
+		OrganicGrowthApprovalProcess.executeAfterUpdate(
+			approvalProcessMail,
+			emailTemplates,
+			triggerParams.oldMap,
+			lOrganicGrowthApprovalProcess,
+			opportunities,
+			accounts,
 			users
 		);
 
