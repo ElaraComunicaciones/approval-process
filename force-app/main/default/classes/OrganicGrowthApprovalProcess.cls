@@ -3,12 +3,12 @@ public with sharing class OrganicGrowthApprovalProcess {
 		Map<id, SObject> oldMap,
 		List<ApprovalProcess__c> newList
 	) {
-		List<ApprovalProcess__c> newApprovedRecords = filterNewApprovedRecords(
+		List<ApprovalProcess__c> newRequestedRecords = filterNewRequestedRecords(
 			oldMap,
 			newList
 		);
 
-		validateConditions(newApprovedRecords);
+		validateConditions(newRequestedRecords);
 	}
 
 	public static void executeAfterUpdate(
