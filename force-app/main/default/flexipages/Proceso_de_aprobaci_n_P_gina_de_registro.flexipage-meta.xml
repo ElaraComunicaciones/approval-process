@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
         <itemInstances>
@@ -34,8 +34,7 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName
-				>runtime_sales_activities:activityPanel</componentName>
+                <componentName>runtime_sales_activities:activityPanel</componentName>
                 <identifier>runtime_sales_activities_activityPanel2</identifier>
             </componentInstance>
         </itemInstances>
@@ -87,23 +86,19 @@
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.Decremento_VTC_Respecto_EP__c</fieldItem>
-                <identifier
-				>RecordDecremento_VTC_Respecto_EP_cField1</identifier>
+                <identifier>RecordDecremento_VTC_Respecto_EP_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.Decremento_VTC_Respecto_Cuenta__c</fieldItem>
-                <identifier
-				>RecordDecremento_VTC_Respecto_Cuenta_cField1</identifier>
+                <identifier>RecordDecremento_VTC_Respecto_Cuenta_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem
-				>Record.Observaciones_del_Ejecutivo_de_Ventas__c</fieldItem>
-                <identifier
-				>RecordObservaciones_del_Ejecutivo_de_Ventas_cField</identifier>
+                <fieldItem>Record.Observaciones_del_Ejecutivo_de_Ventas__c</fieldItem>
+                <identifier>RecordObservaciones_del_Ejecutivo_de_Ventas_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-a3c7ec57-ff4a-4ec5-a251-7b5ba5fd04df</name>
@@ -163,8 +158,7 @@
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Motivo_rechazo_o_cancelacion__c</fieldItem>
-                <identifier
-				>RecordMotivo_rechazo_o_cancelacion_cField2</identifier>
+                <identifier>RecordMotivo_rechazo_o_cancelacion_cField2</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-c76f9294-bd71-49b6-8f82-6c0a6130a4b5</name>
@@ -236,8 +230,7 @@
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.Aprobacion_por_comite_directivo__c</fieldItem>
-                <identifier
-				>RecordAprobacion_por_comite_directivo_cField1</identifier>
+                <identifier>RecordAprobacion_por_comite_directivo_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-3do1tb4w645</name>
@@ -334,8 +327,7 @@
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.Cantidad_de_facturas_pendientes__c</fieldItem>
-                <identifier
-				>RecordCantidad_de_facturas_pendientes_cField1</identifier>
+                <identifier>RecordCantidad_de_facturas_pendientes_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-9e880e62-0289-4118-b256-8f4e5b9ce986</name>
@@ -443,8 +435,7 @@
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.Par_metros_de_rentabilidad__c</fieldItem>
-                <identifier
-				>RecordPar_metros_de_rentabilidad_cField1</identifier>
+                <identifier>RecordPar_metros_de_rentabilidad_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -461,10 +452,8 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem
-				>Record.Es_viable_hacer_evaluaci_n_financiera__c</fieldItem>
-                <identifier
-				>RecordEs_viable_hacer_evaluaci_n_financiera_cField</identifier>
+                <fieldItem>Record.Es_viable_hacer_evaluaci_n_financiera__c</fieldItem>
+                <identifier>RecordEs_viable_hacer_evaluaci_n_financiera_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -504,15 +493,13 @@
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.Penalizacion_por_cancelacion__c</fieldItem>
-                <identifier
-				>RecordPenalizacion_por_cancelacion_cField1</identifier>
+                <identifier>RecordPenalizacion_por_cancelacion_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.Clausula_rescision_cancelacion__c</fieldItem>
-                <identifier
-				>RecordClausula_rescision_cancelacion_cField1</identifier>
+                <identifier>RecordClausula_rescision_cancelacion_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -568,24 +555,19 @@
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.Proveedor_es_y_banda_del_SE__c</fieldItem>
-                <identifier
-				>RecordProveedor_es_y_banda_del_SE_cField</identifier>
+                <identifier>RecordProveedor_es_y_banda_del_SE_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem
-				>Record.Vigencia_contrato_proveedor_satelital__c</fieldItem>
-                <identifier
-				>RecordVigencia_contrato_proveedor_satelital_cField1</identifier>
+                <fieldItem>Record.Vigencia_contrato_proveedor_satelital__c</fieldItem>
+                <identifier>RecordVigencia_contrato_proveedor_satelital_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem
-				>Record.Implicaciones_cancelacion_de_segmento__c</fieldItem>
-                <identifier
-				>RecordImplicaciones_cancelacion_de_segmento_cField1</identifier>
+                <fieldItem>Record.Implicaciones_cancelacion_de_segmento__c</fieldItem>
+                <identifier>RecordImplicaciones_cancelacion_de_segmento_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-c7e10bc0-976e-4950-b306-5b92e4832ad6</name>
@@ -594,10 +576,8 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
-                <fieldItem
-				>Record.Proxima_fecha_de_cancelacion_segmento__c</fieldItem>
-                <identifier
-				>RecordProxima_fecha_de_cancelacion_segmento_cField1</identifier>
+                <fieldItem>Record.Proxima_fecha_de_cancelacion_segmento__c</fieldItem>
+                <identifier>RecordProxima_fecha_de_cancelacion_segmento_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -609,8 +589,7 @@
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.Observaciones_Infraestructura__c</fieldItem>
-                <identifier
-				>RecordObservaciones_Infraestructura_cField</identifier>
+                <identifier>RecordObservaciones_Infraestructura_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-9f6db087-8154-479c-b121-fea95ce77e91</name>
@@ -704,24 +683,19 @@
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.Solicitud_de_baja_del_cliente__c</fieldItem>
-                <identifier
-				>RecordSolicitud_de_baja_del_cliente_cField1</identifier>
+                <identifier>RecordSolicitud_de_baja_del_cliente_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem
-				>Record.Carta_solicitud_de_baja_del_cliente__c</fieldItem>
-                <identifier
-				>RecordCarta_solicitud_de_baja_del_cliente_cField1</identifier>
+                <fieldItem>Record.Carta_solicitud_de_baja_del_cliente__c</fieldItem>
+                <identifier>RecordCarta_solicitud_de_baja_del_cliente_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem
-				>Record.El_contrato_permite_la_baja_anticipada__c</fieldItem>
-                <identifier
-				>RecordEl_contrato_permite_la_baja_anticipada_cField1</identifier>
+                <fieldItem>Record.El_contrato_permite_la_baja_anticipada__c</fieldItem>
+                <identifier>RecordEl_contrato_permite_la_baja_anticipada_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-496fce33-b9c9-4d70-9dfa-f565eefe1aa4</name>
@@ -730,10 +704,8 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
-                <fieldItem
-				>Record.Compromiso_de_pago_de_penalizacion_o_fin__c</fieldItem>
-                <identifier
-				>RecordCompromiso_de_pago_de_penalizacion_o_fin_cField1</identifier>
+                <fieldItem>Record.Compromiso_de_pago_de_penalizacion_o_fin__c</fieldItem>
+                <identifier>RecordCompromiso_de_pago_de_penalizacion_o_fin_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -814,8 +786,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
-                    <value
-					>Controles por aprobación por control comercial</value>
+                    <value>Controles por aprobación por control comercial</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>name</name>
@@ -924,8 +895,7 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName
-				>runtime_sales_activities:activityPanel</componentName>
+                <componentName>runtime_sales_activities:activityPanel</componentName>
                 <identifier>runtime_sales_activities_activityPanel3</identifier>
             </componentInstance>
         </itemInstances>
@@ -976,15 +946,13 @@
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.Decremento_VTC_Respecto_EP__c</fieldItem>
-                <identifier
-				>RecordDecremento_VTC_Respecto_EP_cField2</identifier>
+                <identifier>RecordDecremento_VTC_Respecto_EP_cField2</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.Decremento_VTC_Respecto_Cuenta__c</fieldItem>
-                <identifier
-				>RecordDecremento_VTC_Respecto_Cuenta_cField2</identifier>
+                <identifier>RecordDecremento_VTC_Respecto_Cuenta_cField2</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1042,8 +1010,7 @@
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.Motivo_rechazo_o_cancelacion__c</fieldItem>
-                <identifier
-				>RecordMotivo_rechazo_o_cancelacion_cField1</identifier>
+                <identifier>RecordMotivo_rechazo_o_cancelacion_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-87416257-23e7-4a93-a0fb-cb58be365a22</name>
@@ -1115,8 +1082,7 @@
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.Aprobacion_por_comite_directivo__c</fieldItem>
-                <identifier
-				>RecordAprobacion_por_comite_directivo_cField2</identifier>
+                <identifier>RecordAprobacion_por_comite_directivo_cField2</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-1c12088b-661f-409c-b980-b838bc882147</name>
@@ -1212,8 +1178,7 @@
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.Cantidad_de_facturas_pendientes__c</fieldItem>
-                <identifier
-				>RecordCantidad_de_facturas_pendientes_cField</identifier>
+                <identifier>RecordCantidad_de_facturas_pendientes_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-7806d4dc-037a-4f6a-8003-a6fb9e66a6bb</name>
@@ -1338,10 +1303,8 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem
-				>Record.Es_viable_hacer_evaluaci_n_financiera__c</fieldItem>
-                <identifier
-				>RecordEs_viable_hacer_evaluaci_n_financiera_cField2</identifier>
+                <fieldItem>Record.Es_viable_hacer_evaluaci_n_financiera__c</fieldItem>
+                <identifier>RecordEs_viable_hacer_evaluaci_n_financiera_cField2</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1431,16 +1394,13 @@
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.Proveedor_es_y_banda_del_SE__c</fieldItem>
-                <identifier
-				>RecordProveedor_es_y_banda_del_SE_cField2</identifier>
+                <identifier>RecordProveedor_es_y_banda_del_SE_cField2</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem
-				>Record.Vigencia_contrato_proveedor_satelital__c</fieldItem>
-                <identifier
-				>RecordVigencia_contrato_proveedor_satelital_cField</identifier>
+                <fieldItem>Record.Vigencia_contrato_proveedor_satelital__c</fieldItem>
+                <identifier>RecordVigencia_contrato_proveedor_satelital_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-599a5725-93a4-4dc3-a1b2-b3d614a90b91</name>
@@ -1450,8 +1410,7 @@
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.Proxima_fecha_cambio_segmento__c</fieldItem>
-                <identifier
-				>RecordProxima_fecha_cambio_segmento_cField</identifier>
+                <identifier>RecordProxima_fecha_cambio_segmento_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1463,8 +1422,7 @@
         <itemInstances>
             <fieldInstance>
                 <fieldItem>Record.Observaciones_Infraestructura__c</fieldItem>
-                <identifier
-				>RecordObservaciones_Infraestructura_cField2</identifier>
+                <identifier>RecordObservaciones_Infraestructura_cField2</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-14db36da-6266-4789-8e7f-e3db30491684</name>
@@ -1699,8 +1657,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
-                    <value
-					>Controles por aprobación por control comercial</value>
+                    <value>Controles por aprobación por control comercial</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>name</name>

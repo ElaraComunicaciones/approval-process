@@ -1,8 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<Flow
-	xmlns="http://soap.sforce.com/2006/04/metadata"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
->
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <apiVersion>54.0</apiVersion>
     <decisions>
         <name>la_oportunidad_esta_cerrada</name>
@@ -10,8 +7,7 @@
         <locationX>182</locationX>
         <locationY>278</locationY>
         <defaultConnector>
-            <targetReference
-			>Notificacion_No_genera_proceso_aprobacion</targetReference>
+            <targetReference>Notificacion_No_genera_proceso_aprobacion</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Resultado predeterminado</defaultConnectorLabel>
         <rules>
@@ -25,8 +21,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference
-				>Crear_registro_proceso_aprobacion_0</targetReference>
+                <targetReference>Crear_registro_proceso_aprobacion_0</targetReference>
             </connector>
             <label>La oportunidad si esta cerrada</label>
         </rules>
@@ -35,14 +30,13 @@
     <dynamicChoiceSets>
         <name>Accion</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>Action__c</picklistField>
         <picklistObject>ApprovalProcess__c</picklistObject>
         <sortOrder>Asc</sortOrder>
     </dynamicChoiceSets>
-    <interviewLabel
-	>Crea proceso de aprobacion {!$Flow.CurrentDateTime}</interviewLabel>
+    <interviewLabel>Crea proceso de aprobacion {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Crea proceso de aprobacion</label>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -103,8 +97,7 @@
     </recordCreates>
     <runInMode>DefaultMode</runInMode>
     <screens>
-        <description
-		>Crea el proceso de aprobación con los campos mínimos necesarios</description>
+        <description>Crea el proceso de aprobación con los campos mínimos necesarios</description>
         <name>Crear_proceso_de_aprobacion</name>
         <label>Crear proceso de aprobación</label>
         <locationX>182</locationX>
@@ -120,8 +113,7 @@
             <dataType>String</dataType>
             <fieldText>Nombre</fieldText>
             <fieldType>InputField</fieldType>
-            <helpText
-			>&lt;p&gt;Indicar un nombre para éste proceso de aprobación&lt;/p&gt;</helpText>
+            <helpText>&lt;p&gt;Indicar un nombre para éste proceso de aprobación&lt;/p&gt;</helpText>
             <isRequired>true</isRequired>
         </fields>
         <fields>
@@ -129,8 +121,7 @@
             <dataType>String</dataType>
             <fieldText>Detalle</fieldText>
             <fieldType>InputField</fieldType>
-            <helpText
-			>&lt;p&gt;Indique alguna descripción del proceso de aprobación&lt;/p&gt;</helpText>
+            <helpText>&lt;p&gt;Indique alguna descripción del proceso de aprobación&lt;/p&gt;</helpText>
             <isRequired>true</isRequired>
         </fields>
         <fields>
@@ -156,8 +147,7 @@
         <allowPause>false</allowPause>
         <fields>
             <name>Mensaje</name>
-            <fieldText
-			>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;No se puede puede generar el proceso de aprobación porque el Expediente de proyecto &lt;/b&gt;&lt;b style=&quot;font-size: 14px; color: rgb(253, 0, 0);&quot;&gt;{!recordId.Name}&lt;/b&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt; aún no está cerrado&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;No se puede puede generar el proceso de aprobación porque el Expediente de proyecto &lt;/b&gt;&lt;b style=&quot;font-size: 14px; color: rgb(253, 0, 0);&quot;&gt;{!recordId.Name}&lt;/b&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt; aún no está cerrado&lt;/b&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
