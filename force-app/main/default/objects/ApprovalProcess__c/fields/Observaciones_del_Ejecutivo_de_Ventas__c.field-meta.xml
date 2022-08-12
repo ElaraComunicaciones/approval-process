@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Observaciones_del_Ejecutivo_de_Ventas__c</fullName>
     <externalId>false</externalId>
-    <inlineHelpText
-	>Agregar mayor información que requiera compartir con el comité de dirección para el proceso de aprobación de baja.</inlineHelpText>
+    <inlineHelpText>Agregar mayor información que requiera compartir con el comité de dirección para el proceso de aprobación de baja.</inlineHelpText>
     <label>Observaciones del Ejecutivo de Ventas</label>
     <length>32768</length>
     <trackFeedHistory>false</trackFeedHistory>

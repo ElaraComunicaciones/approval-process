@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Vigencia_del_servicio__c</fullName>
-    <description
-	>Es el valor del campo &quot;Plazo a contratar (meses)&quot; que esta en el Expediente Proyecto</description>
+    <description>Es el valor del campo &quot;Plazo a contratar (meses)&quot; que esta en el Expediente Proyecto</description>
     <externalId>false</externalId>
     <formula>Opportunity__r.PlazoAContratarMeses__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

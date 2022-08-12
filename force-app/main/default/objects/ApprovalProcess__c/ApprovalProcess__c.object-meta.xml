@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
@@ -128,8 +128,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <comment
-		>Action override created by Lightning App Builder during activation.</comment>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>Proceso_de_aprobaci_n_P_gina_de_registro</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
@@ -137,8 +136,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <comment
-		>Action override created by Lightning App Builder during activation.</comment>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>Proceso_de_aprobaci_n_P_gina_de_registro</content>
         <formFactor>Small</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
@@ -151,8 +149,7 @@
     <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>Custom_Format</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description
-	>Este objeto mantiene el control de aprobación para cambios que se llevarán a cabo de forma masiva en distintos objetos.</description>
+    <description>Este objeto mantiene el control de aprobación para cambios que se llevarán a cabo de forma masiva en distintos objetos.</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>true</enableFeeds>
@@ -174,7 +171,7 @@
     <pluralLabel>Procesos de aprobación</pluralLabel>
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

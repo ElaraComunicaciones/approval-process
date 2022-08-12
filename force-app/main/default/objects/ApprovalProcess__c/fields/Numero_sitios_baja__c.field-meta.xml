@@ -1,14 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Numero_sitios_baja__c</fullName>
-    <description
-	>Es el numero de sitos seleccionados para su baja definitiva</description>
+    <description>Es el numero de sitos seleccionados para su baja definitiva</description>
     <externalId>false</externalId>
-    <inlineHelpText
-	>Es el numero de sitos seleccionados para su baja definitiva</inlineHelpText>
+    <inlineHelpText>Es el numero de sitos seleccionados para su baja definitiva</inlineHelpText>
     <label>Número de sitios a dar de baja</label>
-    <summaryForeignKey
-	>RGU_Change_to_approve__c.Approval_Process__c</summaryForeignKey>
+    <summaryForeignKey>RGU_Change_to_approve__c.Approval_Process__c</summaryForeignKey>
     <summaryOperation>count</summaryOperation>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>

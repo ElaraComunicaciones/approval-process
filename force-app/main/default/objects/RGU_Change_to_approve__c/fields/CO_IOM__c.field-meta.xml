@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>CO_IOM__c</fullName>
-    <description
-	>Coltización - Información del formato IOM de Telmex</description>
+    <description>Coltización - Información del formato IOM de Telmex</description>
     <externalId>false</externalId>
-    <inlineHelpText
-	>Coltización - Información del formato IOM de Telmex</inlineHelpText>
+    <inlineHelpText>Coltización - Información del formato IOM de Telmex</inlineHelpText>
     <label>CO IOM</label>
     <length>12</length>
     <required>false</required>

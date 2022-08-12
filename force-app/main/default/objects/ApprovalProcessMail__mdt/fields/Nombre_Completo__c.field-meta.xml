@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Nombre_Completo__c</fullName>
-    <description
-	>Nombre completo de la persona a la que corresponde el correo</description>
+    <description>Nombre completo de la persona a la que corresponde el correo</description>
     <externalId>false</externalId>
     <fieldManageability>DeveloperControlled</fieldManageability>
-    <inlineHelpText
-	>Nombre completo de la persona a la que corresponde el correo</inlineHelpText>
+    <inlineHelpText>Nombre completo de la persona a la que corresponde el correo</inlineHelpText>
     <label>Nombre Completo</label>
     <length>255</length>
     <required>true</required>

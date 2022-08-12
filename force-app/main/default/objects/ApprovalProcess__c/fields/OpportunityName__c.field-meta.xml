@@ -1,12 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>OpportunityName__c</fullName>
-    <description
-	>Nombre del expediente de proyecto, se usa para las plantillas de correo</description>
+    <description>Nombre del expediente de proyecto, se usa para las plantillas de correo</description>
     <externalId>false</externalId>
     <formula>Opportunity__r.Name</formula>
-    <inlineHelpText
-	>Nombre del expediente de proyecto, se usa para las plantillas de correo</inlineHelpText>
+    <inlineHelpText>Nombre del expediente de proyecto, se usa para las plantillas de correo</inlineHelpText>
     <label>Nombre de la Oportunidad</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

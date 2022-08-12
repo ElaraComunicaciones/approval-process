@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Total_del_proyecto__c</fullName>
-    <description
-	>El total del proyecto al momento de la solicitud y aprobación del proceso</description>
+    <description>El total del proyecto al momento de la solicitud y aprobación del proceso</description>
     <externalId>false</externalId>
-    <inlineHelpText
-	>El total del proyecto al momento de la solicitud y aprobación del proceso</inlineHelpText>
+    <inlineHelpText>El total del proyecto al momento de la solicitud y aprobación del proceso</inlineHelpText>
     <label>Total del proyecto (VTC)</label>
     <precision>18</precision>
     <required>false</required>

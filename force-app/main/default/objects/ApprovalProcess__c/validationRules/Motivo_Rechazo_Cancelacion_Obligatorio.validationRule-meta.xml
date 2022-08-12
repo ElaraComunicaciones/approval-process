@@ -1,12 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Motivo_Rechazo_Cancelacion_Obligatorio</fullName>
     <active>true</active>
-    <description
-	>Si el usuario escoge la etapa de &quot;Rechazado&quot; o &quot;Cancelado&quot;, el campo Motivo rechazo o cancelación es obligatorio</description>
-    <errorConditionFormula
-	>IF( AND(OR( ISPICKVAL( Stage__c , &apos;Rechazado&apos;) ,ISPICKVAL( Stage__c , &apos;Cancelado&apos;)), ISBLANK( Motivo_rechazo_o_cancelacion__c )) , true, false)</errorConditionFormula>
+    <description>Si el usuario escoge la etapa de &quot;Rechazado&quot; o &quot;Cancelado&quot;, el campo Motivo rechazo o cancelación es obligatorio</description>
+    <errorConditionFormula>IF( AND(OR( ISPICKVAL( Stage__c , &apos;Rechazado&apos;) ,ISPICKVAL( Stage__c , &apos;Cancelado&apos;)), ISBLANK( Motivo_rechazo_o_cancelacion__c )) , true, false)</errorConditionFormula>
     <errorDisplayField>Motivo_rechazo_o_cancelacion__c</errorDisplayField>
-    <errorMessage
-	>Este campo es obligatorio porque la etapa es &quot;Rechazado&quot; o &quot;Cancelado&quot;</errorMessage>
+    <errorMessage>Este campo es obligatorio porque la etapa es &quot;Rechazado&quot; o &quot;Cancelado&quot;</errorMessage>
 </ValidationRule>

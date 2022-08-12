@@ -1,13 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Ejecutivo_de_ventas__c</fullName>
-    <description
-	>Obtiene el nombre del propietario del expediente de proyecto</description>
+    <description>Obtiene el nombre del propietario del expediente de proyecto</description>
     <externalId>false</externalId>
-    <formula
-	>Opportunity__r.Owner.FirstName &amp; &quot; &quot; &amp;  Opportunity__r.Owner.LastName</formula>
-    <inlineHelpText
-	>Obtiene el nombre del propietario del expediente de proyecto</inlineHelpText>
+    <formula>Opportunity__r.Owner.FirstName &amp; &quot; &quot; &amp;  Opportunity__r.Owner.LastName</formula>
+    <inlineHelpText>Obtiene el nombre del propietario del expediente de proyecto</inlineHelpText>
     <label>Ejecutivo de ventas</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

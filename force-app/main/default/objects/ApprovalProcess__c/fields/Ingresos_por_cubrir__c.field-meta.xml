@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Ingresos_por_cubrir__c</fullName>
-    <description
-	>- Ingresos por cubrir para llegar a la rentabilidad indicada del proyecto</description>
+    <description>- Ingresos por cubrir para llegar a la rentabilidad indicada del proyecto</description>
     <externalId>false</externalId>
     <label>Ingresos por cubrir</label>
     <precision>18</precision>
