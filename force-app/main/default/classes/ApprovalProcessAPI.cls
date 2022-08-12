@@ -46,9 +46,18 @@ public with sharing class ApprovalProcessAPI {
 			(List<ApprovalProcess__c>) triggerParams.newList
 		);
 
+		List<ApprovalProcess__c> organicGrowthAP = organicGrowthApprovalProcess(
+			(List<ApprovalProcess__c>) triggerParams.newList
+		);
+
 		DeactivateApprovalProcess.executeBeforeUpdateProcess(
 			triggerParams.oldMap,
 			lDeactivateApprovalProcess
+		);
+
+		OrganicGrowthApprovalProcess.executeBeforeUpdateProcess(
+			triggerParams.oldMap,
+			organicGrowthAP
 		);
 	}
 

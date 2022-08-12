@@ -3,6 +3,12 @@ public with sharing class OrganicGrowthApprovalProcess {
 		Map<id, SObject> oldMap,
 		List<ApprovalProcess__c> newList
 	) {
+		List<ApprovalProcess__c> newApprovedRecords = filterNewApprovedRecords(
+			oldMap,
+			newList
+		);
+
+		validateConditions(newApprovedRecords);
 	}
 
 	public static void executeAfterUpdate(
@@ -505,10 +511,7 @@ public with sharing class OrganicGrowthApprovalProcess {
 		return newRequestedRecords;
 	}
 
-	public static void validateConditionsBeforeClose(
-		Map<Id, ApprovalProcess__c> oldMap,
-		List<ApprovalProcess__c> newList
-	) {
+	public static void validateConditions(List<ApprovalProcess__c> newList) {
 		//Obtenemos los tipos de sitio de de los expedientes proyecto
 		Map<Id, List<TipoDeSitioPorAprobar__c>> tiposSitioPerApproval = getTiposSitioPerApprovalProcess(
 			newList
@@ -625,8 +628,7 @@ public with sharing class OrganicGrowthApprovalProcess {
 						sitioSinOli
 					);
 				}
-			}
-			{
+			} else {
 				approvalApproved.addError(
 					'Ocurrio el siguiente error a nivel productos de oportunidad: Deben de existir productos de oportunidad'
 				);
