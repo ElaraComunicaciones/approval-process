@@ -179,6 +179,8 @@ public with sharing class OrganicGrowthUtils {
 			selectSentence += fieldName + ',';
 		}
 
+		selectSentence += 'Proceso_de_aprobacion__r.Opportunity__c,';
+
 		String whereSentence = '';
 
 		for (ApprovalProcess__c approvalProcess : lApprovalProcess) {
@@ -189,11 +191,77 @@ public with sharing class OrganicGrowthUtils {
 		List<TipoDeSitioPorAprobar__c> lTiposSitioPorApprobar = Database.query(
 			'select ' +
 			selectSentence.Substring(0, selectSentence.length() - 1) +
-			' from TipoDeSitioPorAprobar__c where id in (' +
+			' from TipoDeSitioPorAprobar__c where Proceso_de_aprobacion__c in (' +
 			whereSentence.Substring(0, whereSentence.length() - 1) +
 			')'
 		);
 
 		return lTiposSitioPorApprobar;
+	}
+
+	public static List<RGU_Change_to_approve__c> getRGUsPerTipoSitioPorAprobar(
+		List<TipoDeSitioPorAprobar__c> lTipoSitios
+	) {
+		//Obtenemos todos los campos de Referencia Elara
+		SObjectType accountType = Schema.getGlobalDescribe()
+			.get('RGU_Change_to_approve__c');
+		Map<String, Schema.SObjectField> mfields = accountType.getDescribe()
+			.fields.getMap();
+
+		String selectSentence = '';
+
+		for (String fieldName : mfields.keySet()) {
+			selectSentence += fieldName + ',';
+		}
+
+		String whereSentence = '';
+
+		for (TipoDeSitioPorAprobar__c tipoSitio : lTipoSitios) {
+			whereSentence += '\'' + tipoSitio.id + '\',';
+		}
+
+		//Hacemos select all de rgu, de los que se seleccionó para dar de baja el servicio
+		List<RGU_Change_to_approve__c> lRGUs = Database.query(
+			'select ' +
+			selectSentence.Substring(0, selectSentence.length() - 1) +
+			' from RGU_Change_to_approve__c where Tipo_de_sitio_por_aprobar__c in (' +
+			whereSentence.Substring(0, whereSentence.length() - 1) +
+			')'
+		);
+
+		return lRGUs;
+	}
+
+	public static List<OpportunityItemConsent__c> getOlisPerRGUs(
+		List<RGU_Change_to_approve__c> lRGUs
+	) {
+		//Obtenemos todos los campos de Referencia Elara
+		SObjectType accountType = Schema.getGlobalDescribe()
+			.get('OpportunityItemConsent__c');
+		Map<String, Schema.SObjectField> mfields = accountType.getDescribe()
+			.fields.getMap();
+
+		String selectSentence = '';
+
+		for (String fieldName : mfields.keySet()) {
+			selectSentence += fieldName + ',';
+		}
+
+		String whereSentence = '';
+
+		for (RGU_Change_to_approve__c rgu : lRGUs) {
+			whereSentence += '\'' + rgu.id + '\',';
+		}
+
+		//Hacemos select all de rgu, de los que se seleccionó para dar de baja el servicio
+		List<OpportunityItemConsent__c> lOlis = Database.query(
+			'select ' +
+			selectSentence.Substring(0, selectSentence.length() - 1) +
+			' from OpportunityItemConsent__c where Referencia_Elara_por_aprobar__c in (' +
+			whereSentence.Substring(0, whereSentence.length() - 1) +
+			')'
+		);
+
+		return lOlis;
 	}
 }
