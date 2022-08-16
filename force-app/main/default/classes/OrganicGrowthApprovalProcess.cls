@@ -59,6 +59,12 @@ public with sharing class OrganicGrowthApprovalProcess {
 			users
 		);
 
+		operationsWithApprovedRecords(
+			newApprovedRecords,
+			opportunities,
+			accounts
+		);
+
 		sendApprovedNotifications(
 			newApprovedRecords,
 			emailTemplates,
@@ -1017,5 +1023,156 @@ public with sharing class OrganicGrowthApprovalProcess {
 		}
 
 		return message;
+	}
+
+	@testVisible
+	private static void operationsWithApprovedRecords(
+		List<ApprovalProcess__c> approvedRecords,
+		Map<Id, Opportunity> opportunities,
+		Map<Id, Account> accounts
+	) {
+		List<Opportunity> lOpp = new List<Opportunity>();
+		for (Opportunity oli : opportunities.values()) {
+			lOpp.add(oli);
+		}
+
+		createProjectHistoryValue(approvedRecords, opportunities);
+		createAccountHistoryValue(approvedRecords, opportunities, accounts);
+		migrateInformation(approvedRecords, lOpp);
+	}
+
+	@testVisible
+	private static void createProjectHistoryValue(
+		List<ApprovalProcess__c> approvedRecords,
+		Map<Id, Opportunity> opportunities
+	) {
+		List<TotalProjectValueHistory__c> lHistoryValue = new List<TotalProjectValueHistory__c>();
+
+		for (ApprovalProcess__c approvalProcess : approvedRecords) {
+			TotalProjectValueHistory__c historyValue = new TotalProjectValueHistory__c();
+			Opportunity currentOpp = opportunities.get(
+				approvalProcess.Opportunity__c
+			);
+			historyValue.Opportunity__c = approvalProcess.Opportunity__c;
+			historyValue.Total_Proyecto_OldValue__c = currentOpp.Total_Proyecto__c;
+			historyValue.Total_Proyecto_NewValue__c =
+				currentOpp.Total_Proyecto__c +
+				approvalProcess.Incremento_en_VTC__c;
+
+			lHistoryValue.add(historyValue);
+		}
+
+		insert lHistoryValue;
+	}
+
+	@testVisible
+	private static void createAccountHistoryValue(
+		List<ApprovalProcess__c> approvedRecords,
+		Map<Id, Opportunity> opportunities,
+		Map<Id, Account> accounts
+	) {
+		List<TotalAccountValueHistory__c> lHistoryValue = new List<TotalAccountValueHistory__c>();
+
+		for (ApprovalProcess__c approvalProcess : approvedRecords) {
+			TotalAccountValueHistory__c historyValue = new TotalAccountValueHistory__c();
+			Account currentAccount = accounts.get(
+				opportunities.get(approvalProcess.Opportunity__c).AccountId
+			);
+			historyValue.Account__c = currentAccount.Id;
+			historyValue.Total_Account_OldValue__c = currentAccount.Total_Proyecto__c;
+			historyValue.Total_Account_NewValue__c =
+				currentAccount.Total_Proyecto__c +
+				approvalProcess.Incremento_en_VTC__c;
+
+			lHistoryValue.add(historyValue);
+		}
+
+		insert lHistoryValue;
+	}
+
+	@testVisible
+	private static void migrateInformation(
+		List<ApprovalProcess__c> lApprovalProcess,
+		List<Opportunity> opportunities
+	) {
+		List<TipoDeSitioPorAprobar__c> lTiposSitioPorAprobar = OrganicGrowthUtils.getTiposSitioPerApprovalProcess(
+			lApprovalProcess
+		);
+
+		System.debug(lTiposSitioPorAprobar);
+
+		List<RGU_Change_to_approve__c> lRGUsPerApprovalProcess = OrganicGrowthUtils.getRGUsPerTipoSitioPorAprobar(
+			lTiposSitioPorAprobar
+		);
+
+		System.debug(lRGUsPerApprovalProcess);
+
+		List<OpportunityItemConsent__c> lOlisPerRGUs = OrganicGrowthUtils.getOlisPerRGUs(
+			lRGUsPerApprovalProcess
+		);
+
+		System.debug(lOlisPerRGUs);
+
+		Map<id, TipoDeSitio__c> mapTiposSitio = OrganicGrowthUtils.generateTipoSitio(
+			lTiposSitioPorAprobar
+		);
+
+		System.debug(mapTiposSitio);
+
+		List<TipoDeSitio__c> tiposDeSitioInsert = new List<TipoDeSitio__c>();
+		List<RGU__C> RGUInsert = new List<RGU__C>();
+		List<OpportunityLineItem> OLISInsert = new List<OpportunityLineItem>();
+
+		OpportunityTriggerSettings.setCurrentActiveValue(false);
+		TipoDeSitioTriggerSettings.setCurrentActiveValue(false);
+		RGUTriggerSettings.setCurrentActiveValue(false);
+
+		for (TipoDeSitio__c tipoSitio : mapTiposSitio.values()) {
+			tiposDeSitioInsert.add(tipoSitio);
+		}
+
+		insert tiposDeSitioInsert;
+
+		Map<Id, RGU__C> mapRGUS = OrganicGrowthUtils.generateRGUs(
+			mapTiposSitio,
+			lRGUsPerApprovalProcess
+		);
+
+		System.debug(mapRGUS);
+
+		for (RGU__C rgu : mapRGUS.values()) {
+			RGUInsert.add(rgu);
+		}
+
+		insert RGUInsert;
+
+		Map<Id, OpportunityLineItem> mapOLIs = OrganicGrowthUtils.generateOLI(
+			mapRGUS,
+			lOlisPerRGUs
+		);
+
+		System.debug(mapOLIs);
+
+		for (OpportunityLineItem oli : mapOLIs.values()) {
+			OLISInsert.add(oli);
+		}
+
+		insert OLISInsert;
+
+		List<RGU__c> newList = RGUAPI.getNewRecords(RGUInsert);
+		List<RGU__c> updateRGUName = RGUAPI.setConcatenatedName(newList);
+		update updateRGUName;
+
+		for (Opportunity opp : opportunities) {
+			opp.COSAPI_Inserted__c = false;
+			opp.COSAPI_ProjectSetup__c = false;
+			opp.COSAPI_Synced__c = false;
+		}
+
+		OpportunityTriggerSettings.setCurrentActiveValue(true);
+		TipoDeSitioTriggerSettings.setCurrentActiveValue(true);
+		RGUTriggerSettings.setCurrentActiveValue(true);
+
+		update opportunities;
 	}
 }

@@ -352,7 +352,14 @@ public with sharing class ApprovalProcessAPI {
 
 		Map<Id, Opportunity> mOpprotunities = new Map<id, Opportunity>(
 			[
-				SELECT id, name, Total_Proyecto__c, AccountId
+				SELECT
+					id,
+					name,
+					Total_Proyecto__c,
+					AccountId,
+					COSAPI_Inserted__c,
+					COSAPI_ProjectSetup__c,
+					COSAPI_Synced__c
 				FROM Opportunity
 				WHERE id IN :oppIds
 			]
