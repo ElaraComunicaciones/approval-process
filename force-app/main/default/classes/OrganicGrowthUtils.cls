@@ -70,6 +70,7 @@ public with sharing class OrganicGrowthUtils {
 				.NumeroDeExpedienteDeProyecto__c;
 
 			rgu.Referencia_Elara_Personalizada__c = rguToApprove.Referencia_Elara_Personalizada__c;
+			rgu.Nombre_de_sitio__c = rguToApprove.Nombre_de_sitio__c;
 			rgu.Tipo_de_sitio__c = tipoDeSitioId;
 			rgu.NumeroDeExpedienteDeProyecto__c = numeroEP;
 			rgu.N_mero_de_sitio_del_cliente__c = rguToApprove.Nmero_de_sitio_del_cliente__c;
