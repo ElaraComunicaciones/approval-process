@@ -156,4 +156,66 @@ public with sharing class RGU_Change_to_approveAPITest {
 
 		ApprovalProcessControlRGUController.getRGUToApprove(approval.id);
 	}
+
+	@isTest
+	static void afterUpdateRGUS() {
+		makeData();
+		Test.setMock(HttpCalloutMock.class, new COSAPI_MockTesting());
+		List<ApprovalProcess__C> approval = [
+			SELECT id, stage__c
+			FROM ApprovalProcess__C
+			LIMIT 1
+		];
+
+		approval[0].Action__c = 'Cambio - Altas crecimiento orgánico';
+
+		ApprovalProcessTriggerSettings.updateWithoutTriggers(approval);
+
+		TipoDeSitioPorAprobar__c tipoDeSitio = new TipoDeSitioPorAprobar__c(
+			Lugar__c = 'AEROPUERTO',
+			ID_Orden_de_compra_cliente__c = 'Id Orden de Compra',
+			NumeroDeSitios__c = 1,
+			Esquema_comercial__c = 'Esquema comercial',
+			Fase__c = 2,
+			Tipo_de_Configuracion__c = 'ESTÁNDAR',
+			Tipo_de_solicitud__c = 'STD',
+			Proceso_de_aprobacion__c = approval[0].id,
+			Categoria_Unidad_Negocio__c = 'VSAT',
+			Servicio__c = 'ISE',
+			Tipo_de_Enlace__c = 'PRIMARIO',
+			Esquema__c = 'FIJO',
+			Banda__c = 'KU',
+			BWBajadaKbps__c = 1024,
+			BWSubidaKbps__c = 1024,
+			SS_DW__c = 10,
+			SS_UP__c = 10
+		);
+
+		TipoDeSitioPorAprobarTriggerSettings.insertWithoutTriggers(
+			new List<TipoDeSitioPorAprobar__c>{ tipoDeSitio }
+		);
+
+		RGU_Change_to_approve__c reference = new RGU_Change_to_approve__c();
+		reference.Tipo_de_sitio_por_aprobar__c = tipoDeSitio.Id;
+		reference.Categoria_Unidad_de_Negocio__c = tipoDeSitio.Categoria_Unidad_Negocio__c;
+		reference.Servicio__c = tipoDeSitio.Servicio__c;
+		reference.Tipo_de_Enlace__c = tipoDeSitio.Tipo_de_Enlace__c;
+		reference.Esquema__c = tipoDeSitio.Esquema__c;
+		reference.Banda__c = tipoDeSitio.Banda__c;
+		reference.BWBajadaKbps__c = tipoDeSitio.BWBajadaKbps__c;
+		reference.SS_DW__c = tipoDeSitio.SS_DW__c;
+		reference.BWSubidaKbps__c = tipoDeSitio.BWSubidaKbps__c;
+		reference.SS_UP__c = tipoDeSitio.SS_UP__c;
+		reference.Approval_Process__c = tipoDeSitio.Proceso_de_aprobacion__c;
+		reference.Lugar__c = tipoDeSitio.Lugar__c;
+		reference.Tipo_de_sitio_por_aprobar__c = tipoDeSitio.id;
+
+		List<RGU_Change_to_approve__c> lRUG = new List<RGU_Change_to_approve__c>{
+			reference
+		};
+
+		RGU_Change_to_approveTriggerSettings.insertWithoutTriggers(lRUG);
+
+		update lRUG;
+	}
 }
