@@ -1036,9 +1036,11 @@ public with sharing class OrganicGrowthApprovalProcess {
 			lOpp.add(oli);
 		}
 
-		createProjectHistoryValue(approvedRecords, opportunities);
-		createAccountHistoryValue(approvedRecords, opportunities, accounts);
-		migrateInformation(approvedRecords, lOpp);
+		if (approvedRecords.size() > 0) {
+			createProjectHistoryValue(approvedRecords, opportunities);
+			createAccountHistoryValue(approvedRecords, opportunities, accounts);
+			migrateInformation(approvedRecords, lOpp);
+		}
 	}
 
 	@testVisible
