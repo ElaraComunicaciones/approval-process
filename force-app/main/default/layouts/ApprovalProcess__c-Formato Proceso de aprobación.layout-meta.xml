@@ -67,6 +67,14 @@
                 <behavior>Readonly</behavior>
                 <field>Numero_de_sitios__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Fecha_Inicio_Pactada__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Fecha_final_pactada__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

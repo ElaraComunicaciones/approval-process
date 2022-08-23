@@ -961,6 +961,12 @@
                 <identifier>RecordIncremento_en_VTC_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Fecha_Inicio_Pactada__c</fieldItem>
+                <identifier>RecordFecha_Inicio_Pactada_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-3eb46b29-45ef-4b54-ba4c-f38d363afe69</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -1011,6 +1017,12 @@
             <fieldInstance>
                 <fieldItem>Record.Motivo_rechazo_o_cancelacion__c</fieldItem>
                 <identifier>RecordMotivo_rechazo_o_cancelacion_cField1</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Fecha_final_pactada__c</fieldItem>
+                <identifier>RecordFecha_final_pactada_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-87416257-23e7-4a93-a0fb-cb58be365a22</name>

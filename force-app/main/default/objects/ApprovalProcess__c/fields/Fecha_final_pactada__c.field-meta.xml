@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fecha_final_pactada__c</fullName>
+    <description>Fecha final pactada del expediente de proyecto</description>
+    <externalId>false</externalId>
+    <formula>Opportunity__r.Fecha_pactada_fin_de_vigencia__c</formula>
+    <inlineHelpText>Fecha final pactada del expediente de proyecto</inlineHelpText>
+    <label>Fecha final pactada</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

@@ -248,6 +248,8 @@ public with sharing class OrganicGrowthUtils {
 			selectSentence += fieldName + ',';
 		}
 
+		selectSentence += 'Proceso_de_aprobacion__r.Fecha_Inicio_Pactada__c,Proceso_de_aprobacion__r.Fecha_final_pactada__c,';
+
 		String whereSentence = '';
 
 		for (RGU_Change_to_approve__c rgu : lRGUs) {

@@ -1113,6 +1113,8 @@ public with sharing class OrganicGrowthApprovalProcess {
 			lRGUsPerApprovalProcess
 		);
 
+		updateDatesForOlis(lOlisPerRGUs);
+
 		System.debug(lOlisPerRGUs);
 
 		Map<id, TipoDeSitio__c> mapTiposSitio = OrganicGrowthUtils.generateTipoSitio(
@@ -1176,5 +1178,41 @@ public with sharing class OrganicGrowthApprovalProcess {
 		RGUTriggerSettings.setCurrentActiveValue(true);
 
 		update opportunities;
+	}
+
+	public static void updateDatesForOlis(
+		List<OpportunityItemConsent__c> olis
+	) {
+		for (OpportunityItemConsent__c oli : olis) {
+			if (oli.Proceso_de_aprobacion__r.Fecha_Inicio_Pactada__c != null) {
+				oli.Fecha_Inicio_de_Ingreso__c = oli.Proceso_de_aprobacion__r.Fecha_Inicio_Pactada__c;
+			} else {
+				oli.Fecha_Inicio_de_Ingreso__c = Date.today();
+			}
+
+			if (oli.Proceso_de_aprobacion__r.Fecha_final_pactada__c != null) {
+				if (oli.Forma_de_Cobro__c == 'Pago Único') {
+					oli.Fecha_Fin_Ingreso__c = oli.Fecha_Inicio_de_Ingreso__c;
+				} else {
+					oli.Fecha_Fin_Ingreso__c = oli.Proceso_de_aprobacion__r.Fecha_final_pactada__c;
+				}
+
+				oli.plazo__c = IncomeType.calcularPlazo(
+					oli.Fecha_Inicio_de_Ingreso__c,
+					oli.Fecha_Fin_Ingreso__c,
+					oli.Forma_de_Cobro__c
+				);
+			} else {
+				if (oli.Forma_de_Cobro__c == 'Pago Único') {
+					oli.Fecha_Fin_Ingreso__c = oli.Fecha_Inicio_de_Ingreso__c;
+				} else {
+					oli.Fecha_Fin_Ingreso__c = oli.Fecha_Inicio_de_Ingreso__c.addMonths(
+						Integer.valueOf(oli.Plazo__c)
+					);
+				}
+			}
+		}
+
+		update olis;
 	}
 }
