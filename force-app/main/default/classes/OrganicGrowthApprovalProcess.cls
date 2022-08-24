@@ -1037,9 +1037,22 @@ public with sharing class OrganicGrowthApprovalProcess {
 		}
 
 		if (approvedRecords.size() > 0) {
-			createProjectHistoryValue(approvedRecords, opportunities);
-			createAccountHistoryValue(approvedRecords, opportunities, accounts);
-			migrateInformation(approvedRecords, lOpp);
+			List<OpportunityItemConsent__c> lOlist = OrganicGrowthUtils.getOlisPerApprovalProcess(
+				approvedRecords
+			);
+			updateDatesForOlis(lOlist);
+
+			List<ApprovalProcess__c> lApprovalUpdated = getApprovalProcessIncreseUpdated(
+				approvedRecords
+			);
+
+			createProjectHistoryValue(lApprovalUpdated, opportunities);
+			createAccountHistoryValue(
+				lApprovalUpdated,
+				opportunities,
+				accounts
+			);
+			migrateInformation(lApprovalUpdated, lOpp);
 		}
 	}
 
@@ -1113,8 +1126,6 @@ public with sharing class OrganicGrowthApprovalProcess {
 			lRGUsPerApprovalProcess
 		);
 
-		updateDatesForOlis(lOlisPerRGUs);
-
 		System.debug(lOlisPerRGUs);
 
 		Map<id, TipoDeSitio__c> mapTiposSitio = OrganicGrowthUtils.generateTipoSitio(
@@ -1167,17 +1178,21 @@ public with sharing class OrganicGrowthApprovalProcess {
 		List<RGU__c> updateRGUName = RGUAPI.setConcatenatedName(newList);
 		update updateRGUName;
 
-		for (Opportunity opp : opportunities) {
-			opp.COSAPI_Inserted__c = false;
-			opp.COSAPI_ProjectSetup__c = false;
-			opp.COSAPI_Synced__c = false;
-		}
+		// for (Opportunity opp : opportunities) {
+		// 	opp.COSAPI_Inserted__c = false;
+		// 	opp.COSAPI_ProjectSetup__c = false;
+		// 	opp.COSAPI_Synced__c = false;
+		// }
 
-		OpportunityTriggerSettings.setCurrentActiveValue(true);
-		TipoDeSitioTriggerSettings.setCurrentActiveValue(true);
-		RGUTriggerSettings.setCurrentActiveValue(true);
+		// OpportunityTriggerSettings.setCurrentActiveValue(true);
+		// TipoDeSitioTriggerSettings.setCurrentActiveValue(true);
+		// RGUTriggerSettings.setCurrentActiveValue(true);
 
-		update opportunities;
+		// update opportunities;
+
+		TipoSitio_COS_API.syncRecordsWithCOS(tiposDeSitioInsert);
+		Map<id, SObject> mRGUS = new Map<id, SObject>(RGUInsert);
+		RGU_COS_API.syncReferencesWithCOS(mRGUS, updateRGUName);
 	}
 
 	public static void updateDatesForOlis(
@@ -1213,6 +1228,18 @@ public with sharing class OrganicGrowthApprovalProcess {
 			}
 		}
 
-		update olis;
+		OpportunityItemConsentTriggerSettings.updateWithoutTriggers(olis);
+	}
+
+	private static List<ApprovalProcess__c> getApprovalProcessIncreseUpdated(
+		List<ApprovalProcess__c> lApproval
+	) {
+		List<ApprovalProcess__c> lApprovalProcessUpdated = [
+			SELECT id, Opportunity__c, Incremento_en_VTC__c
+			FROM ApprovalProcess__c
+			WHERE id IN :lApproval
+		];
+
+		return lApprovalProcessUpdated;
 	}
 }

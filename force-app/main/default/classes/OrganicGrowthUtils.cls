@@ -75,6 +75,7 @@ public with sharing class OrganicGrowthUtils {
 			rgu.NumeroDeExpedienteDeProyecto__c = numeroEP;
 			rgu.N_mero_de_sitio_del_cliente__c = rguToApprove.Nmero_de_sitio_del_cliente__c;
 			rgu.Lugar__c = rguToApprove.Lugar__c;
+			rgu.Tipo_de_Ingreso__c = 'VENTA NUEVA - CRECIMIENTO ORGANICO';
 			rgu.Referencia_Elara_Anterior__c = rguToApprove.Referencia_Elara_Anterior__c;
 			rgu.Direcci_n_del_sitio__c = rguToApprove.Direccin_del_sitio__c;
 			rgu.Soporte_para_pago_del_servicio__c = rguToApprove.Soporte_para_pago_del_servicio__c;
@@ -261,6 +262,41 @@ public with sharing class OrganicGrowthUtils {
 			'select ' +
 			selectSentence.Substring(0, selectSentence.length() - 1) +
 			' from OpportunityItemConsent__c where Referencia_Elara_por_aprobar__c in (' +
+			whereSentence.Substring(0, whereSentence.length() - 1) +
+			')'
+		);
+
+		return lOlis;
+	}
+
+	public static List<OpportunityItemConsent__c> getOlisPerApprovalProcess(
+		List<ApprovalProcess__c> lApprovalProcess
+	) {
+		//Obtenemos todos los campos de Referencia Elara
+		SObjectType accountType = Schema.getGlobalDescribe()
+			.get('OpportunityItemConsent__c');
+		Map<String, Schema.SObjectField> mfields = accountType.getDescribe()
+			.fields.getMap();
+
+		String selectSentence = '';
+
+		for (String fieldName : mfields.keySet()) {
+			selectSentence += fieldName + ',';
+		}
+
+		selectSentence += 'Proceso_de_aprobacion__r.Fecha_Inicio_Pactada__c,Proceso_de_aprobacion__r.Fecha_final_pactada__c,';
+
+		String whereSentence = '';
+
+		for (ApprovalProcess__c approvalProcess : lApprovalProcess) {
+			whereSentence += '\'' + approvalProcess.id + '\',';
+		}
+
+		//Hacemos select all de rgu, de los que se seleccionó para dar de baja el servicio
+		List<OpportunityItemConsent__c> lOlis = Database.query(
+			'select ' +
+			selectSentence.Substring(0, selectSentence.length() - 1) +
+			' from OpportunityItemConsent__c where Proceso_de_aprobacion__c in (' +
 			whereSentence.Substring(0, whereSentence.length() - 1) +
 			')'
 		);
