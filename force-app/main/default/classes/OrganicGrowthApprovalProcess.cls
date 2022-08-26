@@ -1174,25 +1174,22 @@ public with sharing class OrganicGrowthApprovalProcess {
 
 		insert OLISInsert;
 
-		List<RGU__c> newList = RGUAPI.getNewRecords(RGUInsert);
+		List<RGU__c> newList = getRGUSToUpdateName(RGUInsert);
 		List<RGU__c> updateRGUName = RGUAPI.setConcatenatedName(newList);
 		update updateRGUName;
+		List<RGU__c> sendRGUsToCoS = getRGUSToUpdateName(updateRGUName);
 
-		// for (Opportunity opp : opportunities) {
-		// 	opp.COSAPI_Inserted__c = false;
-		// 	opp.COSAPI_ProjectSetup__c = false;
-		// 	opp.COSAPI_Synced__c = false;
-		// }
+		List<TipoDeSitio__c> tiposDeSitioToCoS = TipoSitio_COS_API.getNewTiposSitios(
+			tiposDeSitioInsert
+		);
 
-		// OpportunityTriggerSettings.setCurrentActiveValue(true);
-		// TipoDeSitioTriggerSettings.setCurrentActiveValue(true);
-		// RGUTriggerSettings.setCurrentActiveValue(true);
-
-		// update opportunities;
-
-		TipoSitio_COS_API.syncRecordsWithCOS(tiposDeSitioInsert);
-		Map<id, SObject> mRGUS = new Map<id, SObject>(RGUInsert);
-		RGU_COS_API.syncReferencesWithCOS(mRGUS, updateRGUName);
+		ID jobID = System.enqueueJob(
+			new OpportunityQueuableRelatedObjects(
+				tiposDeSitioToCoS,
+				sendRGUsToCoS
+			)
+		);
+		System.debug(jobID);
 	}
 
 	public static void updateDatesForOlis(
@@ -1241,5 +1238,48 @@ public with sharing class OrganicGrowthApprovalProcess {
 		];
 
 		return lApprovalProcessUpdated;
+	}
+
+	public static List<RGU__c> getRGUSToUpdateName(List<SObject> newList) {
+		List<RGU__c> newRecords = [
+			SELECT
+				Id,
+				NumeroDeExpedienteDeProyecto__c,
+				Tipo_de_sitio__r.Name,
+				Tipo_de_sitio__r.NumeroDeExpedienteDeProyecto__r.StageName,
+				Tipo_de_sitio__r.NumeroDeExpedienteDeProyecto__c,
+				Referencia_Elara__c,
+				Referencia_Elara_Personalizada__c,
+				Referencia__c,
+				SysAdmin_IsCustomReferenceString__c,
+				Categoria_Unidad_Negocio__c,
+				Concepto_Categoria__c,
+				Servicio__c,
+				Tipo_de_Enlace__c,
+				Numero_Sitio__c,
+				Esquema__c,
+				BWBajadaKbps__c,
+				SS_DW__c,
+				Paquete_KA__c,
+				Numero_de_lineas__c,
+				Cap_Fap_GB__c,
+				Tipo_de_Sitio__c,
+				Nombre_de_sitio__c,
+				ApprovalStatus__c,
+				RecordToCommit__c,
+				Direcci_n_del_sitio__c,
+				NumeroDeExpedienteDeProyecto__r.Fecha_Pactada__c,
+				NumeroDeExpedienteDeProyecto__r.Fecha_pactada_fin_de_vigencia__c,
+				NumeroDeExpedienteDeProyecto__r.COSAPI_ProjectSetup__c,
+				Status_COS__c,
+				Fecha_Activo__c,
+				Banda__c,
+				Date_deactive_by_Client__c,
+				COSAPI_Inserted__c
+			FROM RGU__c
+			WHERE Id IN :newList
+		];
+
+		return newRecords;
 	}
 }
