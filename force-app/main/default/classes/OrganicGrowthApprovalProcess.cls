@@ -1219,8 +1219,12 @@ public with sharing class OrganicGrowthApprovalProcess {
 					oli.Fecha_Fin_Ingreso__c = oli.Fecha_Inicio_de_Ingreso__c;
 				} else {
 					oli.Fecha_Fin_Ingreso__c = oli.Fecha_Inicio_de_Ingreso__c.addMonths(
-						Integer.valueOf(oli.Plazo__c)
+						Integer.valueOf(
+							oli.Proceso_de_aprobacion__r.Vigencia_del_servicio__c
+						)
 					);
+
+					oli.plazo__c = oli.Proceso_de_aprobacion__r.Vigencia_del_servicio__c;
 				}
 			}
 		}

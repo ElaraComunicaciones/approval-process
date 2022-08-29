@@ -284,7 +284,7 @@ public with sharing class OrganicGrowthUtils {
 			selectSentence += fieldName + ',';
 		}
 
-		selectSentence += 'Proceso_de_aprobacion__r.Fecha_Inicio_Pactada__c,Proceso_de_aprobacion__r.Fecha_final_pactada__c,';
+		selectSentence += 'Proceso_de_aprobacion__r.Fecha_Inicio_Pactada__c,Proceso_de_aprobacion__r.Fecha_final_pactada__c,Proceso_de_aprobacion__r.Vigencia_del_servicio__c,';
 
 		String whereSentence = '';
 
