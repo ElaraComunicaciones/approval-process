@@ -967,6 +967,24 @@
                 <identifier>RecordFecha_Inicio_Pactada_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Suma_Equipo_Central__c</fieldItem>
+                <identifier>RecordSuma_Equipo_Central_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Suma_Enlace_Satelital__c</fieldItem>
+                <identifier>RecordSuma_Enlace_Satelital_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Suma_Instalaciones__c</fieldItem>
+                <identifier>RecordSuma_Instalaciones_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-3eb46b29-45ef-4b54-ba4c-f38d363afe69</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -1023,6 +1041,30 @@
             <fieldInstance>
                 <fieldItem>Record.Fecha_final_pactada__c</fieldItem>
                 <identifier>RecordFecha_final_pactada_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Suma_Equipo_En_Sitio__c</fieldItem>
+                <identifier>RecordSuma_Equipo_En_Sitio_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Suma_Adecuaciones__c</fieldItem>
+                <identifier>RecordSuma_Adecuaciones_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Suma_Site_Surveys__c</fieldItem>
+                <identifier>RecordSuma_Site_Surveys_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Total_Productos_Categorizados__c</fieldItem>
+                <identifier>RecordTotal_Productos_Categorizados_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-87416257-23e7-4a93-a0fb-cb58be365a22</name>

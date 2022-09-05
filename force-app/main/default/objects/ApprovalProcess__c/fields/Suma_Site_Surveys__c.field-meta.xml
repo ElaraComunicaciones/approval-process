@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Suma_Site_Surveys__c</fullName>
+    <externalId>false</externalId>
+    <label>Suma Site Surveys</label>
+    <summarizedField>OpportunityItemConsent__c.Partida_de_Ventas_Conv_MXN__c</summarizedField>
+    <summaryFilterItems>
+        <field>OpportunityItemConsent__c.Categoria_Costos__c</field>
+        <operation>equals</operation>
+        <value>SERVICIOS DE CAMPO</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>OpportunityItemConsent__c.Subcategoria_Costos__c</field>
+        <operation>contains</operation>
+        <value>SITE SURVEY</value>
+    </summaryFilterItems>
+    <summaryForeignKey>OpportunityItemConsent__c.Proceso_de_aprobacion__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>
