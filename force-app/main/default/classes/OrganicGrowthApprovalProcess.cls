@@ -175,10 +175,10 @@ public with sharing class OrganicGrowthApprovalProcess {
 
 		for (EmailTemplate template : emailTemplates) {
 			switch on template.name {
-				when 'RS_B2 Aprobación baja denegada por Comité Directivo' {
+				when 'RS_C2 Aprobación de cambios denegada por Comité Directivo' {
 					denegadoComiteDirectivoBajas = template;
 				}
-				when 'RS_B3 Aprobación baja denegada por Control Comercial' {
+				when 'RS_C3 Aprobación de cambios denegada por Control Comercial' {
 					denegadoControlComercialBajas = template;
 				}
 			}
