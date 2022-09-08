@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Link_Google_Drive_Presupuesto__c</fullName>
+    <description>Se debe agregar el link donde se encuentra el presupuesto de implementaciones</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Agregar el link de la carpeta donde se encuentra el presupuesto para la implementación de sitios o productos adicionales.</inlineHelpText>
+    <label>Link Google Drive Presupuesto</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Url</type>
+</CustomField>

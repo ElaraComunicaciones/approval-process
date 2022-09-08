@@ -1,12 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>PO_Orden_de_Servicio__c</fullName>
-    <defaultValue>false</defaultValue>
     <description>Se cuenta con una orden de compra o servicio</description>
     <externalId>false</externalId>
+    <inlineHelpText>Indicar si se tiene el soporte para cobrar el servicio (Orden de compra, carta compromiso, solicitud escrita de una persona autorizada para contratar servicios, etc.)</inlineHelpText>
     <label>PO / Orden de Servicio</label>
+    <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Checkbox</type>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>No Aplica</fullName>
+                <default>true</default>
+                <label>No Aplica</label>
+            </value>
+            <value>
+                <fullName>Cumple</fullName>
+                <default>false</default>
+                <label>Cumple</label>
+            </value>
+            <value>
+                <fullName>No Cumple</fullName>
+                <default>false</default>
+                <label>No Cumple</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
 </CustomField>

@@ -36,6 +36,66 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Contacto_Administrativo__c</picklist>
+        <values>
+            <fullName>Cumple</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Aplica</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>No Cumple</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Contacto_Comercial__c</picklist>
+        <values>
+            <fullName>Cumple</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Aplica</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>No Cumple</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Contacto_Tecnico__c</picklist>
+        <values>
+            <fullName>Cumple</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Aplica</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>No Cumple</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Diagrama_de_Arquitectura__c</picklist>
+        <values>
+            <fullName>Cumple</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Aplica</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>No Cumple</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Divisa_CAPEX__c</picklist>
         <values>
             <fullName>MXN</fullName>
@@ -58,7 +118,52 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Lista_de_Sitios__c</picklist>
+        <values>
+            <fullName>Cumple</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Aplica</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>No Cumple</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>PO_Orden_de_Servicio__c</picklist>
+        <values>
+            <fullName>Cumple</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Aplica</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>No Cumple</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Par_metros_de_rentabilidad__c</picklist>
+        <values>
+            <fullName>Cumple</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Aplica</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>No Cumple</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Presupuesto_Proyecto__c</picklist>
         <values>
             <fullName>Cumple</fullName>
             <default>false</default>
@@ -92,6 +197,25 @@
         </values>
         <values>
             <fullName>Solicitado</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Validacion_de_no_Adeudo__c</picklist>
+        <values>
+            <fullName>Con adeudo %2F aprobado por AI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Con adeudo %2F sin aprobación de AI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Aplica</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Sin adeudo</fullName>
             <default>false</default>
         </values>
     </picklistValues>

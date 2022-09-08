@@ -1,12 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Contacto_Administrativo__c</fullName>
-    <defaultValue>false</defaultValue>
-    <description>Se cuenta con el contacto administrativo</description>
+    <description>Se cuenta con el contacto administrativo para gestionar la facturación</description>
     <externalId>false</externalId>
+    <inlineHelpText>Indicar si en funciones de contacto se tiene el contacto administrativo para gestionar la facturación y cobranza</inlineHelpText>
     <label>Contacto Administrativo</label>
+    <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Checkbox</type>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>No Aplica</fullName>
+                <default>true</default>
+                <label>No Aplica</label>
+            </value>
+            <value>
+                <fullName>Cumple</fullName>
+                <default>false</default>
+                <label>Cumple</label>
+            </value>
+            <value>
+                <fullName>No Cumple</fullName>
+                <default>false</default>
+                <label>No Cumple</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
 </CustomField>

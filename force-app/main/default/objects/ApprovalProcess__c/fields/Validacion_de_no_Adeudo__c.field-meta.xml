@@ -1,12 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Validacion_de_no_Adeudo__c</fullName>
-    <defaultValue>false</defaultValue>
     <description>Requisito para validar: &quot;Validación de no Adeudo&quot;</description>
     <externalId>false</externalId>
+    <inlineHelpText>Indicar si se el cliente tiene facturas vencidas y si AI aprueba que se implementen más servicios.</inlineHelpText>
     <label>Validación de no Adeudo</label>
+    <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Checkbox</type>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>No Aplica</fullName>
+                <default>true</default>
+                <label>No Aplica</label>
+            </value>
+            <value>
+                <fullName>Sin adeudo</fullName>
+                <default>false</default>
+                <label>Sin adeudo</label>
+            </value>
+            <value>
+                <fullName>Con adeudo / aprobado por AI</fullName>
+                <default>false</default>
+                <label>Con adeudo / aprobado por AI</label>
+            </value>
+            <value>
+                <fullName>Con adeudo / sin aprobación de AI</fullName>
+                <default>false</default>
+                <label>Con adeudo / sin aprobación de AI</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
 </CustomField>

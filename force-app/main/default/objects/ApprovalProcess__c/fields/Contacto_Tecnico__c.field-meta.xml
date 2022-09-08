@@ -1,12 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Contacto_Tecnico__c</fullName>
-    <defaultValue>false</defaultValue>
     <description>Requisito para validar &quot;Se cuenta con el contacto técnico&quot;</description>
     <externalId>false</externalId>
+    <inlineHelpText>Indicar si en funciones de contacto se tiene el contacto Técnico / Líder de proyecto del cliente para gestionar la implementación de los servicios o sitios adicionales.</inlineHelpText>
     <label>Contacto Técnico</label>
+    <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Checkbox</type>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>No Aplica</fullName>
+                <default>true</default>
+                <label>No Aplica</label>
+            </value>
+            <value>
+                <fullName>Cumple</fullName>
+                <default>false</default>
+                <label>Cumple</label>
+            </value>
+            <value>
+                <fullName>No Cumple</fullName>
+                <default>false</default>
+                <label>No Cumple</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
 </CustomField>

@@ -1,12 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Presupuesto_Proyecto__c</fullName>
-    <defaultValue>false</defaultValue>
     <description>Requisito para validar &quot;Se cuenta con el presupuesto del proyecto&quot;</description>
     <externalId>false</externalId>
+    <inlineHelpText>Indicar si se encuentra en la unidad de drive correspondiente el presupuesto para implementaciones</inlineHelpText>
     <label>Presupuesto Proyecto</label>
+    <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Checkbox</type>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>No Aplica</fullName>
+                <default>true</default>
+                <label>No Aplica</label>
+            </value>
+            <value>
+                <fullName>Cumple</fullName>
+                <default>false</default>
+                <label>Cumple</label>
+            </value>
+            <value>
+                <fullName>No Cumple</fullName>
+                <default>false</default>
+                <label>No Cumple</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
 </CustomField>
