@@ -97,14 +97,14 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.Link_Google_Drive_Presupuesto__c</fieldItem>
-                <identifier>RecordLink_Google_Drive_Presupuesto_cField</identifier>
+                <fieldItem>Record.Observaciones_del_Ejecutivo_de_Ventas__c</fieldItem>
+                <identifier>RecordObservaciones_del_Ejecutivo_de_Ventas_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.Observaciones_del_Ejecutivo_de_Ventas__c</fieldItem>
-                <identifier>RecordObservaciones_del_Ejecutivo_de_Ventas_cField</identifier>
+                <fieldItem>Record.Link_Google_Drive_Presupuesto__c</fieldItem>
+                <identifier>RecordLink_Google_Drive_Presupuesto_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-a3c7ec57-ff4a-4ec5-a251-7b5ba5fd04df</name>
@@ -159,18 +159,18 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.Link_Google_Drive_PM__c</fieldItem>
-                <identifier>RecordLink_Google_Drive_PM_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Motivo_rechazo_o_cancelacion__c</fieldItem>
                 <identifier>RecordMotivo_rechazo_o_cancelacion_cField2</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Link_Google_Drive_PM__c</fieldItem>
+                <identifier>RecordLink_Google_Drive_PM_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-c76f9294-bd71-49b6-8f82-6c0a6130a4b5</name>
@@ -1639,6 +1639,12 @@
             <fieldInstance>
                 <fieldItem>Record.Contacto_Tecnico__c</fieldItem>
                 <identifier>RecordContacto_Tecnico_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Observaciones_de_Control_Comercial__c</fieldItem>
+                <identifier>RecordObservaciones_de_Control_Comercial_cField2</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-50622510-109d-4d6a-89c8-ab8ad808635c</name>
