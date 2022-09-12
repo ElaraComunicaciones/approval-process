@@ -3,7 +3,7 @@
     <fullName>Aprobacion_por_comite_directivo__c</fullName>
     <description>Valida si el proceso de aprobación es por comité directivo</description>
     <externalId>false</externalId>
-    <formula>IF( ISPICKVAL( Action__c , &quot;Baja definitiva&quot;),IF( AND( Es_Telmex__c , OR(AND(Decremento_VTC_Respecto_EP__c &gt;= 0.15,Numero_sitios_baja__c &gt; 5), Decremento_VTC_Respecto_Cuenta__c &gt;= 0.05,Decremento_en_VTC__c &gt;= 500000)),true,IF(AND(NOT(Es_Telmex__c),OR(AND(Decremento_VTC_Respecto_EP__c &gt;= 0.10, Numero_sitios_baja__c &gt; 5), Decremento_VTC_Respecto_Cuenta__c &gt;= 0.05,  Decremento_en_VTC__c &gt;= 500000)), true, false)), 
+    <formula>IF( ISPICKVAL( Action__c , &quot;Baja definitiva&quot;),IF( AND( Es_Telmex__c , OR(AND(Decremento_VTC_Respecto_EP__c &gt;= 0.15,Numero_sitios_baja__c &gt; 5), Decremento_VTC_Respecto_Cuenta__c &gt;= 0.05,Decremento_en_VTC__c &gt;= 500000)),true,IF(AND(NOT(Es_Telmex__c),AND(AND(Decremento_VTC_Respecto_EP__c &gt;= 0.10, Numero_sitios_baja__c &gt; 5), Decremento_VTC_Respecto_Cuenta__c &gt;= 0.05,  Decremento_en_VTC__c &gt;= 500000)), true, false)), 
 IF(Total_Productos_Categorizados__c &gt;= 770000, true,false))</formula>
     <inlineHelpText>Valida si el proceso de aprobación es por comité directivo</inlineHelpText>
     <label>Aprobación por comité directivo</label>
