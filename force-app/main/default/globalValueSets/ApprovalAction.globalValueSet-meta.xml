@@ -11,10 +11,9 @@
         <label>Cambio - Altas crecimiento orgánico</label>
     </customValue>
     <customValue>
-        <fullName>Cambio - Suspensión del servicio</fullName>
+        <fullName>Cancelación de referencias</fullName>
         <default>false</default>
-        <isActive>false</isActive>
-        <label>Cambio - Suspensión del servicio</label>
+        <label>Cancelación de referencias</label>
     </customValue>
     <customValue>
         <fullName>Cambio - Reactivación del servicio</fullName>
@@ -87,6 +86,12 @@
         <default>false</default>
         <isActive>false</isActive>
         <label>Finalización del ingreso</label>
+    </customValue>
+    <customValue>
+        <fullName>Cambio - Suspensión del servicio</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Cambio - Suspensión del servicio</label>
     </customValue>
     <customValue>
         <fullName>Cambio - Transferencia RE</fullName>

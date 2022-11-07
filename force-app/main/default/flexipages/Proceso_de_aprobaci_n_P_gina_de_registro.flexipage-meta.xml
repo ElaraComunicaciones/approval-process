@@ -67,42 +67,70 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Name</fieldItem>
                 <identifier>RecordNameField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Detail__c</fieldItem>
                 <identifier>RecordDetail_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Nombre__c</fieldItem>
                 <identifier>RecordNombre_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Decremento_VTC_Respecto_EP__c</fieldItem>
                 <identifier>RecordDecremento_VTC_Respecto_EP_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Decremento_VTC_Respecto_Cuenta__c</fieldItem>
                 <identifier>RecordDecremento_VTC_Respecto_Cuenta_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Observaciones_del_Ejecutivo_de_Ventas__c</fieldItem>
                 <identifier>RecordObservaciones_del_Ejecutivo_de_Ventas_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Link_Google_Drive_Presupuesto__c</fieldItem>
                 <identifier>RecordLink_Google_Drive_Presupuesto_cField</identifier>
             </fieldInstance>
@@ -123,6 +151,10 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Stage__c</fieldItem>
                 <identifier>RecordStage_cField1</identifier>
             </fieldInstance>
@@ -169,6 +201,10 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Link_Google_Drive_PM__c</fieldItem>
                 <identifier>RecordLink_Google_Drive_PM_cField</identifier>
             </fieldInstance>
@@ -203,18 +239,58 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Considerar_cobros_unicos__c</fieldItem>
+                <identifier>RecordConsiderar_cobros_nicos_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-bfd37799-9bfb-45ad-95cf-791dd909e93d</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-bfd37799-9bfb-45ad-95cf-791dd909e93d</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column30</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-c0755cd3-8cce-4f16-a9df-2f99c46abed8</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.OwnerId</fieldItem>
                 <identifier>RecordOwnerIdField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.CreatedById</fieldItem>
                 <identifier>RecordCreatedByIdField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Es_Telmex__c</fieldItem>
                 <identifier>RecordEs_Telmex_cField1</identifier>
             </fieldInstance>
@@ -225,6 +301,10 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.LastModifiedById</fieldItem>
                 <identifier>RecordLastModifiedByIdField1</identifier>
             </fieldInstance>
@@ -241,6 +321,10 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Aprobacion_por_comite_directivo__c</fieldItem>
                 <identifier>RecordAprobacion_por_comite_directivo_cField1</identifier>
             </fieldInstance>
@@ -291,6 +375,27 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
+                    <value>Facet-c0755cd3-8cce-4f16-a9df-2f99c46abed8</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Cancelación de referencias</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection16</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Action__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Cancelación de referencias</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
                     <value>Facet-a88f2da9-940b-444c-90a4-2ed59e611f10</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
@@ -308,6 +413,10 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Numero_sitios_baja__c</fieldItem>
                 <identifier>RecordNumero_sitios_baja_cField1</identifier>
             </fieldInstance>
@@ -332,12 +441,20 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Saldo_cubierto_a_la_fecha__c</fieldItem>
                 <identifier>RecordSaldo_cubierto_a_la_fecha_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Cantidad_de_facturas_pendientes__c</fieldItem>
                 <identifier>RecordCantidad_de_facturas_pendientes_cField1</identifier>
             </fieldInstance>
@@ -348,12 +465,20 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Saldo_pendiente_de_pago__c</fieldItem>
                 <identifier>RecordSaldo_pendiente_de_pago_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Observaciones_AI__c</fieldItem>
                 <identifier>RecordObservaciones_AI_cField</identifier>
             </fieldInstance>
@@ -388,42 +513,70 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Margen_Bruto__c</fieldItem>
                 <identifier>RecordMargen_Bruto_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.EBITDA__c</fieldItem>
                 <identifier>RecordEBITDA_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Flujo_de_Efectivo__c</fieldItem>
                 <identifier>RecordFlujo_de_Efectivo_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.EBIT__c</fieldItem>
                 <identifier>RecordEBIT_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Payback__c</fieldItem>
                 <identifier>RecordPayback_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.ROI__c</fieldItem>
                 <identifier>RecordROI_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.TIR__c</fieldItem>
                 <identifier>RecordTIR_cField1</identifier>
             </fieldInstance>
@@ -434,42 +587,70 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.CAPEX__c</fieldItem>
                 <identifier>RecordCAPEX_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Divisa_CAPEX__c</fieldItem>
                 <identifier>RecordDivisa_CAPEX_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Par_metros_de_rentabilidad__c</fieldItem>
                 <identifier>RecordPar_metros_de_rentabilidad_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Ingresos_por_cubrir__c</fieldItem>
                 <identifier>RecordIngresos_por_cubrir_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Costos_por_cubrir__c</fieldItem>
                 <identifier>RecordCostos_por_cubrir_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Es_viable_hacer_evaluaci_n_financiera__c</fieldItem>
                 <identifier>RecordEs_viable_hacer_evaluaci_n_financiera_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Observaciones_Pricing__c</fieldItem>
                 <identifier>RecordObservaciones_Pricing_cField</identifier>
             </fieldInstance>
@@ -504,18 +685,30 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Penalizacion_por_cancelacion__c</fieldItem>
                 <identifier>RecordPenalizacion_por_cancelacion_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Clausula_rescision_cancelacion__c</fieldItem>
                 <identifier>RecordClausula_rescision_cancelacion_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Observaciones_Legal__c</fieldItem>
                 <identifier>RecordObservaciones_Legal_cField</identifier>
             </fieldInstance>
@@ -526,12 +719,20 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Vigencia_del_servicio__c</fieldItem>
                 <identifier>RecordVigencia_del_servicio_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Carta_finiquito__c</fieldItem>
                 <identifier>RecordCarta_finiquito_cField1</identifier>
             </fieldInstance>
@@ -566,18 +767,30 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Proveedor_es_y_banda_del_SE__c</fieldItem>
                 <identifier>RecordProveedor_es_y_banda_del_SE_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Vigencia_contrato_proveedor_satelital__c</fieldItem>
                 <identifier>RecordVigencia_contrato_proveedor_satelital_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Implicaciones_cancelacion_de_segmento__c</fieldItem>
                 <identifier>RecordImplicaciones_cancelacion_de_segmento_cField1</identifier>
             </fieldInstance>
@@ -588,18 +801,30 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Proxima_fecha_de_cancelacion_segmento__c</fieldItem>
                 <identifier>RecordProxima_fecha_de_cancelacion_segmento_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Otros_servicios_a_cancelar__c</fieldItem>
                 <identifier>RecordOtros_servicios_a_cancelar_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Observaciones_Infraestructura__c</fieldItem>
                 <identifier>RecordObservaciones_Infraestructura_cField</identifier>
             </fieldInstance>
@@ -694,18 +919,30 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Solicitud_de_baja_del_cliente__c</fieldItem>
                 <identifier>RecordSolicitud_de_baja_del_cliente_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Carta_solicitud_de_baja_del_cliente__c</fieldItem>
                 <identifier>RecordCarta_solicitud_de_baja_del_cliente_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.El_contrato_permite_la_baja_anticipada__c</fieldItem>
                 <identifier>RecordEl_contrato_permite_la_baja_anticipada_cField1</identifier>
             </fieldInstance>
@@ -716,18 +953,30 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Compromiso_de_pago_de_penalizacion_o_fin__c</fieldItem>
                 <identifier>RecordCompromiso_de_pago_de_penalizacion_o_fin_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Validacion_de_no_Adeudo__c</fieldItem>
                 <identifier>RecordValidacion_de_no_Adeudo_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Observaciones_de_Control_Comercial__c</fieldItem>
                 <identifier>RecordObservaciones_de_Control_Comercial_cField</identifier>
             </fieldInstance>
@@ -945,72 +1194,120 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Name</fieldItem>
                 <identifier>RecordNameField2</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Detail__c</fieldItem>
                 <identifier>RecordDetail_cField2</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Nombre__c</fieldItem>
                 <identifier>RecordNombre_cField2</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Decremento_VTC_Respecto_EP__c</fieldItem>
                 <identifier>RecordDecremento_VTC_Respecto_EP_cField2</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Decremento_VTC_Respecto_Cuenta__c</fieldItem>
                 <identifier>RecordDecremento_VTC_Respecto_Cuenta_cField2</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Incremento_en_VTC__c</fieldItem>
                 <identifier>RecordIncremento_en_VTC_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Fecha_Inicio_Pactada__c</fieldItem>
                 <identifier>RecordFecha_Inicio_Pactada_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Suma_Equipo_Central__c</fieldItem>
                 <identifier>RecordSuma_Equipo_Central_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Suma_Enlace_Satelital__c</fieldItem>
                 <identifier>RecordSuma_Enlace_Satelital_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Suma_Instalaciones__c</fieldItem>
                 <identifier>RecordSuma_Instalaciones_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Link_Google_Drive_Presupuesto__c</fieldItem>
                 <identifier>RecordLink_Google_Drive_Presupuesto_cField2</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Link_Google_Drive_PM__c</fieldItem>
                 <identifier>RecordLink_Google_Drive_PM_cField2</identifier>
             </fieldInstance>
@@ -1021,12 +1318,20 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Action__c</fieldItem>
                 <identifier>RecordAction_cField2</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Stage__c</fieldItem>
                 <identifier>RecordStage_cField2</identifier>
             </fieldInstance>
@@ -1063,42 +1368,70 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Observaciones_del_Ejecutivo_de_Ventas__c</fieldItem>
                 <identifier>RecordObservaciones_del_Ejecutivo_de_Ventas_cField2</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Motivo_rechazo_o_cancelacion__c</fieldItem>
                 <identifier>RecordMotivo_rechazo_o_cancelacion_cField1</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Fecha_final_pactada__c</fieldItem>
                 <identifier>RecordFecha_final_pactada_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Suma_Equipo_En_Sitio__c</fieldItem>
                 <identifier>RecordSuma_Equipo_En_Sitio_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Suma_Adecuaciones__c</fieldItem>
                 <identifier>RecordSuma_Adecuaciones_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Suma_Site_Surveys__c</fieldItem>
                 <identifier>RecordSuma_Site_Surveys_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Total_Productos_Categorizados__c</fieldItem>
                 <identifier>RecordTotal_Productos_Categorizados_cField</identifier>
             </fieldInstance>
@@ -1133,18 +1466,30 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.OwnerId</fieldItem>
                 <identifier>RecordOwnerIdField2</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.CreatedById</fieldItem>
                 <identifier>RecordCreatedByIdField2</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Es_Telmex__c</fieldItem>
                 <identifier>RecordEs_Telmex_cField2</identifier>
             </fieldInstance>
@@ -1155,6 +1500,10 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.LastModifiedById</fieldItem>
                 <identifier>RecordLastModifiedByIdField2</identifier>
             </fieldInstance>
@@ -1171,6 +1520,10 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Aprobacion_por_comite_directivo__c</fieldItem>
                 <identifier>RecordAprobacion_por_comite_directivo_cField2</identifier>
             </fieldInstance>
@@ -1237,6 +1590,10 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Numero_de_sitios__c</fieldItem>
                 <identifier>RecordNumero_de_sitios_cField</identifier>
             </fieldInstance>
@@ -1261,12 +1618,20 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Saldo_cubierto_a_la_fecha__c</fieldItem>
                 <identifier>RecordSaldo_cubierto_a_la_fecha_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Cantidad_de_facturas_pendientes__c</fieldItem>
                 <identifier>RecordCantidad_de_facturas_pendientes_cField</identifier>
             </fieldInstance>
@@ -1277,12 +1642,20 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Saldo_pendiente_de_pago__c</fieldItem>
                 <identifier>RecordSaldo_pendiente_de_pago_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Observaciones_AI__c</fieldItem>
                 <identifier>RecordObservaciones_AI_cField2</identifier>
             </fieldInstance>
@@ -1317,42 +1690,70 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Margen_Bruto__c</fieldItem>
                 <identifier>RecordMargen_Bruto_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.EBITDA__c</fieldItem>
                 <identifier>RecordEBITDA_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Flujo_de_Efectivo__c</fieldItem>
                 <identifier>RecordFlujo_de_Efectivo_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.EBIT__c</fieldItem>
                 <identifier>RecordEBIT_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Payback__c</fieldItem>
                 <identifier>RecordPayback_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.ROI__c</fieldItem>
                 <identifier>RecordROI_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.TIR__c</fieldItem>
                 <identifier>RecordTIR_cField</identifier>
             </fieldInstance>
@@ -1363,42 +1764,70 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.CAPEX__c</fieldItem>
                 <identifier>RecordCAPEX_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Divisa_CAPEX__c</fieldItem>
                 <identifier>RecordDivisa_CAPEX_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Par_metros_de_rentabilidad__c</fieldItem>
                 <identifier>RecordPar_metros_de_rentabilidad_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Ingresos_por_cubrir__c</fieldItem>
                 <identifier>RecordIngresos_por_cubrir_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Costos_por_cubrir__c</fieldItem>
                 <identifier>RecordCostos_por_cubrir_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Es_viable_hacer_evaluaci_n_financiera__c</fieldItem>
                 <identifier>RecordEs_viable_hacer_evaluaci_n_financiera_cField2</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Observaciones_Pricing__c</fieldItem>
                 <identifier>RecordObservaciones_Pricing_cField2</identifier>
             </fieldInstance>
@@ -1433,12 +1862,20 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Adendum__c</fieldItem>
                 <identifier>RecordAdendum_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Observaciones_Legal__c</fieldItem>
                 <identifier>RecordObservaciones_Legal_cField2</identifier>
             </fieldInstance>
@@ -1449,6 +1886,10 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Vigencia_del_servicio__c</fieldItem>
                 <identifier>RecordVigencia_del_servicio_cField</identifier>
             </fieldInstance>
@@ -1483,12 +1924,20 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Proveedor_es_y_banda_del_SE__c</fieldItem>
                 <identifier>RecordProveedor_es_y_banda_del_SE_cField2</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Vigencia_contrato_proveedor_satelital__c</fieldItem>
                 <identifier>RecordVigencia_contrato_proveedor_satelital_cField</identifier>
             </fieldInstance>
@@ -1499,18 +1948,30 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Proxima_fecha_cambio_segmento__c</fieldItem>
                 <identifier>RecordProxima_fecha_cambio_segmento_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Monto_Cambio_SE__c</fieldItem>
                 <identifier>RecordMonto_Cambio_SE_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Observaciones_Infraestructura__c</fieldItem>
                 <identifier>RecordObservaciones_Infraestructura_cField2</identifier>
             </fieldInstance>
@@ -1619,30 +2080,50 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.PO_Orden_de_Servicio__c</fieldItem>
                 <identifier>RecordPO_Orden_de_Servicio_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Lista_de_Sitios__c</fieldItem>
                 <identifier>RecordLista_de_Sitios_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Contacto_Comercial__c</fieldItem>
                 <identifier>RecordContacto_Comercial_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Contacto_Tecnico__c</fieldItem>
                 <identifier>RecordContacto_Tecnico_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Observaciones_de_Control_Comercial__c</fieldItem>
                 <identifier>RecordObservaciones_de_Control_Comercial_cField2</identifier>
             </fieldInstance>
@@ -1653,24 +2134,40 @@
     <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Diagrama_de_Arquitectura__c</fieldItem>
                 <identifier>RecordDiagrama_de_Arquitectura_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Presupuesto_Proyecto__c</fieldItem>
                 <identifier>RecordPresupuesto_Proyecto_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Contacto_Administrativo__c</fieldItem>
                 <identifier>RecordContacto_Administrativo_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Validacion_de_no_Adeudo__c</fieldItem>
                 <identifier>RecordValidacion_de_no_Adeudo_cField</identifier>
             </fieldInstance>
@@ -1848,10 +2345,16 @@
                 <componentName>flexipage:tabset</componentName>
                 <identifier>flexipage_tabset</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Action__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Baja definitiva</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Action__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Cancelación de referencias</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -1865,10 +2368,16 @@
                 <componentName>flexipage:tabset</componentName>
                 <identifier>flexipage_tabset1</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Action__c}</leftValue>
                         <operator>NE</operator>
                         <rightValue>Baja definitiva</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Action__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Cancelación de referencias</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>

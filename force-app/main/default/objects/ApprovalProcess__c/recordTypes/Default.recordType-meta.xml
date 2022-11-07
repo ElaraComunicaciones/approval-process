@@ -15,6 +15,10 @@
             <fullName>Cambio - Altas crecimiento orgánico</fullName>
             <default>false</default>
         </values>
+        <values>
+            <fullName>Cancelación de referencias</fullName>
+            <default>false</default>
+        </values>
     </picklistValues>
     <picklistValues>
         <picklist>ChangeApprovalStages__c</picklist>
@@ -33,6 +37,17 @@
         <values>
             <fullName>Solicitado</fullName>
             <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Considerar_cobros_unicos__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Si</fullName>
+            <default>true</default>
         </values>
     </picklistValues>
     <picklistValues>
