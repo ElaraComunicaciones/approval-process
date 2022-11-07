@@ -5,6 +5,7 @@ import getRGUToApprove from '@salesforce/apex/ApprovalProcessControlRGUControlle
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
 import STAGE from '@salesforce/schema/ApprovalProcess__c.Stage__c';
+import ACCION from '@salesforce/schema/ApprovalProcess__c.Action__c';
 
 const columns = [
 	{
@@ -38,6 +39,7 @@ export default class ApprovalProcessControlRGUBajas extends LightningElement {
 	@track rgus = [];
 	@api kindOfProces = 1;
 	@track selectedRows = [];
+	mostrarTitulobajas = true;
 	isLoading = true;
 	columns = columns;
 	defaultSortDirection = 'asc';
@@ -63,27 +65,32 @@ export default class ApprovalProcessControlRGUBajas extends LightningElement {
 			this.rgus = data;
 			this.selectedRGUToApprove();
 			this.isLoading = false;
+			this.mostrarTitulobajas = this.accion !== 'Cancelación de referencias' ? true : false;
 		} else if (error) {
 			console.log('Error' + JSON.stringify(error));
 		}
 	}
 
-	@wire(getRecord, { recordId: '$recordId', fields: [STAGE] })
+	@wire(getRecord, { recordId: '$recordId', fields: [STAGE, ACCION] })
 	approvalProcess;
 
 	get stage() {
 		return getFieldValue(this.approvalProcess.data, STAGE);
 	}
 
+	get accion() {
+		return getFieldValue(this.approvalProcess.data, ACCION);
+	}
+
 	//Metodos del datatable para realizar el ordenamiento de las columnas
 	sortBy(field, reverse, primer) {
 		const key = primer
 			? function (x) {
-					return primer(x[field]);
-			  }
+				return primer(x[field]);
+			}
 			: function (x) {
-					return x[field];
-			  };
+				return x[field];
+			};
 
 		return function (a, b) {
 			a = key(a);
