@@ -239,4 +239,210 @@ public with sharing class CancellationApprovalProcess {
 		}
 		return setOppLoneItem;
 	}
+
+	public static void executeAfterUpdate(
+		List<ApprovalProcessMail__mdt> approvalProcessMail,
+		List<EmailTemplate> emailTemplates,
+		Map<Id, SObject> oldMap,
+		List<ApprovalProcess__c> lCancellationApprovalProcess,
+		Map<Id, Opportunity> opportunities,
+		Map<Id, Account> accounts,
+		List<User> users
+	) {
+		List<ApprovalProcess__c> newRequestedRecords = filterNewRequestedRecords(
+			oldMap,
+			lCancellationApprovalProcess
+		);
+
+		List<ApprovalProcess__c> newApprovedRecords = filterNewApprovedRecords(
+			oldMap,
+			lCancellationApprovalProcess
+		);
+
+		List<ApprovalProcess__c> newRejectRecords = filterRejectedRecords(
+			oldMap,
+			lCancellationApprovalProcess
+		);
+
+		// sendRejectNotifications(
+		// 	newRejectRecords,
+		// 	emailTemplates,
+		// 	approvalProcessMail,
+		// 	users
+		// );
+
+		// sendApprovalRequestNotifications(
+		// 	newRequestedRecords,
+		// 	emailTemplates,
+		// 	users
+		// );
+
+		operationsWithApprovedRecords(
+			newApprovedRecords,
+			opportunities,
+			accounts
+		);
+
+		// sendApprovedNotifications(
+		// 	newApprovedRecords,
+		// 	emailTemplates,
+		// 	approvalProcessMail,
+		// 	users
+		// );
+	}
+
+	@testVisible
+	private static List<ApprovalProcess__c> filterNewRequestedRecords(
+		Map<Id, SObject> oldMap,
+		List<ApprovalProcess__c> lApprovalProcessOfDeactivate
+	) {
+		List<ApprovalProcess__c> newRequestedRecords = new List<ApprovalProcess__c>();
+
+		System.debug(oldMap);
+
+		for (ApprovalProcess__c newApproval : lApprovalProcessOfDeactivate) {
+			ApprovalProcess__c oldApproval = (ApprovalProcess__c) oldMap.get(
+				newApproval.Id
+			);
+
+			System.debug(oldApproval.Stage__c);
+
+			if (oldApproval != null) {
+				if (
+					oldApproval.Stage__c == 'Iniciado' &&
+					newApproval.Stage__c == 'Solicitado'
+				) {
+					newRequestedRecords.add(newApproval);
+				}
+			}
+		}
+
+		return newRequestedRecords;
+	}
+
+	@testVisible
+	private static List<ApprovalProcess__c> filterNewApprovedRecords(
+		Map<Id, SObject> oldMap,
+		List<ApprovalProcess__c> newRecords
+	) {
+		List<ApprovalProcess__c> newRequestedRecords = new List<ApprovalProcess__c>();
+
+		System.debug(oldMap);
+
+		for (ApprovalProcess__c newApproval : newRecords) {
+			ApprovalProcess__c oldApproval = (ApprovalProcess__c) oldMap.get(
+				newApproval.Id
+			);
+
+			System.debug(oldApproval.Stage__c);
+
+			if (oldApproval != null) {
+				if (
+					oldApproval.Stage__c != 'Aprobado' &&
+					newApproval.Stage__c == 'Aprobado'
+				) {
+					newRequestedRecords.add(newApproval);
+				}
+			}
+		}
+
+		return newRequestedRecords;
+	}
+
+	@testVisible
+	private static List<ApprovalProcess__c> filterRejectedRecords(
+		Map<Id, SObject> oldMap,
+		List<ApprovalProcess__c> newRecords
+	) {
+		List<ApprovalProcess__c> newRejectedRecords = new List<ApprovalProcess__c>();
+
+		for (ApprovalProcess__c newApproval : newRecords) {
+			ApprovalProcess__c oldApproval = (ApprovalProcess__c) oldMap.get(
+				newApproval.Id
+			);
+
+			System.debug(oldApproval.Stage__c);
+
+			if (oldApproval != null) {
+				if (
+					oldApproval.Stage__c == 'Solicitado' &&
+					newApproval.Stage__c == 'Rechazado'
+				) {
+					newRejectedRecords.add(newApproval);
+				}
+			}
+		}
+
+		return newRejectedRecords;
+	}
+
+	@testVisible
+	private static void operationsWithApprovedRecords(
+		List<ApprovalProcess__c> approvedRecords,
+		Map<Id, Opportunity> opportunities,
+		Map<Id, Account> accounts
+	) {
+		createProjectHistoryValue(approvedRecords, opportunities);
+		createAccountHistoryValue(approvedRecords, opportunities, accounts);
+
+		Set<Id> setIdsOlis = getOlisToUpdateSalePrice(approvedRecords);
+
+		String query = 'Select id, UnitPrice__c from OpportunityLineItem where id in: setIdsOlis';
+
+		if (setIdsOlis.size() > 0) {
+			ID batchprocessid = Database.executeBatch(
+				new BatchUpdateOLISCancelled(query, setIdsOlis),
+				200
+			);
+		}
+	}
+
+	@testVisible
+	private static void createProjectHistoryValue(
+		List<ApprovalProcess__c> approvedRecords,
+		Map<Id, Opportunity> opportunities
+	) {
+		List<TotalProjectValueHistory__c> lHistoryValue = new List<TotalProjectValueHistory__c>();
+
+		for (ApprovalProcess__c approvalProcess : approvedRecords) {
+			TotalProjectValueHistory__c historyValue = new TotalProjectValueHistory__c();
+			Opportunity currentOpp = opportunities.get(
+				approvalProcess.Opportunity__c
+			);
+			historyValue.Opportunity__c = approvalProcess.Opportunity__c;
+			historyValue.Total_Proyecto_OldValue__c = currentOpp.Total_Proyecto__c;
+			historyValue.Total_Proyecto_NewValue__c =
+				currentOpp.Total_Proyecto__c -
+				approvalProcess.Decremento_en_VTC__c;
+
+			lHistoryValue.add(historyValue);
+		}
+
+		insert lHistoryValue;
+	}
+
+	@testVisible
+	private static void createAccountHistoryValue(
+		List<ApprovalProcess__c> approvedRecords,
+		Map<Id, Opportunity> opportunities,
+		Map<Id, Account> accounts
+	) {
+		List<TotalAccountValueHistory__c> lHistoryValue = new List<TotalAccountValueHistory__c>();
+
+		for (ApprovalProcess__c approvalProcess : approvedRecords) {
+			TotalAccountValueHistory__c historyValue = new TotalAccountValueHistory__c();
+			Account currentAccount = accounts.get(
+				opportunities.get(approvalProcess.Opportunity__c).AccountId
+			);
+			historyValue.Account__c = currentAccount.Id;
+			historyValue.Total_Account_OldValue__c = currentAccount.Total_Proyecto__c;
+			historyValue.Total_Account_NewValue__c =
+				currentAccount.Total_Proyecto__c -
+				approvalProcess.Decremento_en_VTC__c;
+
+			lHistoryValue.add(historyValue);
+		}
+
+		insert lHistoryValue;
+	}
 }

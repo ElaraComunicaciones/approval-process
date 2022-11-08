@@ -134,6 +134,11 @@ public with sharing class ApprovalProcessAPI {
 			(List<ApprovalProcess__c>) triggerParams.newList
 		);
 
+		//Obtenemos los procesos de aprobación que correspone a cancelación
+		List<ApprovalProcess__c> lCancellationApprovalProcess = CancellationApprovalProcess(
+			(List<ApprovalProcess__c>) triggerParams.newList
+		);
+
 		Map<Id, Opportunity> opportunities = getOpportunitiesByApprovalProcess(
 			(List<ApprovalProcess__c>) triggerParams.newList
 		);
@@ -163,6 +168,16 @@ public with sharing class ApprovalProcessAPI {
 			emailTemplates,
 			triggerParams.oldMap,
 			lOrganicGrowthApprovalProcess,
+			opportunities,
+			accounts,
+			users
+		);
+
+		CancellationApprovalProcess.executeAfterUpdate(
+			approvalProcessMail,
+			emailTemplates,
+			triggerParams.oldMap,
+			lCancellationApprovalProcess,
 			opportunities,
 			accounts,
 			users
