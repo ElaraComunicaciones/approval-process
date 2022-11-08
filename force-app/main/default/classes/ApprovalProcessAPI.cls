@@ -50,6 +50,10 @@ public with sharing class ApprovalProcessAPI {
 			(List<ApprovalProcess__c>) triggerParams.newList
 		);
 
+		List<ApprovalProcess__c> cancellationAP = CancellationApprovalProcess(
+			(List<ApprovalProcess__c>) triggerParams.newList
+		);
+
 		DeactivateApprovalProcess.executeBeforeUpdateProcess(
 			triggerParams.oldMap,
 			lDeactivateApprovalProcess
@@ -58,6 +62,11 @@ public with sharing class ApprovalProcessAPI {
 		OrganicGrowthApprovalProcess.executeBeforeUpdateProcess(
 			triggerParams.oldMap,
 			organicGrowthAP
+		);
+
+		CancellationApprovalProcess.executeBeforeUpdateProcess(
+			triggerParams.oldMap,
+			cancellationAP
 		);
 	}
 
@@ -84,6 +93,22 @@ public with sharing class ApprovalProcessAPI {
 			if (
 				currentApprovalProcess.Action__c ==
 				'Cambio - Altas crecimiento orgánico'
+			) {
+				organicGrowthApprovalProcess.add(currentApprovalProcess);
+			}
+		}
+
+		return organicGrowthApprovalProcess;
+	}
+
+	public static List<ApprovalProcess__c> cancellationApprovalProcess(
+		List<ApprovalProcess__c> approvalProcess
+	) {
+		List<ApprovalProcess__c> organicGrowthApprovalProcess = new List<ApprovalProcess__c>();
+
+		for (ApprovalProcess__c currentApprovalProcess : approvalProcess) {
+			if (
+				currentApprovalProcess.Action__c == 'Cancelación de referencias'
 			) {
 				organicGrowthApprovalProcess.add(currentApprovalProcess);
 			}

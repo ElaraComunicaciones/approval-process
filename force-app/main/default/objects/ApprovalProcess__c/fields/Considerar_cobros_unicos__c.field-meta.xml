@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Considerar_cobros_unicos__c</fullName>
     <externalId>false</externalId>
+    <inlineHelpText>Si considerar cobros únicos está en &quot;Sí&quot;, al realizar la cancelación los productos con cobros únicos al igual que los mensuales pasarán a $0.00 de lo contrarió si considerar cobros únicos está en &quot;No&quot;, solo los los productos con cobros mensuales pasará a $0.00</inlineHelpText>
     <label>Considerar cobros únicos</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
