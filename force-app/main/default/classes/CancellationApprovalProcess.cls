@@ -271,11 +271,11 @@ public with sharing class CancellationApprovalProcess {
 		// 	users
 		// );
 
-		// sendApprovalRequestNotifications(
-		// 	newRequestedRecords,
-		// 	emailTemplates,
-		// 	users
-		// );
+		sendApprovalRequestNotifications(
+			newRequestedRecords,
+			emailTemplates,
+			users
+		);
 
 		operationsWithApprovedRecords(
 			newApprovedRecords,
@@ -444,5 +444,46 @@ public with sharing class CancellationApprovalProcess {
 		}
 
 		insert lHistoryValue;
+	}
+
+	@testVisible
+	private static void sendApprovalRequestNotifications(
+		List<ApprovalProcess__c> newRequestedRecords,
+		List<EmailTemplate> emailTemplates,
+		List<User> users
+	) {
+		EmailTemplate solicitudControlComercialCancelacion;
+
+		List<String> sendTo;
+		List<String> sendCC;
+		List<String> sendCCO;
+
+		List<String> commericial = ApprovalProcessAPI.getCommercialControlMail(
+			users
+		);
+		List<String> proccesMail = ApprovalProcessAPI.getProcessMail(users);
+
+		for (EmailTemplate template : emailTemplates) {
+			switch on template.name {
+				when 'SL_B2 Aprobación de cancelación durante la implementación Control Comercial' {
+					solicitudControlComercialCancelacion = template;
+				}
+			}
+		}
+
+		for (ApprovalProcess__c approvalProcess : newRequestedRecords) {
+			sendTo = ApprovalProcessAPI.getCommercialControlMail(users);
+			sendCC = ApprovalProcessAPI.getCEOMail(users);
+			sendCC.addAll(proccesMail);
+			sendCCO = new List<String>();
+
+			ApprovalProcessAPI.SendEmailNotifications(
+				solicitudControlComercialCancelacion,
+				sendTo,
+				sendCC,
+				sendCCO,
+				approvalProcess
+			);
+		}
 	}
 }

@@ -19,7 +19,7 @@ public with sharing class ApprovalProcessAPI {
 		return [
 			SELECT ID, Name, Subject, Body, FolderId, FolderName, HtmlValue
 			FROM EmailTemplate
-			WHERE FolderId IN ('00l6T000002S0m4QAC', '00l6T000002S0mxQAC')
+			WHERE FolderId IN ('00l6T000002S0m4QAC', '00l6T000002S0mxQAC','00l77000000QJLcAAO')
 		];
 	}
 
