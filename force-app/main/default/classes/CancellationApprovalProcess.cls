@@ -465,7 +465,7 @@ public with sharing class CancellationApprovalProcess {
 
 		for (EmailTemplate template : emailTemplates) {
 			switch on template.name {
-				when 'SL_B2 Aprobación de cancelación durante la implementación Control Comercial' {
+				when 'SL_BC1 Solicitud de aprobación de cancelación durante la implementación' {
 					solicitudControlComercialCancelacion = template;
 				}
 			}
@@ -502,7 +502,7 @@ public with sharing class CancellationApprovalProcess {
 
 		for (EmailTemplate template : emailTemplates) {
 			switch on template.name {
-				when 'RS_B3 Aprobación baja denegada por Control Comercial' {
+				when 'RS_BC2 Aprobación Cancelación Denegada' {
 					denegadoControlComercialCancelacion = template;
 				}
 			}
@@ -546,10 +546,10 @@ public with sharing class CancellationApprovalProcess {
 
 		for (EmailTemplate template : emailTemplates) {
 			switch on template.name {
-				when 'SL_B4 Implementación de Baja' {
+				when 'SL_BC2 Solicitud de Cancelación de RE a PM' {
 					solicitudCancelacion = template;
 				}
-				when 'RS_B1 Aprobación baja aceptada' {
+				when 'RS_BC1 Aprobación Cancelación Aceptada' {
 					solicitudAceptada = template;
 				}
 			}
