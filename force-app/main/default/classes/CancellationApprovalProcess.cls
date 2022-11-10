@@ -264,12 +264,12 @@ public with sharing class CancellationApprovalProcess {
 			lCancellationApprovalProcess
 		);
 
-		// sendRejectNotifications(
-		// 	newRejectRecords,
-		// 	emailTemplates,
-		// 	approvalProcessMail,
-		// 	users
-		// );
+		sendRejectNotifications(
+			newRejectRecords,
+			emailTemplates,
+			approvalProcessMail,
+			users
+		);
 
 		sendApprovalRequestNotifications(
 			newRequestedRecords,
@@ -283,12 +283,12 @@ public with sharing class CancellationApprovalProcess {
 			accounts
 		);
 
-		// sendApprovedNotifications(
-		// 	newApprovedRecords,
-		// 	emailTemplates,
-		// 	approvalProcessMail,
-		// 	users
-		// );
+		sendApprovedNotifications(
+			newApprovedRecords,
+			emailTemplates,
+			approvalProcessMail,
+			users
+		);
 	}
 
 	@testVisible
@@ -481,6 +481,109 @@ public with sharing class CancellationApprovalProcess {
 				solicitudControlComercialCancelacion,
 				sendTo,
 				sendCC,
+				sendCCO,
+				approvalProcess
+			);
+		}
+	}
+
+	@testVisible
+	private static void sendRejectNotifications(
+		List<ApprovalProcess__c> newRejectedRecords,
+		List<EmailTemplate> emailTemplates,
+		List<ApprovalProcessMail__mdt> approvalProcessMail,
+		List<User> users
+	) {
+		EmailTemplate denegadoControlComercialCancelacion;
+
+		List<String> sendTo;
+		List<String> sendCC = ApprovalProcessAPI.getProcessMail(users);
+		List<String> sendCCO;
+
+		for (EmailTemplate template : emailTemplates) {
+			switch on template.name {
+				when 'RS_B3 Aprobación baja denegada por Control Comercial' {
+					denegadoControlComercialCancelacion = template;
+				}
+			}
+		}
+
+		for (ApprovalProcess__c approvalProcess : newRejectedRecords) {
+			sendTo = new List<String>();
+			sendCCO = new List<String>();
+			for (User userMail : users) {
+				if (userMail.id == approvalProcess.OwnerId) {
+					sendTo.add(userMail.email);
+					break;
+				}
+			}
+
+			ApprovalProcessAPI.SendEmailNotifications(
+				denegadoControlComercialCancelacion,
+				sendTo,
+				sendCC,
+				sendCCO,
+				approvalProcess
+			);
+		}
+	}
+
+	public static void sendApprovedNotifications(
+		List<ApprovalProcess__c> approvedNotification,
+		List<EmailTemplate> emailTemplates,
+		List<ApprovalProcessMail__mdt> approvalProcessMail,
+		List<User> users
+	) {
+		EmailTemplate solicitudCancelacion;
+		EmailTemplate solicitudAceptada;
+		List<String> sendTo;
+		List<String> sendCC;
+		List<String> sendCCO;
+		List<String> commercialMail = ApprovalProcessAPI.getCommercialControlMail(
+			users
+		);
+		List<String> processMail = ApprovalProcessAPI.getProcessMail(users);
+
+		for (EmailTemplate template : emailTemplates) {
+			switch on template.name {
+				when 'SL_B4 Implementación de Baja' {
+					solicitudCancelacion = template;
+				}
+				when 'RS_B1 Aprobación baja aceptada' {
+					solicitudAceptada = template;
+				}
+			}
+		}
+
+		for (ApprovalProcess__c approvalProcess : approvedNotification) {
+			sendTo = new List<String>();
+			sendCC = new List<String>();
+			sendCCO = new List<String>();
+			for (ApprovalProcessMail__mdt approvalMail : approvalProcessMail) {
+				if (approvalMail.Rol__c == 'Notificacion aprobado')
+					sendTo.add(approvalMail.Correo_Elara__c);
+			}
+
+			for (User userMail : users) {
+				if (approvalProcess.OwnerId == userMail.Id)
+					sendCC.add(userMail.Email);
+			}
+
+			sendCC.addAll(commercialMail);
+			sendCC.addAll(processMail);
+
+			ApprovalProcessAPI.SendEmailNotifications(
+				solicitudCancelacion,
+				sendTo,
+				sendCC,
+				sendCCO,
+				approvalProcess
+			);
+
+			ApprovalProcessAPI.SendEmailNotifications(
+				solicitudAceptada,
+				sendCC,
+				new List<String>(),
 				sendCCO,
 				approvalProcess
 			);
