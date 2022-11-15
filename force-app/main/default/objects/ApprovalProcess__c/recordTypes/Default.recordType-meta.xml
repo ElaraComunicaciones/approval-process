@@ -216,6 +216,29 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Tipos_de_servicios_a_cobrar__c</picklist>
+        <values>
+            <fullName>ADECUACIONES</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>INSTALACION</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SITE SURVEY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SOPORTE EN SITIO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VISITA FALLIDA</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Validacion_de_no_Adeudo__c</picklist>
         <values>
             <fullName>Con adeudo %2F aprobado por AI</fullName>

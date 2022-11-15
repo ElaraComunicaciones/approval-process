@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tipos_de_servicios_a_cobrar__c</fullName>
+    <externalId>false</externalId>
+    <label>Tipos de servicios a cobrar</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>INSTALACION</fullName>
+                <default>false</default>
+                <label>INSTALACION</label>
+            </value>
+            <value>
+                <fullName>SITE SURVEY</fullName>
+                <default>false</default>
+                <label>SITE SURVEY</label>
+            </value>
+            <value>
+                <fullName>VISITA FALLIDA</fullName>
+                <default>false</default>
+                <label>VISITA FALLIDA</label>
+            </value>
+            <value>
+                <fullName>ADECUACIONES</fullName>
+                <default>false</default>
+                <label>ADECUACIONES</label>
+            </value>
+            <value>
+                <fullName>SOPORTE EN SITIO</fullName>
+                <default>false</default>
+                <label>SOPORTE EN SITIO</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

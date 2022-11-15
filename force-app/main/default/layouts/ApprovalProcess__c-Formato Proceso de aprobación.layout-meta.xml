@@ -107,6 +107,10 @@
                 <behavior>Edit</behavior>
                 <field>Considerar_cobros_unicos__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Tipos_de_servicios_a_cobrar__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

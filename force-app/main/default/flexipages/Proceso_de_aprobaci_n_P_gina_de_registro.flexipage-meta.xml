@@ -252,6 +252,20 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Tipos_de_servicios_a_cobrar__c</fieldItem>
+                <identifier>RecordTipos_de_servicios_a_cobrar_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-b598d059-80b7-40db-be6a-e764d6c43fb1</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
@@ -259,6 +273,16 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
                 <identifier>flexipage_column30</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-b598d059-80b7-40db-be6a-e764d6c43fb1</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column31</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-c0755cd3-8cce-4f16-a9df-2f99c46abed8</name>
