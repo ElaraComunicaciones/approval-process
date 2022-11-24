@@ -39,7 +39,7 @@ export default class ApprovalProcessControlRGUBajas extends LightningElement {
 	@track rgus = [];
 	@api kindOfProces = 1;
 	@track selectedRows = [];
-	mostrarTitulobajas = true;
+	tituloMostrar = '';
 	isLoading = true;
 	columns = columns;
 	defaultSortDirection = 'asc';
@@ -65,7 +65,7 @@ export default class ApprovalProcessControlRGUBajas extends LightningElement {
 			this.rgus = data;
 			this.selectedRGUToApprove();
 			this.isLoading = false;
-			this.mostrarTitulobajas = this.accion !== 'Cancelación de referencias' ? true : false;
+			this.tituloMostrar = this.accion !== 'Cancelación de referencias' ? 'Referencias Elara a dar de baja' : 'Referencias Elara a cancelar';
 		} else if (error) {
 			console.log('Error' + JSON.stringify(error));
 		}

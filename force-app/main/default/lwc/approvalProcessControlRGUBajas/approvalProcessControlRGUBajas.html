@@ -15,22 +15,11 @@
 							<div class="slds-page-header__name">
 								<div class="slds-page-header__name-title">
 									<h1>
-										<template if:true={mostrarTitulobajas}>
-											<span
-												class="slds-page-header__title slds-truncate"
-												title="Referencias Elara a dar de baja"
-												>Referencias Elara a dar de
-												baja</span
-											>
-										</template>
-										<template if:false={mostrarTitulobajas}>
-											<span
-												class="slds-page-header__title slds-truncate"
-												title="Referencias Elara a cancelar"
-												>Referencias Elara a
-												cancelar</span
-											>
-										</template>
+										<span
+											class="slds-page-header__title slds-truncate"
+											title="Referencias Elara a dar de baja"
+											>{tituloMostrar}</span
+										>
 									</h1>
 								</div>
 							</div>
