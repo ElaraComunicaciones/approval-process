@@ -65,7 +65,8 @@ export default class ApprovalProcessControlRGUBajas extends LightningElement {
 			this.rgus = data;
 			this.selectedRGUToApprove();
 			this.isLoading = false;
-			this.tituloMostrar = this.accion !== 'Cancelación de referencias' ? 'Referencias Elara a dar de baja' : 'Referencias Elara a cancelar';
+			this.tituloMostrar = this.accion === 'Cancelación de referencias' ? 'Referencias Elara a Cancelar' :
+				this.accion === 'Baja definitiva' ? 'Referencias Elara a Dar de Baja' : 'Referencias Elara a Actualizar';
 		} else if (error) {
 			console.log('Error' + JSON.stringify(error));
 		}
