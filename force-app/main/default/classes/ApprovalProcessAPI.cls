@@ -19,7 +19,12 @@ public with sharing class ApprovalProcessAPI {
 		return [
 			SELECT ID, Name, Subject, Body, FolderId, FolderName, HtmlValue
 			FROM EmailTemplate
-			WHERE FolderId IN ('00l6T000002S0m4QAC', '00l6T000002S0mxQAC','00l6T000002BO33QAG')
+			WHERE
+				FolderId IN (
+					'00l6T000002S0m4QAC',
+					'00l6T000002S0mxQAC',
+					'00l6T000002BO33QAG'
+				)
 		];
 	}
 
@@ -54,6 +59,10 @@ public with sharing class ApprovalProcessAPI {
 			(List<ApprovalProcess__c>) triggerParams.newList
 		);
 
+		List<ApprovalProcess__c> updatesAP = updatesApprovalProcess(
+			(List<ApprovalProcess__c>) triggerParams.newList
+		);
+
 		DeactivateApprovalProcess.executeBeforeUpdateProcess(
 			triggerParams.oldMap,
 			lDeactivateApprovalProcess
@@ -67,6 +76,11 @@ public with sharing class ApprovalProcessAPI {
 		CancellationApprovalProcess.executeBeforeUpdateProcess(
 			triggerParams.oldMap,
 			cancellationAP
+		);
+
+		UpdatesApprovalProcess.executeBeforeUpdateProcess(
+			triggerParams.oldMap,
+			updatesAP
 		);
 	}
 
@@ -117,6 +131,20 @@ public with sharing class ApprovalProcessAPI {
 		return organicGrowthApprovalProcess;
 	}
 
+	public static List<ApprovalProcess__c> updatesApprovalProcess(
+		List<ApprovalProcess__c> approvalProcess
+	) {
+		List<ApprovalProcess__c> lUpdatesApprovalProcess = new List<ApprovalProcess__c>();
+
+		for (ApprovalProcess__c currentApprovalProcess : approvalProcess) {
+			if (currentApprovalProcess.Action__c == 'Cambio - Actualización') {
+				lUpdatesApprovalProcess.add(currentApprovalProcess);
+			}
+		}
+
+		return lUpdatesApprovalProcess;
+	}
+
 	public static void executeAfterUpdateProcesses(
 		TriggerParameters triggerParams
 	) {
@@ -136,6 +164,11 @@ public with sharing class ApprovalProcessAPI {
 
 		//Obtenemos los procesos de aprobación que correspone a cancelación
 		List<ApprovalProcess__c> lCancellationApprovalProcess = CancellationApprovalProcess(
+			(List<ApprovalProcess__c>) triggerParams.newList
+		);
+
+		//Obtenemos los procesos de aprobación que correspone a actuaulizacion
+		List<ApprovalProcess__c> lUpdatesApprovalProcess = UpdatesApprovalProcess(
 			(List<ApprovalProcess__c>) triggerParams.newList
 		);
 
@@ -178,6 +211,16 @@ public with sharing class ApprovalProcessAPI {
 			emailTemplates,
 			triggerParams.oldMap,
 			lCancellationApprovalProcess,
+			opportunities,
+			accounts,
+			users
+		);
+
+		UpdatesApprovalProcess.executeAfterUpdate(
+			approvalProcessMail,
+			emailTemplates,
+			triggerParams.oldMap,
+			lUpdatesApprovalProcess,
 			opportunities,
 			accounts,
 			users
