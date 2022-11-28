@@ -819,6 +819,7 @@ public with sharing class UpdatesApprovalProcess {
 				TipoDeCambioCotizado__c,
 				Tipo_de_ingreso__c,
 				UnitPrice__c,
+				Plazo__c,
 				Proceso_de_aprobacion__r.Opportunity__c,
 				Referencia_Elara_por_aprobar__r.Referencia_Elara_Original__c
 			FROM OpportunityItemConsent__c
