@@ -6,26 +6,19 @@
         <label>Baja definitiva</label>
     </customValue>
     <customValue>
-        <fullName>Cambio - Altas crecimiento orgánico</fullName>
-        <default>false</default>
-        <label>Cambio - Altas crecimiento orgánico</label>
-    </customValue>
-    <customValue>
         <fullName>Cancelación de referencias</fullName>
         <default>false</default>
         <label>Cancelación de referencias</label>
     </customValue>
     <customValue>
-        <fullName>Cambio - Reactivación del servicio</fullName>
+        <fullName>Cambio - Altas crecimiento orgánico</fullName>
         <default>false</default>
-        <isActive>false</isActive>
-        <label>Cambio - Reactivación del servicio</label>
+        <label>Cambio - Altas crecimiento orgánico</label>
     </customValue>
     <customValue>
-        <fullName>Migración</fullName>
+        <fullName>Cambio - Actualización</fullName>
         <default>false</default>
-        <isActive>false</isActive>
-        <label>Migración</label>
+        <label>Cambio - Actualización</label>
     </customValue>
     <customValue>
         <fullName>Incremento</fullName>
@@ -88,28 +81,34 @@
         <label>Finalización del ingreso</label>
     </customValue>
     <customValue>
+        <fullName>Migración</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Migración</label>
+    </customValue>
+    <customValue>
+        <fullName>Cambio - Reactivación del servicio</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Cambio - Reactivación del servicio</label>
+    </customValue>
+    <customValue>
         <fullName>Cambio - Suspensión del servicio</fullName>
         <default>false</default>
         <isActive>false</isActive>
         <label>Cambio - Suspensión del servicio</label>
     </customValue>
     <customValue>
-        <fullName>Cambio - Transferencia RE</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Cambio - Transferencia RE</label>
-    </customValue>
-    <customValue>
-        <fullName>Cambio - Actualización</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Cambio - Actualización</label>
-    </customValue>
-    <customValue>
         <fullName>Cambio - Reemplazo RE</fullName>
         <default>false</default>
         <isActive>false</isActive>
         <label>Cambio - Reemplazo RE</label>
+    </customValue>
+    <customValue>
+        <fullName>Cambio - Transferencia RE</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Cambio - Transferencia RE</label>
     </customValue>
     <masterLabel>Apobración Acción</masterLabel>
     <sorted>false</sorted>

@@ -2472,6 +2472,19 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
+                <componentName>addOLIManager</componentName>
+                <identifier>c_addOLIManager</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Action__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Cambio - Actualización</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>parentFieldApiName</name>
                     <value>ApprovalProcess__c.Id</value>
@@ -2495,10 +2508,16 @@
                 <componentName>force:relatedListSingleContainer</componentName>
                 <identifier>force_relatedListSingleContainer4</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Action__c}</leftValue>
                         <operator>NE</operator>
                         <rightValue>Baja definitiva</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Action__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Cambio - Actualización</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>

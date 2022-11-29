@@ -1,0 +1,53 @@
+<template>
+	<div class="component_holder">
+		<template if:true={isSpinnerVisible}>
+			<div class="spinner_holder">
+				<lightning-spinner
+					alternative-text="Loading"
+					size="medium"
+				></lightning-spinner>
+			</div>
+		</template>
+		<div class="card_holder">
+			<lightning-card
+				icon-name="standard:product"
+				class="opportunity-line-item-icon"
+			>
+				<h1 slot="title">Productos de oportunidad por aprobar</h1>
+
+				<div slot="actions">
+					<lightning-button-icon
+						icon-name="utility:add"
+						onclick={showProductSelector}
+					></lightning-button-icon>
+				</div>
+
+				<div class="slds-p-around_small">
+					<lightning-datatable
+						key-field={id}
+						data={data}
+						columns={columns}
+						hide-checkbox-column
+					>
+					</lightning-datatable>
+				</div>
+
+				<c-product-selector-card-to-approve
+					class="slds-hide"
+					oncancel={handleCancel}
+					onsave={handleSave}
+					record-id={recordId}
+					object-api-name={objectApiName}
+				>
+				</c-product-selector-card-to-approve>
+
+				<div slot="footer">
+					<c-view-all-olis-to-approve
+						record-id={recordId}
+						object-api-name={objectApiName}
+					></c-view-all-olis-to-approve>
+				</div>
+			</lightning-card>
+		</div>
+	</div>
+</template>
