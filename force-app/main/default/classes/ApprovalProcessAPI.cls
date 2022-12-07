@@ -257,7 +257,7 @@ public with sharing class ApprovalProcessAPI {
 			approvalProcessMail,
 			emailTemplates,
 			triggerParams.oldMap,
-			lDeactivateApprovalProcess,
+			lDeactingByUpdate,
 			opportunities,
 			accounts,
 			RGUPerApprovalProcess,

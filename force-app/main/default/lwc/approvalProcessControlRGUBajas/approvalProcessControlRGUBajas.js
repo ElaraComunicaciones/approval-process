@@ -79,6 +79,10 @@ export default class ApprovalProcessControlRGUBajas extends LightningElement {
 					this.tituloMostrar = 'Referencias Elara a Actualizar';
 					break;
 
+				case 'Baja por actualización':
+					this.tituloMostrar = 'Referencias Elara a Actualizar';
+					break;
+
 				default:
 					this.tituloMostrar = 'Tipo de proceso de aprobación no definido'
 			}
