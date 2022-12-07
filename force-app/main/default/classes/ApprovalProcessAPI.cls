@@ -63,6 +63,10 @@ public with sharing class ApprovalProcessAPI {
 			(List<ApprovalProcess__c>) triggerParams.newList
 		);
 
+		List<ApprovalProcess__c> lDeactingByUpdate = deactingByUpdate(
+			(List<ApprovalProcess__c>) triggerParams.newList
+		);
+
 		DeactivateApprovalProcess.executeBeforeUpdateProcess(
 			triggerParams.oldMap,
 			lDeactivateApprovalProcess
@@ -81,6 +85,11 @@ public with sharing class ApprovalProcessAPI {
 		UpdatesApprovalProcess.executeBeforeUpdateProcess(
 			triggerParams.oldMap,
 			updatesAP
+		);
+
+		DeactingByUpdate.executeBeforeUpdateProcess(
+			triggerParams.oldMap,
+			lDeactingByUpdate
 		);
 	}
 
@@ -145,6 +154,20 @@ public with sharing class ApprovalProcessAPI {
 		return lUpdatesApprovalProcess;
 	}
 
+	public static List<ApprovalProcess__c> deactingByUpdate(
+		List<ApprovalProcess__c> approvalProcess
+	) {
+		List<ApprovalProcess__c> lDeactingByUpdate = new List<ApprovalProcess__c>();
+
+		for (ApprovalProcess__c currentApprovalProcess : approvalProcess) {
+			if (currentApprovalProcess.Action__c == 'Baja por actualización') {
+				lDeactingByUpdate.add(currentApprovalProcess);
+			}
+		}
+
+		return lDeactingByUpdate;
+	}
+
 	public static void executeAfterUpdateProcesses(
 		TriggerParameters triggerParams
 	) {
@@ -169,6 +192,10 @@ public with sharing class ApprovalProcessAPI {
 
 		//Obtenemos los procesos de aprobación que correspone a actuaulizacion
 		List<ApprovalProcess__c> lUpdatesApprovalProcess = UpdatesApprovalProcess(
+			(List<ApprovalProcess__c>) triggerParams.newList
+		);
+
+		List<ApprovalProcess__c> lDeactingByUpdate = deactingByUpdate(
 			(List<ApprovalProcess__c>) triggerParams.newList
 		);
 
@@ -223,6 +250,17 @@ public with sharing class ApprovalProcessAPI {
 			lUpdatesApprovalProcess,
 			opportunities,
 			accounts,
+			users
+		);
+
+		DeactingByUpdate.executeAfterUpdate(
+			approvalProcessMail,
+			emailTemplates,
+			triggerParams.oldMap,
+			lDeactivateApprovalProcess,
+			opportunities,
+			accounts,
+			RGUPerApprovalProcess,
 			users
 		);
 

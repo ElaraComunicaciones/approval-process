@@ -12,6 +12,10 @@
             <default>false</default>
         </values>
         <values>
+            <fullName>Baja por actualización</fullName>
+            <default>false</default>
+        </values>
+        <values>
             <fullName>Cambio - Altas crecimiento orgánico</fullName>
             <default>false</default>
         </values>

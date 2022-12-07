@@ -21,10 +21,9 @@
         <label>Cambio - Actualización</label>
     </customValue>
     <customValue>
-        <fullName>Incremento</fullName>
+        <fullName>Baja por actualización</fullName>
         <default>false</default>
-        <isActive>false</isActive>
-        <label>Incremento</label>
+        <label>Baja por actualización</label>
     </customValue>
     <customValue>
         <fullName>Decremento</fullName>
@@ -79,6 +78,12 @@
         <default>false</default>
         <isActive>false</isActive>
         <label>Finalización del ingreso</label>
+    </customValue>
+    <customValue>
+        <fullName>Incremento</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Incremento</label>
     </customValue>
     <customValue>
         <fullName>Migración</fullName>
