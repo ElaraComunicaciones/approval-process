@@ -1,5 +1,5 @@
-@istest
-public with sharing class UpdatesApprovalProcessTest {
+@isTest
+public with sharing class DeactingByUpdateTest {
 	@TestSetup
 	static void makeData() {
 		Test.setMock(HttpCalloutMock.class, new COSAPI_MockTesting());
@@ -73,7 +73,9 @@ public with sharing class UpdatesApprovalProcessTest {
 			NumeroDeSitios__c = 10
 		);
 
-		insert testSite;
+		TipoDeSitioTriggerSettings.insertWithoutTriggers(
+			new List<TipoDeSitio__c>{ testSite }
+		);
 
 		RGU__c testReference = new RGU__c(
 			Tipo_de_sitio__c = testSite.Id,
@@ -96,7 +98,7 @@ public with sharing class UpdatesApprovalProcessTest {
 			Quantity = 2,
 			Forma_de_Cobro__c = 'Mensual',
 			Fecha_Inicio_Ingreso__c = Date.today(),
-			Fecha_Fin_Ingreso__c = Date.today().ADDMONTHS(3),
+			Fecha_Fin_Ingreso__c = Date.today(),
 			Plazo__c = 3,
 			Divisa_de_Cotizacion__c = 'USD',
 			Linea_de_Negocio__c = 'Conectividad'
@@ -111,7 +113,6 @@ public with sharing class UpdatesApprovalProcessTest {
 			Quantity = 2,
 			Forma_de_Cobro__c = 'Mensual',
 			Fecha_Inicio_Ingreso__c = Date.today(),
-			Fecha_Fin_Ingreso__c = Date.today().ADDMONTHS(3),
 			Plazo__c = 3,
 			Divisa_de_Cotizacion__c = 'USD',
 			Linea_de_Negocio__c = 'Conectividad'
@@ -125,7 +126,7 @@ public with sharing class UpdatesApprovalProcessTest {
 		ApprovalProcess__c approval = new ApprovalProcess__c(
 			Nombre__c = 'Proceso de prueba',
 			Detail__c = 'Detalle',
-			Action__c = 'Cambio - Actualización',
+			Action__c = 'Baja por actualización',
 			Opportunity__c = testOpportunity.Id,
 			Stage__c = 'Iniciado'
 		);
@@ -141,116 +142,159 @@ public with sharing class UpdatesApprovalProcessTest {
 			approval.stage__c,
 			referencia
 		);
-
-		RGU_Change_to_approve__c reference = [
-			SELECT Id, Name
-			FROM RGU_Change_to_approve__c
-			LIMIT 1
-		];
-
-		OpportunityItemConsent__c oli = new OpportunityItemConsent__c();
-		oli.Proceso_de_aprobacion__c = approval.id;
-		oli.PricebookEntryId__c = testEntry.Id;
-		oli.Referencia_Elara_por_aprobar__c = reference.Id;
-		oli.UnitPrice__c = 1000;
-		oli.Quantity__c = 1;
-		oli.Fecha_Inicio_de_Ingreso__c = Date.today();
-		oli.Forma_de_Cobro__c = 'Pago Único';
-		oli.Plazo__c = 1;
-
-		insert oli;
-
-		UpdatesApprovalProcess.validateCompleteInformation(Approval);
 	}
 
 	@istest
-	static void TestingRequestApproval() {
+	public static void testChangeStageToSolicitado() {
 		OpportunityTriggerSettings.setCurrentActiveValue(false);
 		AccountTriggerSettings.setCurrentActiveValue(false);
 		TipoDeSitioTriggerSettings.setCurrentActiveValue(false);
 		RGUTriggerSettings.setCurrentActiveValue(false);
 		OpportunityLineItemTriggerSettings.setCurrentActiveValue(false);
 
-		ApprovalProcess__c approval = [
-			SELECT id, Stage__c
-			FROM ApprovalProcess__c
-			LIMIT 1
-		];
+		//Obtener todos los campos del proceso de aprobación
+		SObjectType approvalProcessType = Schema.getGlobalDescribe()
+			.get('ApprovalProcess__c');
+		Map<String, Schema.SObjectField> mfields = approvalProcessType.getDescribe()
+			.fields.getMap();
 
-		approval.Stage__c = 'Solicitado';
+		String selectSentence = '';
+
+		for (String fieldName : mfields.keySet()) {
+			selectSentence += fieldName + ',';
+		}
+
+		List<ApprovalProcess__c> newList = Database.query(
+			'select ' +
+			selectSentence.Substring(0, selectSentence.length() - 1) +
+			' from ApprovalProcess__c'
+		);
+
+		DeactivateApprovalProcess.validateCompleteInformation(newList[0]);
+
+		newList[0].stage__c = 'Solicitado';
 
 		Test.startTest();
-		update approval;
+		//Validamos el cambio de etapa de iniciado a solicitado
+		update newList;
 		Test.stopTest();
 	}
 
 	@istest
-	static void TestingApprovedApproval() {
+	public static void testChangeStageToAprobado() {
 		OpportunityTriggerSettings.setCurrentActiveValue(false);
 		AccountTriggerSettings.setCurrentActiveValue(false);
 		TipoDeSitioTriggerSettings.setCurrentActiveValue(false);
 		RGUTriggerSettings.setCurrentActiveValue(false);
 		OpportunityLineItemTriggerSettings.setCurrentActiveValue(false);
 
-		ApprovalProcess__c approval = [
-			SELECT id, Stage__c
-			FROM ApprovalProcess__c
-			LIMIT 1
-		];
+		//Obtener todos los campos del proceso de aprobación
+		SObjectType approvalProcessType = Schema.getGlobalDescribe()
+			.get('ApprovalProcess__c');
+		Map<String, Schema.SObjectField> mfields = approvalProcessType.getDescribe()
+			.fields.getMap();
 
-		approval.Stage__c = 'Solicitado';
-		ApprovalProcessTriggerSettings.updateWithoutTriggers(
-			new List<ApprovalProcess__c>{ approval }
+		String selectSentence = '';
+
+		for (String fieldName : mfields.keySet()) {
+			selectSentence += fieldName + ',';
+		}
+
+		List<ApprovalProcess__c> newList = Database.query(
+			'select ' +
+			selectSentence.Substring(0, selectSentence.length() - 1) +
+			' from ApprovalProcess__c'
 		);
 
-		approval.Stage__c = 'Aprobado';
+		DeactingByUpdate.validateCompleteInformation(newList[0]);
 
-		update approval;
+		newList[0].stage__c = 'Solicitado';
+
+		Test.startTest();
+		//Validamos el cambio de etapa de iniciado a solicitado
+		ApprovalProcessTriggerSettings.updateWithoutTriggers(newList);
+
+		newList[0].stage__c = 'Aprobado';
+		update newList;
+		Test.stopTest();
 	}
 
 	@istest
-	static void TestingRejectApproval() {
+	public static void testChangeStageSolicitadoToCancelado() {
 		OpportunityTriggerSettings.setCurrentActiveValue(false);
 		AccountTriggerSettings.setCurrentActiveValue(false);
 		TipoDeSitioTriggerSettings.setCurrentActiveValue(false);
 		RGUTriggerSettings.setCurrentActiveValue(false);
 		OpportunityLineItemTriggerSettings.setCurrentActiveValue(false);
 
-		ApprovalProcess__c approval = [
-			SELECT
-				id,
-				Stage__c,
-				Saldo_cubierto_a_la_fecha__c,
-				Saldo_pendiente_de_pago__c,
-				Cantidad_de_facturas_pendientes__c,
-				Margen_Bruto__c,
-				CAPEX__c,
-				Divisa_CAPEX__c,
-				EBITDA__c,
-				EBIT__c,
-				Payback__c,
-				Par_metros_de_rentabilidad__c,
-				ROI__c,
-				TIR__c,
-				Ingresos_por_cubrir__c,
-				Costos_por_cubrir__c,
-				Proveedor_es_y_banda_del_SE__c,
-				Vigencia_contrato_proveedor_satelital__c,
-				Proxima_fecha_cambio_segmento__c,
-				Monto_Cambio_SE__c
-			FROM ApprovalProcess__c
-			LIMIT 1
-		];
+		//Obtener todos los campos del proceso de aprobación
+		SObjectType approvalProcessType = Schema.getGlobalDescribe()
+			.get('ApprovalProcess__c');
+		Map<String, Schema.SObjectField> mfields = approvalProcessType.getDescribe()
+			.fields.getMap();
 
-		UpdatesApprovalProcess.validateCompleteInformation(Approval);
+		String selectSentence = '';
 
-		approval.Stage__c = 'Solicitado';
+		for (String fieldName : mfields.keySet()) {
+			selectSentence += fieldName + ',';
+		}
 
-		update approval;
+		List<ApprovalProcess__c> newList = Database.query(
+			'select ' +
+			selectSentence.Substring(0, selectSentence.length() - 1) +
+			' from ApprovalProcess__c'
+		);
 
-		approval.Stage__c = 'Rechazado';
-		approval.Motivo_rechazo_o_cancelacion__c = 'Motivo Rechazo';
+		newList[0].stage__c = 'Solicitado';
 
-		update approval;
+		Test.startTest();
+		//Validamos el cambio de etapa de iniciado a solicitado
+		update newList;
+
+		//Con este update sin cambio, validamos el progreso de los campos a llenar cuando es por comité directivo
+		update newList;
+
+		newList[0].stage__c = 'Cancelado';
+		newList[0].Motivo_rechazo_o_cancelacion__c = 'Porque puedo';
+		update newList;
+		Test.stopTest();
+	}
+
+	@istest
+	public static void testChangeStageSolicitadoToRechazado() {
+		OpportunityTriggerSettings.setCurrentActiveValue(false);
+		AccountTriggerSettings.setCurrentActiveValue(false);
+		TipoDeSitioTriggerSettings.setCurrentActiveValue(false);
+		RGUTriggerSettings.setCurrentActiveValue(false);
+		OpportunityLineItemTriggerSettings.setCurrentActiveValue(false);
+
+		//Obtener todos los campos del proceso de aprobación
+		SObjectType approvalProcessType = Schema.getGlobalDescribe()
+			.get('ApprovalProcess__c');
+		Map<String, Schema.SObjectField> mfields = approvalProcessType.getDescribe()
+			.fields.getMap();
+
+		String selectSentence = '';
+
+		for (String fieldName : mfields.keySet()) {
+			selectSentence += fieldName + ',';
+		}
+
+		List<ApprovalProcess__c> newList = Database.query(
+			'select ' +
+			selectSentence.Substring(0, selectSentence.length() - 1) +
+			' from ApprovalProcess__c'
+		);
+
+		Test.startTest();
+		newList[0].stage__c = 'Solicitado';
+
+		//Validamos el cambio de etapa de iniciado a solicitado
+		update newList;
+
+		newList[0].stage__c = 'Rechazado';
+		newList[0].Motivo_rechazo_o_cancelacion__c = 'Porque puedo';
+		update newList;
+		Test.stopTest();
 	}
 }
