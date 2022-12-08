@@ -171,9 +171,36 @@ public with sharing class ApprovalProcessAPITest {
 
 		//Validamos el cambio de etapa de iniciado a solicitado
 		update newList;
+	}
 
-		//Con este update sin cambio, validamos el progreso de los campos a llenar cuando es por comité directivo
-		update newList;
+	@istest
+	public static void testChangeStageToAprovado() {
+		createEPWithApprovalProcess();
+
+		//Obtener todos los campos del proceso de aprobación
+		SObjectType approvalProcessType = Schema.getGlobalDescribe()
+			.get('ApprovalProcess__c');
+		Map<String, Schema.SObjectField> mfields = approvalProcessType.getDescribe()
+			.fields.getMap();
+
+		String selectSentence = '';
+
+		for (String fieldName : mfields.keySet()) {
+			selectSentence += fieldName + ',';
+		}
+
+		List<ApprovalProcess__c> newList = Database.query(
+			'select ' +
+			selectSentence.Substring(0, selectSentence.length() - 1) +
+			' from ApprovalProcess__c'
+		);
+
+		DeactivateApprovalProcess.validateCompleteInformation(newList[0]);
+
+		newList[0].stage__c = 'Solicitado';
+
+		//Validamos el cambio de etapa de iniciado a solicitado
+		ApprovalProcessTriggerSettings.updateWithoutTriggers(newList);
 
 		newList[0].stage__c = 'Aprobado';
 		update newList;
