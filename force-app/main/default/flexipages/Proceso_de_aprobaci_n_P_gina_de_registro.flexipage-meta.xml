@@ -2369,7 +2369,7 @@
                 <componentName>flexipage:tabset</componentName>
                 <identifier>flexipage_tabset</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR 2</booleanFilter>
+                    <booleanFilter>1 OR 2 OR 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Action__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -2379,6 +2379,11 @@
                         <leftValue>{!Record.Action__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Cancelación de referencias</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Action__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Baja por actualización</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -2392,7 +2397,7 @@
                 <componentName>flexipage:tabset</componentName>
                 <identifier>flexipage_tabset1</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
+                    <booleanFilter>1 AND 2 AND 3</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Action__c}</leftValue>
                         <operator>NE</operator>
@@ -2402,6 +2407,11 @@
                         <leftValue>{!Record.Action__c}</leftValue>
                         <operator>NE</operator>
                         <rightValue>Cancelación de referencias</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Action__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Baja por actualización</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
