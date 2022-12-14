@@ -190,7 +190,7 @@ export default class ApprovalProcessControlRGUBajas extends LightningElement {
 				this.toastMessage = {
 					title: '¡Listo"!',
 					message:
-						'Se realizó el guardado de las referencias elara a dar de baja',
+						'Se realizó el guardado de las ' + this.tituloMostrar,
 					variant: 'success'
 				};
 
