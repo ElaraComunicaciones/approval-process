@@ -1,5 +1,5 @@
 public with sharing class DeactingByUpdate {
-    public static void executeBeforeUpdateProcess(
+	public static void executeBeforeUpdateProcess(
 		Map<id, SObject> oldMap,
 		List<ApprovalProcess__c> newList
 	) {
@@ -177,6 +177,11 @@ public with sharing class DeactingByUpdate {
 				decrementoVTC +=
 					Math.abs(lapseBetweenEndDateToday) *
 					oli.Total_Renta_Conv_MXN__c;
+
+				decrementoVTC += Math.abs(lapseBetweenEndDateToday) ==
+					oli.plazo__c
+					? -oli.Total_Renta_Conv_MXN__c
+					: 0;
 			}
 			lDecrementPerRGU.put(rguToChange.id, decrementoVTC);
 		}
