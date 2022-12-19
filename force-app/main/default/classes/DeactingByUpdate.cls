@@ -131,7 +131,8 @@ public with sharing class DeactingByUpdate {
 				Id,
 				Referencia_Elara__r.id,
 				Fecha_Fin_Ingreso__c,
-				Total_Renta_Conv_MXN__c
+				Total_Renta_Conv_MXN__c,
+				plazo__c
 			FROM OpportunityLineItem
 			WHERE
 				Forma_de_Cobro__c != 'Diaria'
