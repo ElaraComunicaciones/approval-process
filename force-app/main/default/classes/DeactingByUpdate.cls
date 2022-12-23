@@ -40,11 +40,6 @@ public with sharing class DeactingByUpdate {
 			lApprovalProcessOfDeactivate
 		);
 
-		List<ApprovalProcess__c> sendNotificationProgress = filterRecordsToSendDocumentationProgress(
-			oldMap,
-			lApprovalProcessOfDeactivate
-		);
-
 		List<ApprovalProcess__c> newApprovedRecords = filterNewApprovedRecords(
 			oldMap,
 			lApprovalProcessOfDeactivate
@@ -64,12 +59,6 @@ public with sharing class DeactingByUpdate {
 
 		sendApprovalRequestNotifications(
 			newRequestedRecords,
-			emailTemplates,
-			users
-		);
-
-		sendApprovalProgressNotifications(
-			sendNotificationProgress,
 			emailTemplates,
 			users
 		);
@@ -245,36 +234,6 @@ public with sharing class DeactingByUpdate {
 	}
 
 	@testVisible
-	private static List<ApprovalProcess__c> filterRecordsToSendDocumentationProgress(
-		Map<Id, SObject> oldMap,
-		List<ApprovalProcess__c> newRecords
-	) {
-		List<ApprovalProcess__c> newRequestedRecords = new List<ApprovalProcess__c>();
-
-		System.debug(oldMap);
-
-		for (ApprovalProcess__c newApproval : newRecords) {
-			ApprovalProcess__c oldApproval = (ApprovalProcess__c) oldMap.get(
-				newApproval.Id
-			);
-
-			System.debug(oldApproval.Stage__c);
-
-			if (oldApproval != null) {
-				if (
-					oldApproval.Stage__c == 'Solicitado' &&
-					newApproval.Stage__c == 'Solicitado' &&
-					newApproval.Aprobacion_por_comite_directivo__c
-				) {
-					newRequestedRecords.add(newApproval);
-				}
-			}
-		}
-
-		return newRequestedRecords;
-	}
-
-	@testVisible
 	private static List<ApprovalProcess__c> filterRejectedRecords(
 		Map<Id, SObject> oldMap,
 		List<ApprovalProcess__c> newRecords
@@ -317,51 +276,29 @@ public with sharing class DeactingByUpdate {
 
 		for (EmailTemplate template : emailTemplates) {
 			switch on template.name {
-				when 'RS_B2 Aprobación baja denegada por Comité Directivo' {
-					denegadoComiteDirectivoBajas = template;
-				}
-				when 'RS_B3 Aprobación baja denegada por Control Comercial' {
+				when 'RS_CA2 Aprobación cambios por actualización denegada' {
 					denegadoControlComercialBajas = template;
 				}
 			}
 		}
 
 		for (ApprovalProcess__c approvalProcess : newRejectedRecords) {
-			if (approvalProcess.Aprobacion_por_comite_directivo__c) {
-				sendTo = new List<String>();
-				sendCCO = new List<String>();
-				for (User userMail : users) {
-					if (userMail.id == approvalProcess.OwnerId) {
-						sendTo.add(userMail.email);
-						break;
-					}
+			sendTo = new List<String>();
+			sendCCO = new List<String>();
+			for (User userMail : users) {
+				if (userMail.id == approvalProcess.OwnerId) {
+					sendTo.add(userMail.email);
+					break;
 				}
-
-				SendEmailNotifications(
-					denegadoComiteDirectivoBajas,
-					sendTo,
-					sendCC,
-					sendCCO,
-					approvalProcess
-				);
-			} else {
-				sendTo = new List<String>();
-				sendCCO = new List<String>();
-				for (User userMail : users) {
-					if (userMail.id == approvalProcess.OwnerId) {
-						sendTo.add(userMail.email);
-						break;
-					}
-				}
-
-				SendEmailNotifications(
-					denegadoControlComercialBajas,
-					sendTo,
-					sendCC,
-					sendCCO,
-					approvalProcess
-				);
 			}
+
+			SendEmailNotifications(
+				denegadoControlComercialBajas,
+				sendTo,
+				sendCC,
+				sendCCO,
+				approvalProcess
+			);
 		}
 	}
 
@@ -388,196 +325,26 @@ public with sharing class DeactingByUpdate {
 
 		for (EmailTemplate template : emailTemplates) {
 			switch on template.name {
-				when 'SL_B1 Aprobación de baja Comité Directivo' {
-					solicitudComiteDirectivoBajas = template;
-				}
-				when 'SL_B3 Información para aprobación de baja' {
-					solicitudInformacionBajas = template;
-				}
-				when 'SL_B2 Aprobación de baja Control Comercial' {
+				when 'SL_CA1 Aprobación Cambios por Actualización' {
 					solicitudControlComercialBajas = template;
 				}
 			}
 		}
 
 		for (ApprovalProcess__c approvalProcess : newRequestedRecords) {
-			if (approvalProcess.Aprobacion_por_comite_directivo__c) {
-				sendCCO = new List<String>();
-				sendTo = directosMail;
-				sendCC = documenters;
-				sendCC.addAll(commericial);
-				sendCC.addAll(proccesMail);
+			sendTo = ApprovalProcessAPI.getCommercialControlMail(users);
+			sendCC = ApprovalProcessAPI.getCEOMail(users);
+			sendCC.addAll(proccesMail);
+			sendCCO = new List<String>();
 
-				SendEmailNotifications(
-					solicitudComiteDirectivoBajas,
-					sendTo,
-					sendCC,
-					sendCCO,
-					approvalProcess
-				);
-				SendEmailNotifications(
-					solicitudInformacionBajas,
-					sendTo,
-					sendCC,
-					sendCCO,
-					approvalProcess
-				);
-			} else {
-				sendTo = ApprovalProcessAPI.getCommercialControlMail(users);
-				sendCC = ApprovalProcessAPI.getCEOMail(users);
-				sendCC.addAll(proccesMail);
-				sendCCO = new List<String>();
-
-				SendEmailNotifications(
-					solicitudControlComercialBajas,
-					sendTo,
-					sendCC,
-					sendCCO,
-					approvalProcess
-				);
-			}
+			SendEmailNotifications(
+				solicitudControlComercialBajas,
+				sendTo,
+				sendCC,
+				sendCCO,
+				approvalProcess
+			);
 		}
-	}
-
-	@testVisible
-	private static void sendApprovalProgressNotifications(
-		List<ApprovalProcess__c> sendNotificationProgressRecords,
-		List<EmailTemplate> emailTemplates,
-		List<User> users
-	) {
-		EmailTemplate solicitudAvance;
-		EmailTemplate solicitudCompleta;
-
-		List<String> sendTo;
-		List<String> sendCC = ApprovalProcessAPI.getProcessMail(users);
-
-		for (EmailTemplate template : emailTemplates) {
-			switch on template.name {
-				when 'NT_B1 Avance de Documentación' {
-					solicitudAvance = template;
-				}
-				when 'NT_B2 Documentación completa para baja' {
-					solicitudCompleta = template;
-				}
-			}
-		}
-
-		sendTo = ApprovalProcessAPI.getDirectorsMail(users);
-
-		for (
-			ApprovalProcess__c approvalProcess : sendNotificationProgressRecords
-		) {
-			if (validateCompleteInformation(approvalProcess)) {
-				SendEmailNotifications(
-					solicitudCompleta,
-					sendTo,
-					sendCC,
-					new List<String>(),
-					approvalProcess
-				);
-			} else {
-				SendEmailNotifications(
-					solicitudAvance,
-					sendTo,
-					sendCC,
-					new List<String>(),
-					approvalProcess
-				);
-			}
-		}
-	}
-
-	@testVisible
-	private static Boolean validateCompleteInformation(
-		ApprovalProcess__c approvalProcess
-	) {
-		Boolean isComplete = true;
-
-		if (approvalProcess.Saldo_cubierto_a_la_fecha__c == null) {
-			isComplete = false;
-		}
-
-		if (approvalProcess.Saldo_pendiente_de_pago__c == null) {
-			isComplete = false;
-		}
-
-		if (approvalProcess.Cantidad_de_facturas_pendientes__c == null) {
-			isComplete = false;
-		}
-
-		if (approvalProcess.Margen_Bruto__c == null) {
-			isComplete = false;
-		}
-
-		if (approvalProcess.CAPEX__c == null) {
-			isComplete = false;
-		}
-
-		if (approvalProcess.Divisa_CAPEX__c == null) {
-			isComplete = false;
-		}
-
-		if (approvalProcess.EBITDA__c == null) {
-			isComplete = false;
-		}
-
-		if (approvalProcess.EBIT__c == null) {
-			isComplete = false;
-		}
-
-		if (approvalProcess.Payback__c == null) {
-			isComplete = false;
-		}
-
-		if (approvalProcess.Par_metros_de_rentabilidad__c == null) {
-			isComplete = false;
-		}
-
-		if (approvalProcess.ROI__c == null) {
-			isComplete = false;
-		}
-
-		if (approvalProcess.TIR__c == null) {
-			isComplete = false;
-		}
-
-		if (approvalProcess.Ingresos_por_cubrir__c == null) {
-			isComplete = false;
-		}
-
-		if (approvalProcess.Costos_por_cubrir__c == null) {
-			isComplete = false;
-		}
-
-		if (String.isBlank(approvalProcess.Penalizacion_por_cancelacion__c)) {
-			isComplete = false;
-		}
-
-		if (String.isBlank(approvalProcess.Penalizacion_por_cancelacion__c)) {
-			isComplete = false;
-		}
-
-		if (String.isBlank(approvalProcess.Clausula_rescision_cancelacion__c)) {
-			isComplete = false;
-		}
-
-		if (String.isBlank(approvalProcess.Proveedor_es_y_banda_del_SE__c)) {
-			isComplete = false;
-		}
-
-		if (approvalProcess.Vigencia_contrato_proveedor_satelital__c == null) {
-			isComplete = false;
-		}
-
-		if (approvalProcess.Proxima_fecha_de_cancelacion_segmento__c == null) {
-			isComplete = false;
-		}
-
-		if (approvalProcess.Implicaciones_cancelacion_de_segmento__c == null) {
-			isComplete = false;
-		}
-
-		return isComplete;
 	}
 
 	@testVisible
@@ -699,10 +466,10 @@ public with sharing class DeactingByUpdate {
 
 		for (EmailTemplate template : emailTemplates) {
 			switch on template.name {
-				when 'SL_B4 Implementación de Baja' {
+				when 'SL_CA2 Implementación Cambios por Actualización' {
 					solicitudBaja = template;
 				}
-				when 'RS_B1 Aprobación baja aceptada' {
+				when 'RS_CA1 Aprobación cambios por actualización aceptada' {
 					solicitudAceptada = template;
 				}
 			}

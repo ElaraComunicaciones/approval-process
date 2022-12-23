@@ -170,8 +170,6 @@ public with sharing class DeactingByUpdateTest {
 			' from ApprovalProcess__c'
 		);
 
-		DeactivateApprovalProcess.validateCompleteInformation(newList[0]);
-
 		newList[0].stage__c = 'Solicitado';
 
 		Test.startTest();
@@ -205,8 +203,6 @@ public with sharing class DeactingByUpdateTest {
 			selectSentence.Substring(0, selectSentence.length() - 1) +
 			' from ApprovalProcess__c'
 		);
-
-		DeactingByUpdate.validateCompleteInformation(newList[0]);
 
 		newList[0].stage__c = 'Solicitado';
 

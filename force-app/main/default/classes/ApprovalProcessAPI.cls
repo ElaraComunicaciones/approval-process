@@ -23,7 +23,9 @@ public with sharing class ApprovalProcessAPI {
 				FolderId IN (
 					'00l6T000002S0m4QAC',
 					'00l6T000002S0mxQAC',
-					'00l6T000002BO33QAG'
+					'00l6T000002BO33QAG',
+					'00l6T000002BOMjQAO',
+					'00l8K000000EKHAQA4'
 				)
 		];
 	}
