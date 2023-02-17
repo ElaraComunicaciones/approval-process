@@ -1,6 +1,6 @@
 @isTest
 public with sharing class ApprovalProcessAPITest {
-	@istest
+	@TestSetup
 	public static void createEPWithApprovalProcess() {
 		Test.setMock(HttpCalloutMock.class, new COSAPI_MockTesting());
 
@@ -145,7 +145,7 @@ public with sharing class ApprovalProcessAPITest {
 
 	@istest
 	public static void testChangeStageToSolicitado() {
-		createEPWithApprovalProcess();
+		//createEPWithApprovalProcess();
 
 		//Obtener todos los campos del proceso de aprobación
 		SObjectType approvalProcessType = Schema.getGlobalDescribe()
@@ -175,7 +175,7 @@ public with sharing class ApprovalProcessAPITest {
 
 	@istest
 	public static void testChangeStageToAprovado() {
-		createEPWithApprovalProcess();
+		//createEPWithApprovalProcess();
 
 		//Obtener todos los campos del proceso de aprobación
 		SObjectType approvalProcessType = Schema.getGlobalDescribe()
@@ -208,7 +208,7 @@ public with sharing class ApprovalProcessAPITest {
 
 	@istest
 	public static void testChangeStageSolicitadoToCancelado() {
-		createEPWithApprovalProcess();
+		//createEPWithApprovalProcess();
 
 		//Obtener todos los campos del proceso de aprobación
 		SObjectType approvalProcessType = Schema.getGlobalDescribe()
@@ -231,10 +231,7 @@ public with sharing class ApprovalProcessAPITest {
 		newList[0].stage__c = 'Solicitado';
 
 		//Validamos el cambio de etapa de iniciado a solicitado
-		update newList;
-
-		//Con este update sin cambio, validamos el progreso de los campos a llenar cuando es por comité directivo
-		update newList;
+		ApprovalProcessTriggerSettings.updateWithoutTriggers(newList);
 
 		newList[0].stage__c = 'Cancelado';
 		newList[0].Motivo_rechazo_o_cancelacion__c = 'Porque puedo';
@@ -243,7 +240,7 @@ public with sharing class ApprovalProcessAPITest {
 
 	@istest
 	public static void testChangeStageSolicitadoToRechazado() {
-		createEPWithApprovalProcess();
+		//createEPWithApprovalProcess();
 
 		//Obtener todos los campos del proceso de aprobación
 		SObjectType approvalProcessType = Schema.getGlobalDescribe()
@@ -266,10 +263,7 @@ public with sharing class ApprovalProcessAPITest {
 		newList[0].stage__c = 'Solicitado';
 
 		//Validamos el cambio de etapa de iniciado a solicitado
-		update newList;
-
-		//Con este update sin cambio, validamos el progreso de los campos a llenar cuando es por comité directivo
-		update newList;
+		ApprovalProcessTriggerSettings.updateWithoutTriggers(newList);
 
 		newList[0].stage__c = 'Rechazado';
 		newList[0].Motivo_rechazo_o_cancelacion__c = 'Porque puedo';
