@@ -615,7 +615,10 @@ public with sharing class ApprovalProcessAPI {
 		List<String> lDirectorsMail = new List<String>();
 
 		for (User user : users) {
-			if (user.userrole.name == 'Dirección General') {
+			if (
+				user.userrole.name == 'Dirección General' ||
+				user.userrole.name == 'Dirección Ejecutiva Comercial'
+			) {
 				lDirectorsMail.add(user.email);
 			}
 		}
