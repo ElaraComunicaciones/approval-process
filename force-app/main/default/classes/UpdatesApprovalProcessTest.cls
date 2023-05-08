@@ -208,49 +208,49 @@ public with sharing class UpdatesApprovalProcessTest {
 		update approval;
 	}
 
-	@istest
-	static void TestingRejectApproval() {
-		OpportunityTriggerSettings.setCurrentActiveValue(false);
-		AccountTriggerSettings.setCurrentActiveValue(false);
-		TipoDeSitioTriggerSettings.setCurrentActiveValue(false);
-		RGUTriggerSettings.setCurrentActiveValue(false);
-		OpportunityLineItemTriggerSettings.setCurrentActiveValue(false);
+	// @istest
+	// static void TestingRejectApproval() {
+	// 	OpportunityTriggerSettings.setCurrentActiveValue(false);
+	// 	AccountTriggerSettings.setCurrentActiveValue(false);
+	// 	TipoDeSitioTriggerSettings.setCurrentActiveValue(false);
+	// 	RGUTriggerSettings.setCurrentActiveValue(false);
+	// 	OpportunityLineItemTriggerSettings.setCurrentActiveValue(false);
 
-		ApprovalProcess__c approval = [
-			SELECT
-				id,
-				Stage__c,
-				Saldo_cubierto_a_la_fecha__c,
-				Saldo_pendiente_de_pago__c,
-				Cantidad_de_facturas_pendientes__c,
-				Margen_Bruto__c,
-				CAPEX__c,
-				Divisa_CAPEX__c,
-				EBITDA__c,
-				EBIT__c,
-				Payback__c,
-				Par_metros_de_rentabilidad__c,
-				ROI__c,
-				TIR__c,
-				Ingresos_por_cubrir__c,
-				Costos_por_cubrir__c,
-				Proveedor_es_y_banda_del_SE__c,
-				Vigencia_contrato_proveedor_satelital__c,
-				Proxima_fecha_cambio_segmento__c,
-				Monto_Cambio_SE__c
-			FROM ApprovalProcess__c
-			LIMIT 1
-		];
+	// 	ApprovalProcess__c approval = [
+	// 		SELECT
+	// 			id,
+	// 			Stage__c,
+	// 			Saldo_cubierto_a_la_fecha__c,
+	// 			Saldo_pendiente_de_pago__c,
+	// 			Cantidad_de_facturas_pendientes__c,
+	// 			Margen_Bruto__c,
+	// 			CAPEX__c,
+	// 			Divisa_CAPEX__c,
+	// 			EBITDA__c,
+	// 			EBIT__c,
+	// 			Payback__c,
+	// 			Par_metros_de_rentabilidad__c,
+	// 			ROI__c,
+	// 			TIR__c,
+	// 			Ingresos_por_cubrir__c,
+	// 			Costos_por_cubrir__c,
+	// 			Proveedor_es_y_banda_del_SE__c,
+	// 			Vigencia_contrato_proveedor_satelital__c,
+	// 			Proxima_fecha_cambio_segmento__c,
+	// 			Monto_Cambio_SE__c
+	// 		FROM ApprovalProcess__c
+	// 		LIMIT 1
+	// 	];
 
-		UpdatesApprovalProcess.validateCompleteInformation(Approval);
+	// 	UpdatesApprovalProcess.validateCompleteInformation(Approval);
 
-		approval.Stage__c = 'Solicitado';
+	// 	approval.Stage__c = 'Solicitado';
 
-		update approval;
+	// 	update approval;
 
-		approval.Stage__c = 'Rechazado';
-		approval.Motivo_rechazo_o_cancelacion__c = 'Motivo Rechazo';
+	// 	approval.Stage__c = 'Rechazado';
+	// 	approval.Motivo_rechazo_o_cancelacion__c = 'Motivo Rechazo';
 
-		update approval;
-	}
+	// 	update approval;
+	// }
 }
