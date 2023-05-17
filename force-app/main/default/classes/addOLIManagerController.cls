@@ -78,7 +78,9 @@ public with sharing class addOLIManagerController {
 					oli.Product2Id__c = olis[i].Product2Id__c;
 					oli.PricebookEntryId__c = olis[i].PricebookEntryId__c;
 
-					oli.Description__c = olis[i].Description__c.abbreviate(255);
+					oli.Description__c = olis[i].Description__c != null
+						? olis[i].Description__c.abbreviate(255)
+						: null;
 					oli.UnitPrice__c = olis[i].UnitPrice__c;
 					oli.Quantity__c = 1;
 					oli.Divisa_de_Cotizacion__c = olis[i]
