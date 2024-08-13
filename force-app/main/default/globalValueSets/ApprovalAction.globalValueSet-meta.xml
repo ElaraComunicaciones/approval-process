@@ -11,19 +11,32 @@
         <label>Cancelación de referencias</label>
     </customValue>
     <customValue>
+        <fullName>Baja por actualización</fullName>
+        <default>false</default>
+        <label>Baja por actualización</label>
+    </customValue>
+    <customValue>
         <fullName>Cambio - Altas crecimiento orgánico</fullName>
         <default>false</default>
         <label>Cambio - Altas crecimiento orgánico</label>
     </customValue>
     <customValue>
-        <fullName>Cambio - Actualización</fullName>
+        <fullName>Cambio - Reactivación del servicio</fullName>
         <default>false</default>
-        <label>Cambio - Actualización</label>
+        <isActive>false</isActive>
+        <label>Cambio - Reactivación del servicio</label>
     </customValue>
     <customValue>
-        <fullName>Baja por actualización</fullName>
+        <fullName>Migración</fullName>
         <default>false</default>
-        <label>Baja por actualización</label>
+        <isActive>false</isActive>
+        <label>Migración</label>
+    </customValue>
+    <customValue>
+        <fullName>Incremento</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Incremento</label>
     </customValue>
     <customValue>
         <fullName>Decremento</fullName>
@@ -44,10 +57,10 @@
         <label>Migración de plataforma satelital</label>
     </customValue>
     <customValue>
-        <fullName>Soporte Remoto</fullName>
+        <fullName>Cambio - Actualización</fullName>
         <default>false</default>
         <isActive>false</isActive>
-        <label>Soporte Remoto</label>
+        <label>Cambio - Actualización</label>
     </customValue>
     <customValue>
         <fullName>Ingenieria de campo</fullName>
@@ -80,28 +93,10 @@
         <label>Finalización del ingreso</label>
     </customValue>
     <customValue>
-        <fullName>Incremento</fullName>
+        <fullName>Soporte Remoto</fullName>
         <default>false</default>
         <isActive>false</isActive>
-        <label>Incremento</label>
-    </customValue>
-    <customValue>
-        <fullName>Migración</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Migración</label>
-    </customValue>
-    <customValue>
-        <fullName>Cambio - Reactivación del servicio</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Cambio - Reactivación del servicio</label>
-    </customValue>
-    <customValue>
-        <fullName>Cambio - Suspensión del servicio</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Cambio - Suspensión del servicio</label>
+        <label>Soporte Remoto</label>
     </customValue>
     <customValue>
         <fullName>Cambio - Reemplazo RE</fullName>
@@ -114,6 +109,12 @@
         <default>false</default>
         <isActive>false</isActive>
         <label>Cambio - Transferencia RE</label>
+    </customValue>
+    <customValue>
+        <fullName>Cambio - Suspensión del servicio</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Cambio - Suspensión del servicio</label>
     </customValue>
     <masterLabel>Apobración Acción</masterLabel>
     <sorted>false</sorted>

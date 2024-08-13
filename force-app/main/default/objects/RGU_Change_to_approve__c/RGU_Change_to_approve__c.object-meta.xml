@@ -163,10 +163,8 @@
     </nameField>
     <pluralLabel>Referencias Elara por aprobar</pluralLabel>
     <searchLayouts>
-        <searchResultsAdditionalFields>BWBajadaKbps__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>BWSubidaKbps__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Cap_Fap_GB__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Cierre__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Approval_Process__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Nombre_RGU_Original__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>

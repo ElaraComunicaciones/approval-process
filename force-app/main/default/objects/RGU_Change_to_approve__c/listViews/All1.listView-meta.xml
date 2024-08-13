@@ -4,5 +4,10 @@
     <columns>NAME</columns>
     <columns>Nombre_RGU_Original__c</columns>
     <filterScope>Everything</filterScope>
+    <filters>
+        <field>Approval_Process__c</field>
+        <operation>equals</operation>
+        <value>AP00000594</value>
+    </filters>
     <label>Todos</label>
 </ListView>

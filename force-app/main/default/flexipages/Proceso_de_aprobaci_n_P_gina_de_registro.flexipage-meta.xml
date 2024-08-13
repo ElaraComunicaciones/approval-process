@@ -34,6 +34,10 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>showLegacyActivityComposer</name>
+                    <value>false</value>
+                </componentInstanceProperties>
                 <componentName>runtime_sales_activities:activityPanel</componentName>
                 <identifier>runtime_sales_activities_activityPanel2</identifier>
             </componentInstance>
@@ -207,6 +211,16 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Link_Google_Drive_PM__c</fieldItem>
                 <identifier>RecordLink_Google_Drive_PM_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Fecha_de_aprobacion__c</fieldItem>
+                <identifier>RecordFecha_de_aprobacion_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-c76f9294-bd71-49b6-8f82-6c0a6130a4b5</name>
@@ -388,6 +402,10 @@
                     <value>Facet-913fc988-d8a5-487c-8b3b-3336eda4418a</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Información general</value>
                 </componentInstanceProperties>
@@ -400,6 +418,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-c0755cd3-8cce-4f16-a9df-2f99c46abed8</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -421,6 +443,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-a88f2da9-940b-444c-90a4-2ed59e611f10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -888,6 +914,10 @@
                     <value>Facet-4cee4c44-c3d0-43ca-b0b5-bff29e836f9c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>AI- Aseguramiento de ingresos</value>
                 </componentInstanceProperties>
@@ -900,6 +930,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-4a0a4d78-6d0b-4098-ab42-be84a061b029</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -916,6 +950,10 @@
                     <value>Facet-a1143fdd-24c9-4561-893c-802f2020c9f0</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>LG - Legal</value>
                 </componentInstanceProperties>
@@ -928,6 +966,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-692c5b68-4b39-4fb5-a9f3-7518cbb2cb46</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1040,6 +1082,10 @@
                     <value>Facet-097531bb-b2b3-4c37-b6a1-1c90a4577540</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Controles control comercial</value>
                 </componentInstanceProperties>
@@ -1096,6 +1142,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-4a0cbed8-63c9-4c7a-9b78-a8aab8249b02</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1186,6 +1236,10 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>showLegacyActivityComposer</name>
+                    <value>false</value>
+                </componentInstanceProperties>
                 <componentName>runtime_sales_activities:activityPanel</componentName>
                 <identifier>runtime_sales_activities_activityPanel3</identifier>
             </componentInstance>
@@ -1460,6 +1514,16 @@
                 <identifier>RecordTotal_Productos_Categorizados_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Fecha_de_aprobacion__c</fieldItem>
+                <identifier>RecordFecha_de_aprobacion_cField2</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-87416257-23e7-4a93-a0fb-cb58be365a22</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -1587,6 +1651,10 @@
                     <value>Facet-3c1c624b-3644-41db-aed1-bd3da5fc053c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Información General</value>
                 </componentInstanceProperties>
@@ -1599,6 +1667,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-186de022-78fb-4df3-a64b-2bf2fd0e3eec</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -2035,6 +2107,10 @@
                     <value>Facet-7c8a8cee-b6d8-4917-88ff-c9c020fcfba6</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Información general del cambio</value>
                 </componentInstanceProperties>
@@ -2047,6 +2123,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-adce3baf-16ec-4c30-afce-dd1a1589747b</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -2063,6 +2143,10 @@
                     <value>Facet-8132b8c5-d485-4493-9863-d08087759545</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>PR - Pricing</value>
                 </componentInstanceProperties>
@@ -2077,6 +2161,10 @@
                     <value>Facet-4648bf36-0b59-4853-85bf-163da100f781</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>LG - Legal</value>
                 </componentInstanceProperties>
@@ -2089,6 +2177,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-35541e92-d240-4940-aa2a-b4ce1b1d636e</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -2229,6 +2321,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-23d95e0f-30bf-40f2-8225-cbc1816253ee</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
