@@ -16,9 +16,16 @@
         <label>Baja por actualización</label>
     </customValue>
     <customValue>
-        <fullName>Cambio - Altas crecimiento orgánico</fullName>
+        <fullName>Cambio - Transferencia RE</fullName>
         <default>false</default>
-        <label>Cambio - Altas crecimiento orgánico</label>
+        <isActive>false</isActive>
+        <label>Cambio - Transferencia RE</label>
+    </customValue>
+    <customValue>
+        <fullName>Cambio - Suspensión del servicio</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Cambio - Suspensión del servicio</label>
     </customValue>
     <customValue>
         <fullName>Cambio - Reactivación del servicio</fullName>
@@ -51,16 +58,16 @@
         <label>Reubicación</label>
     </customValue>
     <customValue>
-        <fullName>Migración de plataforma satelital</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Migración de plataforma satelital</label>
-    </customValue>
-    <customValue>
         <fullName>Cambio - Actualización</fullName>
         <default>false</default>
         <isActive>false</isActive>
         <label>Cambio - Actualización</label>
+    </customValue>
+    <customValue>
+        <fullName>Soporte Remoto</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Soporte Remoto</label>
     </customValue>
     <customValue>
         <fullName>Ingenieria de campo</fullName>
@@ -93,28 +100,22 @@
         <label>Finalización del ingreso</label>
     </customValue>
     <customValue>
-        <fullName>Soporte Remoto</fullName>
+        <fullName>Migración de plataforma satelital</fullName>
         <default>false</default>
         <isActive>false</isActive>
-        <label>Soporte Remoto</label>
+        <label>Migración de plataforma satelital</label>
+    </customValue>
+    <customValue>
+        <fullName>Cambio - Altas crecimiento orgánico</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Cambio - Altas crecimiento orgánico</label>
     </customValue>
     <customValue>
         <fullName>Cambio - Reemplazo RE</fullName>
         <default>false</default>
         <isActive>false</isActive>
         <label>Cambio - Reemplazo RE</label>
-    </customValue>
-    <customValue>
-        <fullName>Cambio - Transferencia RE</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Cambio - Transferencia RE</label>
-    </customValue>
-    <customValue>
-        <fullName>Cambio - Suspensión del servicio</fullName>
-        <default>false</default>
-        <isActive>false</isActive>
-        <label>Cambio - Suspensión del servicio</label>
     </customValue>
     <masterLabel>Apobración Acción</masterLabel>
     <sorted>false</sorted>

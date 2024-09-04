@@ -264,6 +264,7 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Nombre_RGU_Original__c</fields>
+        <fields>Status_CoS_RE_Origen__c</fields>
         <relatedList>RGU_Change_to_approve__c.Approval_Process__c</relatedList>
     </relatedLists>
     <relatedLists>
