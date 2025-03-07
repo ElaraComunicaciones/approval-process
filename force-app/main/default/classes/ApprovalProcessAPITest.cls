@@ -161,8 +161,8 @@ public with sharing class ApprovalProcessAPITest {
 
 		List<ApprovalProcess__c> newList = Database.query(
 			'select ' +
-			selectSentence.Substring(0, selectSentence.length() - 1) +
-			' from ApprovalProcess__c'
+				selectSentence.Substring(0, selectSentence.length() - 1) +
+				' from ApprovalProcess__c'
 		);
 
 		DeactivateApprovalProcess.validateCompleteInformation(newList[0]);
@@ -191,8 +191,8 @@ public with sharing class ApprovalProcessAPITest {
 
 		List<ApprovalProcess__c> newList = Database.query(
 			'select ' +
-			selectSentence.Substring(0, selectSentence.length() - 1) +
-			' from ApprovalProcess__c'
+				selectSentence.Substring(0, selectSentence.length() - 1) +
+				' from ApprovalProcess__c'
 		);
 
 		DeactivateApprovalProcess.validateCompleteInformation(newList[0]);
@@ -224,8 +224,8 @@ public with sharing class ApprovalProcessAPITest {
 
 		List<ApprovalProcess__c> newList = Database.query(
 			'select ' +
-			selectSentence.Substring(0, selectSentence.length() - 1) +
-			' from ApprovalProcess__c'
+				selectSentence.Substring(0, selectSentence.length() - 1) +
+				' from ApprovalProcess__c'
 		);
 
 		newList[0].stage__c = 'Solicitado';
@@ -256,8 +256,8 @@ public with sharing class ApprovalProcessAPITest {
 
 		List<ApprovalProcess__c> newList = Database.query(
 			'select ' +
-			selectSentence.Substring(0, selectSentence.length() - 1) +
-			' from ApprovalProcess__c'
+				selectSentence.Substring(0, selectSentence.length() - 1) +
+				' from ApprovalProcess__c'
 		);
 
 		newList[0].stage__c = 'Solicitado';
