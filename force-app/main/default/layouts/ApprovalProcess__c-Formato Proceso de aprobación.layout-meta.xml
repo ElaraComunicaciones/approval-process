@@ -119,6 +119,14 @@
                 <behavior>Edit</behavior>
                 <field>Fecha_de_aprobacion__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Fecha_de_Desactivacion__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Fecha_Implementacion_de_Baja__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

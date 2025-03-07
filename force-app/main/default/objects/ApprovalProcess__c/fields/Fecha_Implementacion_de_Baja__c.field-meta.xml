@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fecha_Implementacion_de_Baja__c</fullName>
+    <description>Esta fecha se utiliza para las bajas de Telmex; es la fecha cuando se notificará la baja de las referencias a PM, el cual son 15 días naturales después de que el proceso de aprobación pase a Aprobado.</description>
+    <externalId>false</externalId>
+    <label>Fecha Implementación de Baja</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

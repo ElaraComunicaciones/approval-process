@@ -269,4 +269,29 @@ public with sharing class ApprovalProcessAPITest {
 		newList[0].Motivo_rechazo_o_cancelacion__c = 'Porque puedo';
 		update newList;
 	}
+
+	@istest
+	public static void testSetDeactiveImplementationDate() {
+		//createEPWithApprovalProcess();
+
+		//Obtener todos los campos del proceso de aprobación
+		SObjectType approvalProcessType = Schema.getGlobalDescribe()
+			.get('ApprovalProcess__c');
+		Map<String, Schema.SObjectField> mfields = approvalProcessType.getDescribe()
+			.fields.getMap();
+
+		String selectSentence = '';
+
+		for (String fieldName : mfields.keySet()) {
+			selectSentence += fieldName + ',';
+		}
+
+		List<ApprovalProcess__c> newList = Database.query(
+			'select ' +
+				selectSentence.Substring(0, selectSentence.length() - 1) +
+				' from ApprovalProcess__c'
+		);
+
+		DeactivateApprovalProcess.setDeactiveImplementationDate(newList);
+	}
 }

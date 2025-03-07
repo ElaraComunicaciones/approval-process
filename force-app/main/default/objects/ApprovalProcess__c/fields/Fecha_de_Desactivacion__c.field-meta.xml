@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fecha_de_Desactivacion__c</fullName>
+    <description>Esta fecha será considerada por el PM para establecer la fecha de desactivación en CoS para el sitio</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Fecha Desactivado para la RE en CoS</inlineHelpText>
+    <label>Fecha de Desactivación</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

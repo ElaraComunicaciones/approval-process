@@ -4,6 +4,7 @@ public with sharing class DeactivateApprovalProcess {
 		List<ApprovalProcess__c> newList
 	) {
 		List<ApprovalProcess__c> approvalProcessToCalculateDecrement = new List<ApprovalProcess__c>();
+		List<ApprovalProcess__c> approvalProcessToSetDate = new List<ApprovalProcess__c>();
 
 		for (ApprovalProcess__c approvalProcess : newList) {
 			ApprovalProcess__c oldValue = (ApprovalProcess__c) oldMap.get(
@@ -17,12 +18,20 @@ public with sharing class DeactivateApprovalProcess {
 				approvalProcess.Stage__c == 'Solicitado') ||
 				(oldValue.Stage__c != 'Aprobado' &&
 				approvalProcess.Stage__c == 'Aprobado')
-			)
+			) {
 				approvalProcessToCalculateDecrement.add(approvalProcess);
+				if (
+					approvalProcess.AccountName__c.containsIgnoreCase('TELMEX')
+				) {
+					approvalProcessToSetDate.add(approvalProcess);
+				}
+			}
 		}
 		CalculateDecrementByDifinitiveDeactivation(
 			approvalProcessToCalculateDecrement
 		);
+
+		setDeactiveImplementationDate(approvalProcessToSetDate);
 	}
 
 	public static void executeAfterUpdate(
@@ -725,13 +734,19 @@ public with sharing class DeactivateApprovalProcess {
 			sendCC.addAll(commercialMail);
 			sendCC.addAll(processMail);
 
-			SendEmailNotifications(
-				solicitudBaja,
-				sendTo,
-				sendCC,
-				sendCCO,
-				approvalProcess
-			);
+			// Cuando la cuenta es TELMEX, no se notificará al PM de la implementación de la baja en el momento de que se apruebe
+			// proceso de aprobación, sino 15 días despues, por lo cual se establece el campo Fecha_Implementacion_de_Baja__c con 15 días mas
+			// a la fecha actual
+
+			if (!approvalProcess.AccountName__c.containsIgnoreCase('TELMEX')) {
+				SendEmailNotifications(
+					solicitudBaja,
+					sendTo,
+					sendCC,
+					sendCCO,
+					approvalProcess
+				);
+			}
 
 			SendEmailNotifications(
 				solicitudAceptada,
@@ -780,5 +795,15 @@ public with sharing class DeactivateApprovalProcess {
 		}
 
 		update rgusToDeactivate;
+	}
+
+	@testVisible
+	private static void setDeactiveImplementationDate(
+		List<ApprovalProcess__c> approvalProcessToSetDate
+	) {
+		for (ApprovalProcess__c approvalProcess : approvalProcessToSetDate) {
+			approvalProcess.Fecha_Implementacion_de_Baja__c = Date.today()
+				.addDays(15);
+		}
 	}
 }

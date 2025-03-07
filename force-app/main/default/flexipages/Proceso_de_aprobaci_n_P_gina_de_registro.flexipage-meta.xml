@@ -139,6 +139,40 @@
                 <identifier>RecordLink_Google_Drive_Presupuesto_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Fecha_de_Desactivacion__c</fieldItem>
+                <identifier>RecordFecha_de_Desactivacion__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Action__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Baja definitiva</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Fecha_Implementacion_de_Baja__c</fieldItem>
+                <identifier>RecordFecha_Implementacion_de_Baja_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Action__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Baja definitiva</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-a3c7ec57-ff4a-4ec5-a251-7b5ba5fd04df</name>
         <type>Facet</type>
     </flexiPageRegions>
