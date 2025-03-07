@@ -3,6 +3,10 @@
   "tabWidth": 4,
 	"useTabs": true,
 	"singleQuote": true,
+ "plugins": [
+    "prettier-plugin-apex",
+    "@prettier/plugin-xml"
+  ],
   "overrides": [
     {
       "files": "**/lwc/**/*.html",
