@@ -16,14 +16,6 @@
             <default>false</default>
         </values>
         <values>
-            <fullName>Cambio - Actualización</fullName>
-            <default>false</default>
-        </values>
-        <values>
-            <fullName>Cambio - Altas crecimiento orgánico</fullName>
-            <default>false</default>
-        </values>
-        <values>
             <fullName>Cancelación de referencias</fullName>
             <default>false</default>
         </values>
